@@ -87,4 +87,9 @@ class TasksController < ApplicationController
     @task = Taks.find(params[:id])
     @task.update_attribute(:status, params[:status])
   end
+
+  def receive_task
+    Task.receive_task(params)
+    redirect_to :action=>'index', :controller=>'top'
+  end
 end
