@@ -1,3 +1,9 @@
 ・Devise
 http://t-taira.hatenablog.com/entry/20110101/1293843821
 
+
+・環境設定
+  git push taskboard master
+  git push taskboard-heroku master
+  heroku restart --app sharetaskboard
+
