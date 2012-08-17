@@ -1,0 +1,9 @@
+<menu class="menu_text">
+<%= link_to 'Topへ', {:action=>'index',:controller=>'top'} %>&nbsp;&nbsp;|&nbsp;&nbsp;
+<%= link_to 'タスク一覧へ', {:action=>'index',:controller=>'tasks'} %>&nbsp;&nbsp;|&nbsp;&nbsp;
+
+<div class="menu_text">
+  <%=render "common/#{controller.controller_name}_menu" %>
+</div>
+</menu>
+

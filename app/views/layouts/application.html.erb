@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TaksBoard</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% if current_user %>
+<%= render 'common/login_info' %>
+<%= render 'common/menu' %>
+<hr/>
+<% end %>
+<p id="notice"><%=notice %></p>
+<p id="alert"><%=alert %></p>
+<%= yield %>
+</body>
+</html>

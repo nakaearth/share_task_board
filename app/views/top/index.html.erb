@@ -1,0 +1,14 @@
+<h2>ようこそ！</h2>
+<% if current_user %>
+<%= render 'common/login_info' %>
+<menu class="menu_text">
+  <%=link_to 'Myタスク一覧', :action =>'index' ,:controller=>'tasks' %>&nbsp;&nbsp;|&nbsp;&nbsp; 
+</menu>
+<%= render 'content' %>
+<% else %>
+<menu class="menu_text">
+  <%=link_to 'ログイン', new_user_session_path %>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <%=link_to 'ユーザ登録', new_user_registration_path %>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <%=link_to 'パスワード再発行', new_user_password_path %>&nbsp;&nbsp;|&nbsp;&nbsp; 
+</menu>
+<% end %>

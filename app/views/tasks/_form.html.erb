@@ -1,0 +1,47 @@
+<div id="task_form_id" class="task_form">
+<%= form_for(@task) do |f| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <% if controller.action_name == "edit" %>
+  <div class="field">
+    <%= f.label :status ,'進捗度'%>:
+    TODO:<%= f.radio_button :status,"1" %>|
+    DOING:<%= f.radio_button :status,"2" %>|
+    DONE:<%= f.radio_button :status,"3" %>
+    PENDING:<%= f.radio_button :status,"0" %>
+  </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :priority ,'優先順位'%>:
+    いつでも:<%= f.radio_button :priority,"0" %>|
+    やれれば:<%= f.radio_button :priority,"1" %>|
+    なるべく早く:<%= f.radio_button :priority,"2" %>
+  </div>
+  <div class="field">
+    <%= f.label :public_flag ,'公開する?'%>:
+    公開:<%= f.radio_button :public_flag,"1" %>|
+    非公開：<%= f.radio_button :public_flag,"0" %>|
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
