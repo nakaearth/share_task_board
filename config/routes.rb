@@ -4,7 +4,8 @@ TaksBoard::Application.routes.draw do
 
   resources :tasks ,:only=>[:index, :show, :new, :create, :update, :edit, :destroy] do
     member do
-      put 'update_status'
+      get 'update_status'
+      get 'receive_task'
     end
   end
 

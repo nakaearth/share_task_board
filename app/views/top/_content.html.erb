@@ -12,7 +12,12 @@
     <td><%= task.title %></td>
     <td><%= status_str(task.status) %></td>
     <td><%= link_to '詳細', task %></td>
-    <td><% if current_user.id == task.user_id %><%= link_to '編集', edit_task_path(task) %><% end %></td>
+    <td><% if current_user.id == task.user_id %>
+          <%= link_to '編集', edit_task_path(task) %>
+       <% else %>
+          <%=link_to 'タスクを引き受ける',:action=>'receive_task',:controller=>'tasks',:id=>task.id, :user_id=>current_user.id %>
+       <% end %>
+    </td>
     <td><% if current_user.id == task.user_id %><%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></td>
   </tr>
 <% end %>
