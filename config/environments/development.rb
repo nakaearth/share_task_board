@@ -1,3 +1,5 @@
+require 'pusher'
+
 TaksBoard::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -35,4 +37,9 @@ TaksBoard::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  Pusher.app_id = '26020'
+  Pusher.key    = 'c7d4af934bf322e70b97'
+  Pusher.secret = '35cd1d75f7c10376723f'
+
 end

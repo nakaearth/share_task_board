@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120816151401) do
+ActiveRecord::Schema.define(:version => 20120818054926) do
 
   create_table "tasks", :force => true do |t|
     t.string   "title",       :default => "", :null => false
@@ -22,8 +22,10 @@ ActiveRecord::Schema.define(:version => 20120816151401) do
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
     t.integer  "public_flag", :default => 0
+    t.integer  "r_user_id",   :default => 0,  :null => false
   end
 
+  add_index "tasks", ["r_user_id"], :name => "index_tasks_on_r_user_id"
   add_index "tasks", ["status", "priority"], :name => "index_tasks_on_status_and_priority"
   add_index "tasks", ["status", "public_flag"], :name => "index_tasks_on_status_and_public_flag"
 

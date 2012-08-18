@@ -51,3 +51,7 @@ end
 
 #paginate
 gem "will_paginate"
+
+#Pusher
+gem "pusher"
+

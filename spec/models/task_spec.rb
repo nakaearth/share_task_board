@@ -16,8 +16,9 @@ describe Task do
     end
     it "parameter check" do
       task = Task.find(1)
-      task.user_id.should == 2
+      task.r_user_id.should == 2
       task.public_flag.should == 0
+      task.user_id.should == 1
     end
   end
 end

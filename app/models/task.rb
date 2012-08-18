@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
   
   def self.receive_task(params)
     task = Task.find(params[:id])
-    task.user_id = params[:user_id]
+    task.r_user_id = params[:user_id]
     task.public_flag = 0
     task.save
   end
