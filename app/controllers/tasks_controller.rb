@@ -1,3 +1,7 @@
+#coding: utf-8
+
+require 'pusher'
+
 class TasksController < ApplicationController
   before_filter :authenticate_user!
 
@@ -90,6 +94,7 @@ class TasksController < ApplicationController
 
   def receive_task
     Task.receive_task(params)
+    Pusher['taskboard_channel'].trigger('my_event',{:greeting => current_user.user_name + 'さんがタスクを引き受けてくれました'})
     redirect_to :action=>'index', :controller=>'top'
   end
 end
