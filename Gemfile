@@ -9,7 +9,8 @@ group :development,:test do
   gem 'sqlite3'
 end
 group :production do
-  gem 'pg'
+#  gem 'pg'
+  gem "mysql2"
   gem 'unicorn'
 end
 
@@ -54,4 +55,9 @@ gem "will_paginate"
 
 #Pusher
 gem "pusher"
+
+#cloudinary
+#gem "paperclip", "~> 3.0"
+gem 'carrierwave'
+gem "cloudinary"
 

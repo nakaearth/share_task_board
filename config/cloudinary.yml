@@ -1,0 +1,18 @@
+development:
+  cloud_name: ht5zsfyb3
+  api_key: '266328193169852'
+  api_secret: QWAkjFBGyRtL-mXdAeyWZO7mBKQ
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: ht5zsfyb3
+  api_key: '266328193169852'
+  api_secret: QWAkjFBGyRtL-mXdAeyWZO7mBKQ
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: ht5zsfyb3
+  api_key: '266328193169852'
+  api_secret: QWAkjFBGyRtL-mXdAeyWZO7mBKQ
+  enhance_image_tag: true
+  static_image_support: false
