@@ -5,5 +5,5 @@ run TaksBoard::Application
 
 #unicorn gc setting
 require 'unicorn/oob_gc'
-use Unicorn::OoGC, 10
+use Unicorn::OobGC, 10
 
