@@ -2,3 +2,8 @@
 
 require ::File.expand_path('../config/environment',  __FILE__)
 run TaksBoard::Application
+
+#unicorn gc setting
+require 'unicorn/oob_gc'
+use Unicorn::OoGC, 10
+
