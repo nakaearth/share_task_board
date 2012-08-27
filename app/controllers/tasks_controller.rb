@@ -4,12 +4,16 @@ require 'pusher'
 
 class TasksController < ApplicationController
   before_filter :authenticate_user!
+  
+  #cache setting
+  caches_page :show
 
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.where('user_id = ?',current_user.id).latest.paginate(:per_page=>20, :page=>params[:page])
-
+    ActiveRecord::Base.cache do
+      @tasks = Task.where('user_id = ?',current_user.id).latest.paginate(:per_page=>20, :page=>params[:page])
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks }

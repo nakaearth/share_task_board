@@ -4,6 +4,7 @@ require ::File.expand_path('../config/environment',  __FILE__)
 run TaksBoard::Application
 
 #unicorn gc setting
-require 'unicorn/oob_gc'
-use Unicorn::OobGC, 10
-
+if Rails.env.production?
+  require 'unicorn/oob_gc'
+  use Unicorn::OobGC, 10
+end

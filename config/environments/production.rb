@@ -71,5 +71,7 @@ TaksBoard::Application.configure do
   Pusher.app_id = '26019'
   Pusher.key    = '5ef1e1fe96ffb68655a3'
   Pusher.secret = '88f08e2c0c84308f31b8'
-
+  
+  #gzip
+  config.action_controller.page_cache_compression = :best_compression
 end

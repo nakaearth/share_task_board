@@ -58,6 +58,6 @@ gem "pusher"
 
 #cloudinary
 #gem "paperclip", "~> 3.0"
-gem 'carrierwave'
-gem "cloudinary"
+#gem 'carrierwave'
+#gem "cloudinary"
 
