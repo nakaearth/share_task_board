@@ -12,7 +12,9 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     ActiveRecord::Base.cache do
-      @tasks = Task.where('user_id = ?',current_user.id).latest.paginate(:per_page=>20, :page=>params[:page])
+      @todo_tasks = Task.where('user_id = ?',current_user.id).todo.latest.paginate(:per_page=>20, :page=>params[:page])
+      @doing_tasks = Task.where('user_id = ?',current_user.id).doing.latest.paginate(:per_page=>20, :page=>params[:page])
+      @done_tasks = Task.where('user_id = ?',current_user.id).done.latest.paginate(:per_page=>20, :page=>params[:page])
     end
     respond_to do |format|
       format.html # index.html.erb

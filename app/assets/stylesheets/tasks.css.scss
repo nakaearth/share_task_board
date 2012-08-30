@@ -66,14 +66,61 @@
   color: #3725A8;
   margin: 5px;
 }
-@mixin task_css($status) {
-  @if $status ==1 {
+.task {
+  background-color: #FFFFDB;
+  border: 1px solid #333333;
+  font-size: 10pt;
+  width: 200px;
+  margin: 3px;
+  float: left;
+  cursor: move;
+}
+.board {
+  position: relative;
+  width: 90%;
+  z-index: 1;
+}
+.todo {
+  text-align: left;
+  font-weight: bold;
+  border: 2px solid #333333;
+  background-color: #FFFFFF;
+  vertical-align: text-top;
+  width: 33%;
+  height: 700px;
+  overflow: visible;  
+}
+
+.doing {
+  text-align: left;
+  font-weight: bold;
+  border: 2px solid #333333;
+  background-color: #FFFFFF;
+  vertical-align: text-top;
+  width: 33%;
+  height: 700px;
+  overflow: visible;
+}
+
+.done {
+  text-align: left;
+  font-weight: bold;
+  border: 2px solid #333333;
+  background-color: #FFFFFF;
+  vertical-align: text-top;
+  width: 33%;
+  height: 700px;
+  overflow: visible; 
+}
+
+@mixin task_css($priority) {
+  @if $priority ==0 {
     font-size: 9px;
     background-color: #67BA37;
-  }@else if $status== 2 {
+  }@else if $priority== 1 {
     font-size: 9px;
     background-color: #9DB1FF;
-  }@else if $status==3 {
+  }@else if $priority==2 {
     font-size: 9px;
     background-color: #FF3333;
   }@else {
@@ -81,7 +128,7 @@
   }
 }
 
-.task_css1 { @include task_css(1); }
+.task_css0 { @include task_css(0); }
+.task_css1 { @include task_css(1); } 
 .task_css2 { @include task_css(2); } 
-.task_css3 { @include task_css(3); } 
 
