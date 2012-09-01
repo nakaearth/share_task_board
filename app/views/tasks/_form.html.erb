@@ -36,9 +36,9 @@
     なるべく早く:<%= f.radio_button :priority,"2" %>
   </div>
   <div class="field">
-    <%= f.label :public_flag ,'公開する?'%>:
-    公開:<%= f.radio_button :public_flag,"1" %>|
-    非公開：<%= f.radio_button :public_flag,"0" %>|
+    <%= f.label :public_flag ,'公開して誰かに助けてもらう?'%>:
+    公開する:<%= f.radio_button :public_flag,"1" %>|
+    公開しない：<%= f.radio_button :public_flag,"0" %>|
   </div>
   <div class="actions">
     <%= f.submit %>

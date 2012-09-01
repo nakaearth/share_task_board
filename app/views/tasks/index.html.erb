@@ -1,20 +1,20 @@
 <h1><% unless current_user.user_name == "" then %> <%=current_user.user_name+"さんの" %> <% end%>タスク一覧</h1>
 <table id="task_board" class="board">
   <tr>
-  <td id="todoCaption" class="todo">
+  <td id="todoCaption" class="task_list_board">
     まだ未着手
     <div id="todo_board" class="board">
     <%=render @todo_tasks %>
     </div>
   </td>
-  <td id="doingCaption" class="doing">
+  <td id="doingCaption" class="task_list_board">
     取り組み中
     <div id="doing_board" class="board">
     <%=render @doing_tasks %>
     </div>
   </td>
 
-  <td id="doneCaption" class="done">
+  <td id="doneCaption" class="task_list_board">
     完了
     <div id="done_board" class="board">
     <%=render @done_tasks %>

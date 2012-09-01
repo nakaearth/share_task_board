@@ -80,7 +80,7 @@
   width: 90%;
   z-index: 1;
 }
-.todo {
+.task_list_board {
   text-align: left;
   font-weight: bold;
   border: 2px solid #333333;
@@ -89,28 +89,6 @@
   width: 33%;
   height: 700px;
   overflow: visible;  
-}
-
-.doing {
-  text-align: left;
-  font-weight: bold;
-  border: 2px solid #333333;
-  background-color: #FFFFFF;
-  vertical-align: text-top;
-  width: 33%;
-  height: 700px;
-  overflow: visible;
-}
-
-.done {
-  text-align: left;
-  font-weight: bold;
-  border: 2px solid #333333;
-  background-color: #FFFFFF;
-  vertical-align: text-top;
-  width: 33%;
-  height: 700px;
-  overflow: visible; 
 }
 
 @mixin task_css($priority) {

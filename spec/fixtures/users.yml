@@ -1,6 +1,8 @@
 one:
   id: 1
   user_name: 'test name'
+  email: 'test@hogohge.com'
 two:
   id: 2
   user_name: 'test name2'
+  email: 'test2@hogohge.com'

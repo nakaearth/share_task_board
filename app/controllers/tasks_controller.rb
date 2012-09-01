@@ -11,11 +11,10 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    ActiveRecord::Base.cache do
-      @todo_tasks = Task.where('user_id = ?',current_user.id).todo.latest.paginate(:per_page=>20, :page=>params[:page])
-      @doing_tasks = Task.where('user_id = ?',current_user.id).doing.latest.paginate(:per_page=>20, :page=>params[:page])
-      @done_tasks = Task.where('user_id = ?',current_user.id).done.latest.paginate(:per_page=>20, :page=>params[:page])
-    end
+    results = Task.task_lists 8 
+    @todo_tasks = results[0]
+    @doing_tasks = results[1]
+    @done_tasks = results[2]
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks }
