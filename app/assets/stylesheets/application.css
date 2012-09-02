@@ -11,3 +11,22 @@
  *= require_self
  *= require_tree .
  */
+.div_user_content{
+  text-align: center;
+  font-weight: bold;
+  font-size: 12pt;
+  color: #3725A8;
+  width: 90%;
+  padding: 30px;
+  margin: 20px;
+  border: 1px solid #333333;
+  -webkit-border-radius: 10px;/* Safari、Google Chrome */
+  -moz-border-radius: 10px;/* Firefox */
+}
+.contents {
+  text-align: left;
+  font-weight: bold;
+  font-size: 10pt;
+  color: #3725A8;
+
+}

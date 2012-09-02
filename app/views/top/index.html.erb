@@ -1,4 +1,5 @@
-<h2>一般公開タスク一覧ページ</h2>
+<div class="contents">
+<h2>皆に助けて欲しいタスク一覧</h2>
 <% if current_user %>
 <%= render 'common/login_info' %>
 <menu class="menu_text">
@@ -12,3 +13,4 @@
   <%=link_to 'パスワード再発行', new_user_password_path %>&nbsp;&nbsp;|&nbsp;&nbsp; 
 </menu>
 <% end %>
+</div>
