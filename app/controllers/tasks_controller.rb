@@ -11,10 +11,12 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    results = Task.task_lists 8 
-    @todo_tasks = results[0]
-    @doing_tasks = results[1]
-    @done_tasks = results[2]
+    results=Task.task_lists current_user,8 
+    @todo_tasks=results[0]
+    @doing_tasks=results[1]
+    @done_tasks=results[2]
+    @pending_tasks=results[3]
+    @myfriends_tasks=results[4]
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks }

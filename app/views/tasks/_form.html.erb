@@ -14,11 +14,19 @@
 
   <div class="field">
     <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <% if @task.user_id==current_user.id %>
+      <%= f.text_field :title %>
+    <% else %>
+      <%=@task.title %>
+    <% end %>
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <% if @task.user_id==current_user.id %>
+      <%= f.text_area :description %>
+    <% else %>
+      <%=@task.description %>
+    <% end %>
   </div>
   <% if controller.action_name == "edit" %>
   <div class="field">

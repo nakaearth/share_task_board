@@ -9,12 +9,14 @@ class Task < ActiveRecord::Base
   
   belongs_to :user
  
-  def self.task_lists(per_count)
+  def self.task_lists(user_id, per_count)
     ActiveRecord::Base.cache do
-      @todo_tasks=Task.todo.latest.limit(per_count)
-      @doing_tasks=Task.doing.latest.limit(per_count)
-      @done_tasks=Task.done.latest(per_count)
-      [@todo_tasks, @doing_tasks, @done_tasks]
+      @todo_tasks=Task.todo.where('user_id=?',user_id).latest.limit(per_count)
+      @doing_tasks=Task.doing.where('user_id=?',user_id).latest.limit(per_count)
+      @done_tasks=Task.done.where('user_id=?',user_id).latest.limit(per_count)
+      @pending_tasks=Task.pending.where('user_id=?',user_id).latest.limit(per_count)
+      @myfriends_tasks=Task.where('r_user_id=?',user_id).latest.limit(per_count)
+      [@todo_tasks, @doing_tasks, @done_tasks, @pending_tasks, @myfriends_tasks]
     end
   end
    

@@ -27,7 +27,7 @@ describe Task do
   context "task task_lists success" do
     before do
       params={user_id: 1}
-      @results=Task.task_lists 10
+      @results=Task.task_lists 1,10
     end
     it "result success value" do
       @results[0].size.should == 2 
