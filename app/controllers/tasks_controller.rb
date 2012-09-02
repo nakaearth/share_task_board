@@ -38,7 +38,9 @@ class TasksController < ApplicationController
   # GET /tasks/new.json
   def new
     @task = Task.new
-
+    @task.user_id = current_user.id
+    @task.r_user_id=current_user.id
+   
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @task }
