@@ -56,6 +56,9 @@ gem "will_paginate"
 #Pusher
 gem "pusher"
 
+#jpmobile
+gem 'jpmobile'
+
 #cloudinary
 #gem "paperclip", "~> 3.0"
 #gem 'carrierwave'

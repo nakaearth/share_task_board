@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TaksBoard</title>
+  <meta name="viewport" content="width=device-width">
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <script src="http://js.pusher.com/1.12/pusher.min.js" type="text/javascript">
+  </script>
+  <script type="text/javascript">
+    // Enable pusher logging - don't include this in production
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) window.console.log(message);
+    };
+    WEB_SOCKET_DEBUG = true;
+    var pusher = new Pusher('<%= Pusher.key %>'); // uses your API KEY
+    var channel = pusher.subscribe('taskboard_channel');
+    channel.bind('my_event', function(data) {
+      alert(data);
+    });
+  </script>
+</head>
+<body>
+<% if current_user %>
+<%= render 'common/login_info' %>
+<%= render 'common/menu' %>
+<hr/>
+<% end %>
+<p id="notice"><%=notice %></p>
+<p id="alert"><%=alert %></p>
+<%= yield %>
+</body>
+</html>

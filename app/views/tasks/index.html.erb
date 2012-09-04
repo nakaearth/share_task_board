@@ -1,4 +1,4 @@
-<h1><% unless current_user.user_name == "" then %> <%=current_user.user_name+"さんの" %> <% end%>タスク一覧</h1>
+<h2><% unless current_user.user_name == "" then %> <%=current_user.user_name+"さんの" %> <% end%>受け持った一覧</h2>
 <table id="receive_tasks" class="board">
   <th class="list_menu">概要</th>
   <th ></th>
@@ -17,6 +17,7 @@
 </table>
 <br/>
 <hr/>
+<h2><% unless current_user.user_name == "" then %> <%=current_user.user_name+"さんの" %> <% end%>のやること一覧</h2>
 <table id="task_board" class="board">
   <tr>
   <td id="todoCaption" class="task_list_board">

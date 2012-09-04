@@ -7,3 +7,8 @@ http://t-taira.hatenablog.com/entry/20110101/1293843821
   git push taskboard-heroku master
   heroku restart --app sharetaskboard
 
+・jpmobile
+https://github.com/jpmobile/jpmobile
+http://d.hatena.ne.jp/inouetakuya/20120418/1334750857
+
+
