@@ -7,8 +7,8 @@ class TasksController < ApplicationController
   
   #cache setting
   caches_page :show
+  cache_sweeper :task_sweeper,:only => [:update,:create, :destroy]
 
-  # GET /tasks
   # GET /tasks.json
   def index
     results=Task.task_lists current_user,8 
