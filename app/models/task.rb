@@ -8,6 +8,9 @@ class Task < ActiveRecord::Base
   scope :pending, where('status=?',0)
   
   belongs_to :user
+
+  validates :title ,:presence=>true ,:length=>{:within=>5..80}
+  validates :description ,:presence=>true ,:length=>{:within=>1..270}
  
   def self.task_lists(user_id, per_count)
     ActiveRecord::Base.cache do
