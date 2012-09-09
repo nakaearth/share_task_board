@@ -5,6 +5,7 @@ class Task < ActiveRecord::Base
   scope :todo, where('status=?',1)
   scope :doing, where('status=?',2)
   scope :done, where('status=?',3)
+  scope :finish, where('status=?',4)
   scope :pending, where('status=?',0)
   
   belongs_to :user
@@ -28,5 +29,11 @@ class Task < ActiveRecord::Base
     task.r_user_id = params[:user_id]
     task.public_flag = 0
     task.save
+  end
+  
+  def self.finished
+    transaction do
+      self.update_all ['status=?',4],['status=?',3]
+    end
   end
 end

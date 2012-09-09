@@ -100,10 +100,14 @@ class TasksController < ApplicationController
     @task = Taks.find(params[:id])
     @task.update_attribute(:status, params[:status])
   end
-
+  
   def receive_task
     Task.receive_task(params)
     Pusher['taskboard_channel'].trigger('my_event',{:greeting => current_user.user_name + 'さんがタスクを引き受けてくれました'})
     redirect_to :action=>'index', :controller=>'top'
+  end
+  
+  def finish_list
+    @tasks=Task.finish.latest.paginate(page: params[:page], per_page: 20) 
   end
 end

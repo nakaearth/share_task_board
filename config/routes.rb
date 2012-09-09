@@ -7,6 +7,9 @@ TaksBoard::Application.routes.draw do
       get 'update_status'
       get 'receive_task'
     end
+    collection do
+      get 'finish_list'
+    end
   end
 
   devise_for :users

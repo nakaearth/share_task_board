@@ -22,20 +22,20 @@
 <h2><% unless current_user.user_name == "" then %> <%=current_user.user_name+"さんの" %> <% end%>のやること一覧</h2>
 <table id="task_board" class="board">
   <tr>
-  <td id="todoCaption" class="task_list_board">
+  <td id="todoCaption" class="task_list_board1">
     まだ未着手
     <div id="todo_board" class="board">
     <%=render @todo_tasks %>
     </div>
   </td>
-  <td id="doingCaption" class="task_list_board">
+  <td id="doingCaption" class="task_list_board2">
     取り組み中
     <div id="doing_board" class="board">
     <%=render @doing_tasks %>
     </div>
   </td>
 
-  <td id="doneCaption" class="task_list_board">
+  <td id="doneCaption" class="task_list_board3">
     完了
     <div id="done_board" class="board">
     <%=render @done_tasks %>

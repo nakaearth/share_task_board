@@ -5,7 +5,8 @@ require 'spec_helper'
 describe Task do
   fixtures :tasks
   fixtures :users
-
+  
+  # receive test
   context "Task receive test" do
     before do
       params={id: 1,user_id: 2}
@@ -23,7 +24,7 @@ describe Task do
     end
   end
  
- # TEST
+ # Task List TEST
   context "task task_lists success" do
     before do
       params={user_id: 1}
@@ -35,4 +36,17 @@ describe Task do
       @results[2].size.should == 1
     end
   end
+
+ # Task finished TEST
+  context "task finished success" do
+    before do
+      params={user_id: 1}
+      Task.finished
+    end
+    it "result success value" do
+      @results=Task.where('status=?',4)
+      @results.size.should == 1
+    end
+  end
+
 end

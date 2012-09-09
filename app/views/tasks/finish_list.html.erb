@@ -1,0 +1,14 @@
+<h2><% unless current_user.user_name == "" then %> <%=current_user.user_name+"さんの" %> <% end%>の終わったタスク一覧</h2>
+<table id="task_board" class="board">
+  <tr>
+  <td id="finishCaption" class="task_list_board4">
+    完了したタスク 
+    <div id="todo_board" class="board">
+    <%=render @tasks %>
+    </div>
+  </td>
+  </tr>
+</table>
+
+<br />
+

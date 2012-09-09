@@ -86,13 +86,18 @@
   padding: 5px;
   margin: 5px;
 }
-.task_list_board {
+
+@mixin task_list_board($status) {
   text-align: left;
   font-weight: bold;
   border: 2px solid #333333;
   background-color: #FFFFFF;
   vertical-align: text-top;
-  width: 33%;
+  @if $status==4 {
+    width: 90%;
+  } @else {
+    width: 33%; 
+  }
   height: 700px;
   overflow: visible;  
   padding: 10px;
@@ -100,6 +105,11 @@
   -webkit-border-radius: 10px;/* Safari、Google Chrome */
   -moz-border-radius: 10px;/* Firefox */
 }
+.task_list_board1 { @include task_list_board(1); }
+.task_list_board2 { @include task_list_board(2); }
+.task_list_board3 { @include task_list_board(3); }
+.task_list_board4 { @include task_list_board(4); }
+
 .table_board {
   width: 90%;
   text-align: left;
