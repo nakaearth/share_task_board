@@ -11,4 +11,9 @@ http://t-taira.hatenablog.com/entry/20110101/1293843821
 https://github.com/jpmobile/jpmobile
 http://d.hatena.ne.jp/inouetakuya/20120418/1334750857
 
+・CIツール
+http://travis-ci.org/profile#
+
+・Task管理
+https://www.pivotaltracker.com/dashboard
 
