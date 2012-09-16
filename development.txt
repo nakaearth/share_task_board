@@ -17,3 +17,5 @@ http://travis-ci.org/profile#
 ・Task管理
 https://www.pivotaltracker.com/dashboard
 
+・git
+git remote add sharetaskboard_heroku git@heroku.com:sharetaskboard.git
