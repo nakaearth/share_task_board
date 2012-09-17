@@ -203,6 +203,6 @@ ja:
     failure:
       user:
         invalid: ログイン情報が不正です。
-    registrations
-      user
+    registrations:
+      user:
         signed_up: ユーザ情報を登録しました。
