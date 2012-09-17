@@ -25,7 +25,9 @@
 </head>
 <body>
 <% if current_user %>
+<% unless controller.controller_name=="top" %>
 <%= render 'common/login_info' %>
+<% end %>
 <%= render 'common/menu' %>
 <hr/>
 <% end %>
