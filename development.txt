@@ -19,3 +19,8 @@ https://www.pivotaltracker.com/dashboard
 
 ・git
 git remote add sharetaskboard_heroku git@heroku.com:sharetaskboard.git
+http://d.hatena.ne.jp/dkfj/20120228/1330434467
+
+
+・Chef
+http://jp.rubyist.net/magazine/?0035-ChefInDECOLOG

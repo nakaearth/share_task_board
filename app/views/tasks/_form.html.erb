@@ -31,9 +31,9 @@
   <% if controller.action_name == "edit" %>
   <div class="field">
     <%= f.label :status ,'進捗度'%>:
-    TODO:<%= f.radio_button :status,"1" %>|
-    DOING:<%= f.radio_button :status,"2" %>|
-    DONE:<%= f.radio_button :status,"3" %>
+    TODO:<%= f.radio_button :status,"1" %>|&nbsp;&nbsp;
+    DOING:<%= f.radio_button :status,"2" %>|&nbsp;&nbsp;
+    DONE:<%= f.radio_button :status,"3" %>|&nbsp;&nbsp;
     PENDING:<%= f.radio_button :status,"0" %>
   </div>
   <% end %>

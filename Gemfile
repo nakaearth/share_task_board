@@ -36,7 +36,11 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-ext'
+  gem 'capistrano_colors'
+end
 
 # To use debugger
 # gem 'debugger'
