@@ -7,6 +7,30 @@ http://t-taira.hatenablog.com/entry/20110101/1293843821
   git push taskboard-heroku master
   heroku restart --app sharetaskboard
 
+・nginx
+brew install
+ruby <(curl -fsSkL raw.github.com/mxcl/homebrew/go)
+
+続いてnginxのインストール
+>brew search nginx
+>brew install nginx
+
+/usr/local/etc/nginxに移動して、nginx.confを編集
+
+PATHを通す
+export PATH=/usr/local/sbin:$PATH
+
+・起動と停止
+>nginx
+>nginx -s stop
+
+・unicorn
+gem 'unicorn'
+>RAILS_ENV=production bundle exec rake assets:precompile
+>unicorn_rails -c config/unicorn.rb -E development -P 5000 -D
+>unicorn_rails -c config/unicorn.rb -E development  -D
+
+
 ・jpmobile
 https://github.com/jpmobile/jpmobile
 http://d.hatena.ne.jp/inouetakuya/20120418/1334750857
