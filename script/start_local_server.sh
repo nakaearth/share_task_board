@@ -1,5 +1,5 @@
 #!/bin/bash
-
+PATH=/usr/local/sbin:$PATH
 echo "-----SERVER RESTART------"
 sudo nginx -s stop
 echo "----nginx start!-----"
