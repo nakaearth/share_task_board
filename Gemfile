@@ -69,3 +69,6 @@ gem 'jpmobile'
 #gem 'carrierwave'
 #gem "cloudinary"
 
+#Ajax Libs
+gem 'turbolinks'
+

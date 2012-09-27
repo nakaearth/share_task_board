@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @group=Group.find(params[:id])
   end
 
   def new
@@ -14,6 +15,18 @@ class GroupsController < ApplicationController
   end
 
   def create
+    @group=Group.new(params[:group])
+    respond_to do |format| 
+      if @group.save
+        @user=User.find(current_user.id)
+        @groups=@user.groups
+        @groups << @group
+        @user.save
+        format.html {redirect_to @group, :notice =>'save success.'}
+      else
+        format.html {render new}
+      end
+    end
   end
 
   def edit
