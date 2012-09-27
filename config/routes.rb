@@ -1,19 +1,4 @@
 TaksBoard::Application.routes.draw do
-
-  get "groups/index"
-
-  get "groups/show"
-
-  get "groups/new"
-
-  get "groups/create"
-
-  get "groups/edit"
-
-  get "groups/update"
-
-  get "groups/destroy"
-
   get "top/index"
 
   resources :tasks ,:only=>[:index, :show, :new, :create, :update, :edit, :destroy] do
@@ -24,6 +9,8 @@ TaksBoard::Application.routes.draw do
     collection do
       get 'finish_list'
     end
+  end
+  resources :groups ,:only=>[:index, :show, :new, :create, :update, :edit, :destroy] do
   end
 
   devise_for :users

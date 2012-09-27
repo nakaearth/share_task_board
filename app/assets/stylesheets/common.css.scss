@@ -85,8 +85,8 @@ div {
   font-weight: bold;
   font-size: 10pt;
   color: #3725A8;
-
-}.myfriend_tasks_board {
+}
+.myfriend_tasks_board {
   text-align: left;
   font-weight: bold;
   border: 2px solid #333333;
@@ -100,4 +100,39 @@ div {
   -webkit-border-radius: 10px;/* Safari、Google Chrome */
   -moz-border-radius: 10px;/* Firefox */
 }
+
+@mixin save_form($width) {
+  font-weight: bold;
+  font-size: 12pt;
+  background-color: #FFFFDB;
+  border: 1px solid #333333;
+  @if $width==1 {
+    width: 50%;
+  } @else if $width==2 {
+    width: 70%;
+  } @else {
+    width: 90%;
+  }
+  margin: 15px;
+  padding: 10px;
+}
+.task_form { @include save_form(2); }
+.group_form { @include save_form(2); }
+
+.list_menu {
+  width: 300px;
+  text-align: left;
+  font-size: 9pt;
+  background-color: #FFFFDB;
+}
+
+.menu_text {
+  font-size: 10pt;
+  text-align: left;
+  font-weight: bold;
+  color: #3725A8;
+  margin: 5px;
+}
+
+
 
