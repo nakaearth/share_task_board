@@ -29,6 +29,7 @@
   </script>
 </head>
 <body class="page-index">
+<div class="div_user_content">
 <% if current_user %>
 <% unless controller.controller_name=="top" %>
 <%= render 'common/login_info' %>
@@ -39,5 +40,6 @@
 <p id="notice"><%=notice %></p>
 <p id="alert"><%=alert %></p>
 <%= yield %>
+</div>
 </body>
 </html>

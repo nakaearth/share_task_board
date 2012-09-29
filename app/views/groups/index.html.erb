@@ -1,9 +1,11 @@
-<h1>Groups#index</h1>
+<h2>グループ一覧</h2>
 <table>
   <th class="list_menu">グループ名</th>
+  <th></th>
  <% @groups.each do |group| %>
   <tr>
     <td><%=group.name %>
+    <td><%=link_to '詳細', group %></td>
   </tr>
   <% end %>
 </table>

@@ -1,7 +1,15 @@
-<h1>Groups#show</h1>
+<h2>グループ一覧</h2>
 <div id="group_detail" class="group_form">
   <p>
     <b>グループ名:</b>
     <%=@group.name %>
   </p>
 </div>
+<table>
+  <th class="list_menu">グループ名</th>
+ <% @group_users.each do |user| %>
+  <tr>
+    <td><%=user.user_name %>
+  </tr>
+  <% end %>
+</table>
