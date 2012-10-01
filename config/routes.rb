@@ -8,6 +8,7 @@ TaksBoard::Application.routes.draw do
     end
     collection do
       get 'finish_list'
+      get 'pending_list'
     end
   end
   resources :groups ,:only=>[:index, :show, :new, :create, :update, :edit, :destroy] do

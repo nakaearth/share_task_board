@@ -110,4 +110,8 @@ class TasksController < ApplicationController
   def finish_list
     @tasks=Task.finish.latest.paginate(page: params[:page], per_page: 20) 
   end
+  
+  def pending_list
+    @tasks=Task.pending.latest.paginate(page: params[:page], per_page: 20) 
+  end
 end
