@@ -114,4 +114,8 @@ class TasksController < ApplicationController
   def pending_list
     @tasks=Task.pending.latest.paginate(page: params[:page], per_page: 20) 
   end
+
+  def list_for_group
+  
+  end
 end

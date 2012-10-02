@@ -66,8 +66,8 @@ gem 'jpmobile'
 
 #cloudinary
 #gem "paperclip", "~> 3.0"
-#gem 'carrierwave'
-#gem "cloudinary"
+gem 'carrierwave'
+gem "cloudinary"
 
 #Ajax Libs
 gem 'turbolinks'

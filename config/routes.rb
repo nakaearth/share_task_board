@@ -13,9 +13,12 @@ TaksBoard::Application.routes.draw do
   end
   resources :groups ,:only=>[:index, :show, :new, :create, :update, :edit, :destroy] do
   end
+  get "users/setting"
+  get "users/show"
+  post "users/update"
 
   devise_for :users
-
+  
   get 'tasks' ,:to=>'tasks#index', :as => :user_root
   
   # The priority is based upon order of creation:

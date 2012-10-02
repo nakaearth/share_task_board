@@ -1,0 +1,12 @@
+<%= form_tag({:action=>'update'},{:method=>:post}) do  %>
+
+  <div class="field">
+    <%=hidden_field_tag :avatar_cache %>
+    画像<br />
+    <%= file_field_tag :avatar %>
+  </div>
+  <div class="actions">
+    <%=submit_tag %>
+  </div>
+<% end %>
+
