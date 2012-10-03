@@ -2,7 +2,10 @@ class UsersController < ApplicationController
 
   def update 
     @user=User.find(current_user.id)
-    redirect_to @user, notice: 'users was successfully updated.'
+    #@user.avatar=params[:avatar]
+    @user.avatar=File.open(params[:avatar])
+    @user.save
+    redirect_to action: 'show', id: @user.id, notice: 'users was successfully updated.'
   end
 
   def setting

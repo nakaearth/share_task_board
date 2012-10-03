@@ -1,3 +1,5 @@
+require 'carrierwave/orm/activerecord'
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -11,4 +13,5 @@ class User < ActiveRecord::Base
   has_many :tasks
   has_many :group_maps
   has_many :groups ,:through => :group_maps
+#  mount_uploader :avatar, AvatarUploader
 end
