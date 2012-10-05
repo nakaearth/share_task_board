@@ -43,6 +43,7 @@ https://www.pivotaltracker.com/dashboard
 
 ・Cloudinary
 http://qiita.com/items/4dc162071b415c2f13bb
+https://devcenter.heroku.com/articles/cloudinary#using-with-ruby-on-rails
 
 ・git
 git remote add sharetaskboard_heroku git@heroku.com:sharetaskboard.git

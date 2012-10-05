@@ -2,6 +2,7 @@
 <%= link_to 'Topへ', {:action=>'index',:controller=>'top'} %>&nbsp;&nbsp;|&nbsp;&nbsp;
 <%= link_to 'タスク一覧へ', {:action=>'index',:controller=>'tasks'} %>&nbsp;&nbsp;|&nbsp;&nbsp;
 <%= link_to 'グループ一覧へ', {:action=>'index',:controller=>'groups'} %>&nbsp;&nbsp;|&nbsp;&nbsp;
+<%= link_to 'ユーザ設定', {:action=>'setting',:controller=>'users'} %>&nbsp;&nbsp;|&nbsp;&nbsp;
 
 <div class="menu_text">
   <%=render "common/#{controller.controller_name}_menu" %>
