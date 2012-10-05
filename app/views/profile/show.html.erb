@@ -2,6 +2,8 @@
 
 <p>
   <b>ユーザ画像:</b>
-  <%= image_tag(@user.avatar) %><br/>
+  <%=cl_image_tag(@user.avatar_url,:alt=>"profile image",:width=>90,:height=>90,:crop=>:thumb) %>
+  <hr/>
+  <%=cl_image_tag(@user.avatar_url,:alt=>"profile image") %>
 </p>
 

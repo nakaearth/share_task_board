@@ -13,9 +13,10 @@ TaksBoard::Application.routes.draw do
   end
   resources :groups ,:only=>[:index, :show, :new, :create, :update, :edit, :destroy] do
   end
-  resources :profile ,:only=>[:show,:update] do
+  resources :profile ,:only=>[:show] do
     member do
-      get "setting"
+      get 'setting'
+      post 'update_profile'
     end 
   end
 
