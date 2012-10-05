@@ -1,5 +1,5 @@
-<%= form_tag({:action=>'update'},{:method=>:post}) do  %>
-
+<form accept-charset="UTF-8" action="update" class="profile"
+   enctype="multipart/form-data" id="update_profile_image" method="post">
   <div class="field">
     <%=hidden_field_tag :avatar_cache %>
     画像<br />
@@ -8,5 +8,5 @@
   <div class="actions">
     <%=submit_tag %>
   </div>
-<% end %>
+</form>
 
