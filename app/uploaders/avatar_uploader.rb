@@ -1,4 +1,4 @@
-# encoding: utf-8
+#coding: utf-8
 
 class AvatarUploader < CarrierWave::Uploader::Base
   include Cloudiary::CarrierWave
