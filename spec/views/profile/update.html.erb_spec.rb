@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe "users/setting.html.erb" do
+describe "profile/update.html.erb" do
   pending "add some examples to (or delete) #{__FILE__}"
 end

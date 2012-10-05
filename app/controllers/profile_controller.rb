@@ -1,12 +1,12 @@
+class ProfileController < ApplicationController
+before_filter :authenticate_user!
 
-class UsersController < ApplicationController
-  before_filter :authenticate_user!
-
-  def update 
-    Cloudinary::Uploader.upload(params[:avatar])
+  def update
     @user=User.find(current_user.id)
     @user.avatar=params[:avatar]
     @user.save
+    p @user
+    Cloudinary::Uploader.upload(params[:avatar])
     redirect_to action: 'show', id: @user.id, notice: 'users was successfully updated.'
   end
 
@@ -17,4 +17,5 @@ class UsersController < ApplicationController
   def show
     @user=User.find(current_user.id)
   end
+
 end
