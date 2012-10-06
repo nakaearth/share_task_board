@@ -101,7 +101,8 @@ div {
   -moz-border-radius: 10px;/* Firefox */
 }
 
-@mixin save_form($width) {
+@mixin common_form($width) {
+  text-align: left;
   font-weight: bold;
   font-size: 12pt;
   background-color: #FFFFDB;
@@ -110,14 +111,17 @@ div {
     width: 50%;
   } @else if $width==2 {
     width: 70%;
-  } @else {
+  } @else if $width==3 {
     width: 90%;
+  } @else {
+    width: 30%;
   }
   margin: 15px;
   padding: 10px;
 }
-.task_form { @include save_form(2); }
-.group_form { @include save_form(2); }
+.task_form { @include common_form(2); }
+.group_form { @include common_form(2); }
+.profile_form { @include common_form(3); }
 
 .list_menu {
   width: 300px;

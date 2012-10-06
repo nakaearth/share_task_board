@@ -1,9 +1,15 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>ユーザ画像:</b>
-  <%=cl_image_tag(@user.avatar_url,:alt=>"profile image",:width=>90,:height=>90,:crop=>:thumb) %>
+<div class="profile_form">
+  <p>
+    <b>ユーザ画像:</b>
+    <% if @user.avatar %>
+    <%=cl_image_tag(@user.avatar_url,:alt=>"profile image",:width=>90,:height=>90,:crop=>:thumb) %>
+    <% end %>
+  </p>
   <hr/>
-  <%=cl_image_tag(@user.avatar_url,:alt=>"profile image") %>
-</p>
+  <p>
+    <b>名前:</b>
+    <%=@user.user_name %>
+  </p>
+</div>
 

@@ -205,6 +205,7 @@ ja:
     failure:
       user:
         invalid: ログイン情報が不正です。
+      already_authenticated: ログイン済みです
     registrations:
       user:
         signed_up: ユーザ情報を登録しました。
