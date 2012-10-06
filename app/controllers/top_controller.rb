@@ -1,5 +1,5 @@
 class TopController < ApplicationController
-#  layout "users"
+  layout "users"
 
   caches_page :index
 
