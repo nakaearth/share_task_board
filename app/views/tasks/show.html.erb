@@ -15,5 +15,6 @@
   <b>優先順位:</b>
   <%= priority_str(@task.priority) %>
 </p>
-<%= link_to '編集', edit_task_path(@task) %> 
+<%= link_to '編集', edit_task_path(@task) %>&nbsp;&nbsp;|
+<%= link_to '削除', :action=>'destroy_task', :controller=>'tasks', :id=>@task.id %>&nbsp;&nbsp;|
 </div>

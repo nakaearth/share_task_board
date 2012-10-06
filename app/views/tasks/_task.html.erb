@@ -2,7 +2,6 @@
    <div id="task_menu" class="task_css<%=task.priority %>">
      |<%= link_to '詳しくみる', task %>
      |<%= link_to '編集する', edit_task_path(task) %>
-     |<%= link_to '削除する', task, :confirm => '本当に削除しますか？', :remote=>true,:method => :delete %>
    </div>
     <%= task.title %>
     <br>

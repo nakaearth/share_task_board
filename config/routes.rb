@@ -1,7 +1,7 @@
 TaksBoard::Application.routes.draw do
   get "top/index"
 
-  resources :tasks ,:only=>[:index, :show, :new, :create, :update, :edit, :destroy] do
+  resources :tasks ,:only=>[:index, :show, :new, :create, :update, :edit] do
     member do
       get 'update_status'
       get 'receive_task'
@@ -11,6 +11,8 @@ TaksBoard::Application.routes.draw do
       get 'pending_list'
     end
   end
+  match	"/tasks/:id/destroy_task"=>"tasks#destroy_task"
+
   resources :groups ,:only=>[:index, :show, :new, :create, :update, :edit, :destroy] do
   end
   resources :profile ,:only=>[:show] do
