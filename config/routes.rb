@@ -9,6 +9,7 @@ TaksBoard::Application.routes.draw do
     collection do
       get 'finish_list'
       get 'pending_list'
+      get 'receive_task_list'
     end
   end
   match	"/tasks/:id/destroy_task"=>"tasks#destroy_task"

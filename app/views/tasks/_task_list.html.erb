@@ -1,0 +1,26 @@
+<table id="task_board" class="board">
+  <tr>
+  <td id="todoCaption" class="task_list_board1">
+    まだ未着手
+    <div id="todo_board" class="board">
+    <%=render @todo_tasks %>
+    </div>
+  </td>
+  <td id="doingCaption" class="task_list_board2">
+    取り組み中
+    <div id="doing_board" class="board">
+    <%=render @doing_tasks %>
+    </div>
+  </td>
+
+  <td id="doneCaption" class="task_list_board3">
+    完了
+    <div id="done_board" class="board">
+    <%=render @done_tasks %>
+    </div>
+  </td>
+  </tr>
+</table>
+
+<br />
+
