@@ -116,6 +116,6 @@ class TasksController < ApplicationController
   end
 
   def list_for_group
-  
+    @tasks=Task.group_task_list params[:group_id]
   end
 end

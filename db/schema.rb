@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121001153109) do
+ActiveRecord::Schema.define(:version => 20121008155340) do
 
   create_table "group_maps", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20121001153109) do
     t.datetime "updated_at",                  :null => false
     t.integer  "public_flag", :default => 0
     t.integer  "r_user_id",   :default => 0,  :null => false
+    t.integer  "group_id",    :default => 0,  :null => false
   end
 
   add_index "tasks", ["r_user_id"], :name => "index_tasks_on_r_user_id"

@@ -14,14 +14,12 @@ class Task < ActiveRecord::Base
   validates :description ,:presence=>true ,:length=>{:within=>1..270}
  
   def self.task_lists(user_id, per_count)
-    ActiveRecord::Base.cache do
-      @todo_tasks=Task.todo.where('user_id=?',user_id).latest.limit(per_count)
-      @doing_tasks=Task.doing.where('user_id=?',user_id).latest.limit(per_count)
-      @done_tasks=Task.done.where('user_id=?',user_id).latest.limit(per_count)
-      @pending_tasks=Task.pending.where('user_id=?',user_id).latest.limit(per_count)
-      @myfriends_tasks=Task.where('r_user_id=?',user_id).latest.limit(per_count)
-      [@todo_tasks, @doing_tasks, @done_tasks, @pending_tasks, @myfriends_tasks]
-    end
+    @todo_tasks=Task.todo.where('user_id=?',user_id).latest.limit(per_count)
+    @doing_tasks=Task.doing.where('user_id=?',user_id).latest.limit(per_count)
+    @done_tasks=Task.done.where('user_id=?',user_id).latest.limit(per_count)
+    @pending_tasks=Task.pending.where('user_id=?',user_id).latest.limit(per_count)
+    @myfriends_tasks=Task.where('r_user_id=?',user_id).latest.limit(per_count)
+    [@todo_tasks, @doing_tasks, @done_tasks, @pending_tasks, @myfriends_tasks]
   end
    
   def self.receive_task(params)
@@ -35,5 +33,9 @@ class Task < ActiveRecord::Base
     transaction do
       self.update_all ['status=?',4],['status=?',3]
     end
+  end
+  
+  def self.group_task_list(params)
+    @tasks=Task.where('group_id=?',params[:group_id])    
   end
 end
