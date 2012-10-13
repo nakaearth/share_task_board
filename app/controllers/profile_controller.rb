@@ -4,7 +4,7 @@ class ProfileController < ApplicationController
 
   def update_profile
     User.delay.profile_update params
-    redirect_to action: 'show', id: @user.id, notice: 'users was successfully updated.'
+    redirect_to action: 'show', id: current_user.id, notice: 'users was successfully updated.'
   end
 
   def setting
