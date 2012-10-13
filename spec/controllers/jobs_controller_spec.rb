@@ -18,7 +18,7 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe TasksController do
+describe JobsController do
 
   # This should return the minimal set of attributes required to create a valid
   # Task. As you add validations to Task, be sure to
@@ -36,7 +36,7 @@ describe TasksController do
 
   describe "GET index" do
     it "assigns all tasks as @tasks" do
-      task = Task.create! valid_attributes
+      task = Job.create! valid_attributes
       get :index, {}, valid_session
       assigns(:tasks).should eq([task])
     end

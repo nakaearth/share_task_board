@@ -63,3 +63,6 @@ module TaksBoard
     config.assets.version = '1.0'
   end
 end
+Tire.configure do
+    url ENV['SEARCHBOX_URL']
+end

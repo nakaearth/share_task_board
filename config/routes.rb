@@ -1,7 +1,7 @@
 TaksBoard::Application.routes.draw do
   get "top/index"
 
-  resources :tasks ,:only=>[:index, :show, :new, :create, :update, :edit] do
+  resources :jobs ,:only=>[:index, :show, :new, :create, :update, :edit] do
     member do
       get 'update_status'
       get 'receive_task'
@@ -12,7 +12,7 @@ TaksBoard::Application.routes.draw do
       get 'receive_task_list'
     end
   end
-  match	"/tasks/:id/destroy_task"=>"tasks#destroy_task"
+  match	"/jobs/:id/destroy_task"=>"jobs#destroy_task"
 
   resources :groups ,:only=>[:index, :show, :new, :create, :update, :edit, :destroy] do
   end
@@ -25,7 +25,7 @@ TaksBoard::Application.routes.draw do
 
   devise_for :users
   
-  get 'tasks' ,:to=>'tasks#index', :as => :user_root
+  get 'jobs' ,:to=>'jobs#index', :as => :user_root
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

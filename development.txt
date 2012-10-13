@@ -49,6 +49,11 @@ https://devcenter.heroku.com/articles/cloudinary#using-with-ruby-on-rails
 git remote add sharetaskboard_heroku git@heroku.com:sharetaskboard.git
 http://d.hatena.ne.jp/dkfj/20120228/1330434467
 
+・elasticsearch
+http://www.elasticsearch.org/
+https://github.com/karmi/tire
 
 ・Chef
 http://jp.rubyist.net/magazine/?0035-ChefInDECOLOG
+
+

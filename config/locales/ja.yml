@@ -191,7 +191,7 @@ ja:
         email: メール
         password: パスワード 
         user_name: ユーザ名
-      task:
+      job:
         title: タイトル
         description: 詳細
         status: 状態 

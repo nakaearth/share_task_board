@@ -1,11 +1,11 @@
 <div id="task_form_id" class="task_form">
-<%= form_for(@task) do |f| %>
-  <% if @task.errors.any? %>
+<%= form_for(@job) do |f| %>
+  <% if @job.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <h2><%= pluralize(@job.errors.count, "error") %> prohibited this task from being saved:</h2>
 
       <ul>
-      <% @task.errors.full_messages.each do |msg| %>
+      <% @job.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -14,18 +14,18 @@
 
   <div class="field">
     <%= f.label :title %><br />
-    <% if @task.user_id==current_user.id %>
+    <% if @job.user_id==current_user.id %>
       <%= f.text_field :title %>
     <% else %>
-      <%=@task.title %>
+      <%=@job.title %>
     <% end %>
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <% if @task.user_id==current_user.id %>
+    <% if @job.user_id==current_user.id %>
       <%= f.text_area :description %>
     <% else %>
-      <%=@task.description %>
+      <%=@job.description %>
     <% end %>
   </div>
   <% if controller.action_name == "edit" %>

@@ -1,0 +1,9 @@
+  <div id="<%=job.id %>" class="task">
+   <div id="task_menu" class="task_css<%=job.priority %>">
+     |<%= link_to '詳しくみる', job %>
+   </div>
+    <%= job.title %>
+    <br>
+    作成日：<%= job.created_at.strftime("%Y/%m/%d") %><br>
+    更新日：<%= job.updated_at.strftime("%Y/%m/%d") %>
+  </div>

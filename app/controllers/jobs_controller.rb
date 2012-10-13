@@ -2,16 +2,16 @@
 
 require 'pusher'
 
-class TasksController < ApplicationController
+class JobsController < ApplicationController
   before_filter :authenticate_user!
   
   #cache setting
   caches_page :show
-  cache_sweeper :task_sweeper,:only => [:update,:create, :destroy]
+  cache_sweeper :job_sweeper,:only => [:update,:create, :destroy]
 
   # GET /tasks.json
   def index
-    results=Task.task_lists current_user,8 
+    results=Job.task_lists current_user,8 
     @todo_tasks=results[0]
     @doing_tasks=results[1]
     @done_tasks=results[2]
@@ -23,13 +23,12 @@ class TasksController < ApplicationController
 
   # GET /tasks.json
   def receive_task_list
-    results=Task.receive_task_lists current_user,8 
+    results=Job.receive_task_lists current_user,8 
     @todo_tasks=results[0]
     @doing_tasks=results[1]
     @done_tasks=results[2]
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @tasks }
     end
   end
 
@@ -37,44 +36,44 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
-    @task = Task.find(params[:id])
+    @job = Job.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @task }
+      format.json { render json: @job }
     end
   end
 
   # GET /tasks/new
   # GET /tasks/new.json
   def new
-    @task = Task.new
-    @task.user_id = current_user.id
-    @task.r_user_id=current_user.id
+    @job = Job.new
+    @job.user_id = current_user.id
+    @job.r_user_id=current_user.id
    
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @task }
+      format.json { render json: @job }
     end
   end
 
   # GET /tasks/1/edit
   def edit
-    @task = Task.find(params[:id])
+    @job = Job.find(params[:id])
   end
 
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(params[:task])
-    @task.user_id = current_user.id
+    @job = Job.new(params[:job])
+    @job.user_id = current_user.id
     respond_to do |format|
-      if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render json: @task, status: :created, location: @task }
+      if @job.save
+        format.html { redirect_to @job, notice: 'Job was successfully created.' }
+        format.json { render json: @job, status: :created, location: @job }
       else
         format.html { render action: "new" }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.json { render json: @job.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -82,15 +81,15 @@ class TasksController < ApplicationController
   # PUT /tasks/1
   # PUT /tasks/1.json
   def update
-    @task = Task.find(params[:id])
+    @job = Job.find(params[:id])
 
     respond_to do |format|
-      if @task.update_attributes(params[:task])
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+      if @job.update_attributes(params[:job])
+        format.html { redirect_to @job, notice: 'Job was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.json { render json: @job.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -98,35 +97,35 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy_task
-    @task = Task.find(params[:id])
-    @task.destroy
+    @job = Job.find(params[:id])
+    @job.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url }
+      format.html { redirect_to jobs_url }
       format.json { head :no_content }
     end
   end
   
   def update_status
-    @task = Taks.find(params[:id])
+    @task = Job.find(params[:id])
     @task.update_attribute(:status, params[:status])
   end
   
   def receive_task
-    Task.receive_task(params)
+    Job.receive_task(params)
     Pusher['taskboard_channel'].trigger('my_event',{:greeting => current_user.user_name + 'さんがタスクを引き受けてくれました'})
     redirect_to :action=>'index', :controller=>'top'
   end
   
   def finish_list
-    @tasks=Task.finish.latest.paginate(page: params[:page], per_page: 20) 
+    @tasks=Job.finish.latest.paginate(page: params[:page], per_page: 20) 
   end
   
   def pending_list
-    @tasks=Task.pending.latest.paginate(page: params[:page], per_page: 20) 
+    @tasks=Job.pending.latest.paginate(page: params[:page], per_page: 20) 
   end
 
   def list_for_group
-    @tasks=Task.group_task_list params[:group_id]
+    @tasks=Job.group_task_list params[:group_id]
   end
 end

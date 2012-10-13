@@ -4,12 +4,11 @@
   <th></th>
   <th></th>
   <th></th>
-  <% @task.each do |task| %>
-  <tr class="task_css<%=m_task.priority %>">
+  <% @jobs.each do |job| %>
+  <tr class="task_css<%=job.priority %>">
     <td><%=task.title %>
-    <td ><%=status_str(m_task.status) %></td>
-    <td><%= link_to '編集する', edit_task_path(m_task) %></td>
-    <td><%= link_to '削除する', m_task, :confirm => '本当に削除しますか？', :remote=>true,:method => :delete %>
+    <td ><%=status_str(job.status) %></td>
+    <td><%= link_to '編集する', edit_task_path(job) %></td>
   </tr> 
   <% end %>
 </table>

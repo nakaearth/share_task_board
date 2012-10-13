@@ -72,3 +72,6 @@ gem 'cloudinary'
 #Ajax Libs
 gem 'turbolinks'
 
+#Elastic search
+gem 'tire'
+
