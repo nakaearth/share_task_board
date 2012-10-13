@@ -65,7 +65,6 @@ gem "pusher"
 gem 'jpmobile'
 
 #cloudinary
-#gem "paperclip", "~> 3.0"
 gem 'carrierwave'
 gem 'cloudinary'
 
@@ -74,4 +73,9 @@ gem 'turbolinks'
 
 #Elastic search
 gem 'tire'
+
+#DELAY JOB
+gem 'delayed_job'
+gem 'delayed_job_active_record'
+gem "daemons"
 

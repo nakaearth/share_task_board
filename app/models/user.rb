@@ -14,4 +14,10 @@ class User < ActiveRecord::Base
   has_many :group_maps
   has_many :groups ,:through => :group_maps
   mount_uploader :avatar, AvatarUploader
+
+  def self.profile_update(params)
+    @user=User.find(params[:id])
+    @user.avatar=params[:avatar]
+    @user.save
+  end
 end

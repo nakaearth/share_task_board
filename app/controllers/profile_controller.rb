@@ -3,9 +3,7 @@ class ProfileController < ApplicationController
   protect_from_forgery :except => :update_profile
 
   def update_profile
-    @user=User.find(params[:id])
-    @user.avatar=params[:avatar]
-    @user.save
+    User.delay.profile_update params
     redirect_to action: 'show', id: @user.id, notice: 'users was successfully updated.'
   end
 
