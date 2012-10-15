@@ -1,4 +1,7 @@
 class Job < ActiveRecord::Base
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+#  index_name BONSAI_INDEX_NAME
   attr_accessible :description, :status, :title,:priority,:public_flag
   
   scope :latest, order('updated_at desc')
@@ -28,10 +31,10 @@ class Job < ActiveRecord::Base
   end
    
   def self.receive_task(params)
-    task = Job.find(params[:id])
-    task.r_user_id = params[:user_id]
-    task.public_flag = 0
-    task.save
+    @job=Job.find(params[:id])
+    @job.r_user_id = params[:user_id]
+    @job.public_flag = 0
+    @job.save!
   end
   
   def self.finished

@@ -10,8 +10,7 @@ describe Job do
   context "Job receive test" do
     before do
       params={id: 1,user_id: 2}
-      @result = Job.receive_task(params)
-
+      @result = Job.receive_task params
     end
     it "success case" do
       @result.should == true
@@ -19,6 +18,21 @@ describe Job do
     it "parameter check" do
       job = Job.find(1)
       job.r_user_id.should == 2
+      job.public_flag.should == 0
+      job.user_id.should == 1
+    end
+  end
+  context "Job receive test2" do
+    before do
+      params={id: 1,user_id: 3}
+      @result = Job.receive_task(params)
+    end
+    it "success case" do
+      @result.should == true
+    end
+    it "parameter check" do
+      job = Job.find(1)
+      job.r_user_id.should ==3 
       job.public_flag.should == 0
       job.user_id.should == 1
     end

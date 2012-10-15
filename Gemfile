@@ -72,7 +72,7 @@ gem 'cloudinary'
 gem 'turbolinks'
 
 #Elastic search
-gem 'tire'
+gem 'tire', '~>0.4.1'
 
 #DELAY JOB
 gem 'delayed_job'

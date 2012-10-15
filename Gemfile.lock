@@ -223,7 +223,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   sqlite3
-  tire
+  tire (~> 0.4.1)
   turbolinks
   uglifier (>= 1.0.3)
   unicorn
