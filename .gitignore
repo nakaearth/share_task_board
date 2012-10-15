@@ -14,5 +14,6 @@
 /log/*.log
 /tmp
 /public/jobs/
+/public/tasks/
 /public/top/
 /public/assets
