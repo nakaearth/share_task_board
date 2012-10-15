@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>TaksBoard</title>
+  <link href="/assets/application.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/common.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/tasks.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/top.css?body=1" media="all" rel="stylesheet" type="text/css" />
+  <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+<script src="/assets/groups.js?body=1" type="text/javascript"></script>
+<script src="/assets/tasks.js?body=1" type="text/javascript"></script>
+<script src="/assets/top.js?body=1" type="text/javascript"></script>
+<script src="/assets/welcome.js?body=1" type="text/javascript"></script>
+<script src="/assets/application.js?body=1" type="text/javascript"></script>
+  <meta content="authenticity_token" name="csrf-param" />
+<meta content="ExP4BMwr/lX3FO3oMugUqfnNXB+ISySmkVrSco21h3A=" name="csrf-token" />
+  <script src="http://js.pusher.com/1.12/pusher.min.js" type="text/javascript">
+  </script>
+  <script type="text/javascript">
+    // Enable pusher logging - don't include this in production
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) window.console.log(message);
+    };
+    // Flash fallback logging - don't include this in production
+    WEB_SOCKET_DEBUG = true;
+    
+    var pusher = new Pusher('c7d4af934bf322e70b97'); // uses your API KEY
+    var channel = pusher.subscribe('taskboard_channel');
+    channel.bind('my_event', function(data) {
+      alert(data);
+    });
+  </script>
+</head>
+<body>
+<div id="user_info" class="login_user_info" >
+  <span>&nbsp;&nbsp;s_nakamuraさん、こんにちは！ &nbsp;&nbsp;|&nbsp;&nbsp;<a href="/users/sign_out" data-method="delete" rel="nofollow">ログアウト</a>
+  </span>
+</div>
+
+
+<menu class="menu_text">
+<a href="/top/index">Topへ</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+<a href="/tasks">タスク一覧へ</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+<a href="/groups/index">グループ一覧へ</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+
+<div class="menu_text">
+  &nbsp;&nbsp;<a href="/tasks/new">タスク登録</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+&nbsp;&nbsp;<a href="/tasks/finish_list">完了タスク一覧へ</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+
+</div>
+</menu>
+
+
+<hr/>
+<p id="notice">Task was successfully created.</p>
+<p id="alert"></p>
+<div id="task_detail" class="task_form">
+<p>
+  <b>タイトル:</b>
+  これはテストです
+</p>
+<p>
+  <b>概要:</b>
+  これもテスト。
+表示形式がよくなりましたね
+</p>
+<p>
+  <b>状態:</b>
+  TODO
+</p>
+<p>
+  <b>優先順位:</b>
+  やや優先
+</p>
+<a href="/tasks/7/edit">編集</a> 
+</div>
+
+</body>
+</html>

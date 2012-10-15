@@ -13,6 +13,6 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/public/tasks/
+/public/jobs/
 /public/top/
 /public/assets
