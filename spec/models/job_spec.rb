@@ -59,8 +59,34 @@ describe Job do
     end
     it "result success value" do
       @results=Job.where('status=?',4)
-      @results.size.should == 1
+      @results.size.should == 2
     end
   end
-
+  
+  #job validate test
+  context "job validate test" do
+    before do
+      @job=jobs(:valid)
+    end
+    it "validate title test" do
+      @job.title =""
+      @job.should_not be_valid
+    end
+    it "validate description test" do
+      @job.description=""
+      @job.should_not be_valid
+    end 
+    it "validate status test" do
+      @job.status="5"
+      @job.should_not be_valid
+    end 
+    it "validate priority test" do
+      @job.priority="5"
+      @job.should_not be_valid
+    end 
+    it "validate public_flag test" do
+      @job.public_flag="3"
+      @job.should_not be_valid
+    end 
+  end
 end

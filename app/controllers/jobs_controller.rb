@@ -65,7 +65,7 @@ class JobsController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @job = Job.new(params[:job])
+    @job = Job.new(job_params)
     @job.user_id = current_user.id
     respond_to do |format|
       if @job.save
@@ -84,7 +84,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
 
     respond_to do |format|
-      if @job.update_attributes(params[:job])
+      if @job.update_attributes(job_params)
         format.html { redirect_to @job, notice: 'Job was successfully updated.' }
         format.json { head :no_content }
       else
@@ -127,5 +127,10 @@ class JobsController < ApplicationController
 
   def list_for_group
     @tasks=Job.group_task_list params[:group_id]
+  end
+
+  private
+  def job_params
+    params.require(:job).permit(:title,:description,:priority,:status,:public_flag)
   end
 end

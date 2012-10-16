@@ -79,3 +79,5 @@ gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem "daemons"
 
+#strong parameter
+gem 'strong_parameters'

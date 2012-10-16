@@ -2,7 +2,7 @@
 <%= form_for(@job) do |f| %>
   <% if @job.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@job.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <h2><%= pluralize(@job.errors.count, "error") %>個の誤りがあります </h2>
 
       <ul>
       <% @job.errors.full_messages.each do |msg| %>

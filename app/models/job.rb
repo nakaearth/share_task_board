@@ -1,8 +1,8 @@
 class Job < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
-#  index_name BONSAI_INDEX_NAME
-  attr_accessible :description, :status, :title,:priority,:public_flag
+
+#  attr_accessible :description, :status, :title,:priority,:public_flag
   
   scope :latest, order('updated_at desc')
   scope :todo, where('status=?',1)
@@ -15,6 +15,15 @@ class Job < ActiveRecord::Base
 
   validates :title ,:presence=>true ,:length=>{:within=>5..80}
   validates :description ,:presence=>true ,:length=>{:within=>1..270}
+  validates :priority ,:presence=>true ,:numericality=>{:only_integer=>true,:less_than_or_equal_to=>3}
+  validates :status ,:presence=>true ,:numericality=>{:only_integer=>true,:less_than_or_equal_to=>4}
+  validates :public_flag ,:presence=>true ,:numericality=>{:only_integer=>true,:less_than_or_equal_to=>1}
+
+  tire do
+    mapping do
+      indexes :title, :analyzer => 'snowball', :boost => 100 
+    end 
+  end
  
   def self.task_lists(user_id, per_count)
     @todo_tasks=Job.todo.where('user_id=?',user_id).latest.limit(per_count)

@@ -30,3 +30,12 @@ four:
   status: 3 
   user_id: 1
   r_user_id: 2
+valid:
+  id: 5
+  title: 'test title5'
+  description: 'test hogehogehoge\n.test!!!'
+  priority: 1
+  status: 4
+  user_id: 1
+  r_user_id: 2
+
