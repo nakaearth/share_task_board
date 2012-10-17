@@ -1,5 +1,5 @@
 worker_processes 4
-timeout 15
+timeout 30
 preload_app true
 
 #PG ERROR 
