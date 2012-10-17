@@ -56,4 +56,9 @@ https://github.com/karmi/tire
 ・Chef
 http://jp.rubyist.net/magazine/?0035-ChefInDECOLOG
 
+・Validationの一覧
+http://ayapii.hatenablog.com/category/rails3
 
+
+・Strong parameters
+https://github.com/rails/strong_parameters
