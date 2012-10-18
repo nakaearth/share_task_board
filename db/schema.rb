@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013030434) do
+ActiveRecord::Schema.define(:version => 20121017160955) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(:version => 20121013030434) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "grade_masters", :force => true do |t|
+    t.string   "name",                      :null => false
+    t.integer  "job_count",  :default => 0, :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
 
   create_table "group_maps", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -58,6 +65,15 @@ ActiveRecord::Schema.define(:version => 20121013030434) do
   add_index "jobs", ["r_user_id"], :name => "index_tasks_on_r_user_id"
   add_index "jobs", ["status", "priority"], :name => "index_tasks_on_status_and_priority"
   add_index "jobs", ["status", "public_flag"], :name => "index_tasks_on_status_and_public_flag"
+
+  create_table "user_grades", :force => true do |t|
+    t.integer  "user_id",                   :null => false
+    t.integer  "user_grade", :default => 1, :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "user_grades", ["user_id"], :name => "index_user_grades_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
