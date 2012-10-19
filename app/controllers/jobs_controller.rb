@@ -136,7 +136,10 @@ class JobsController < ApplicationController
   end
   
   def job_complete(user_id)
-    @user_grade=UserGrade.set_grade user_id
-    Pusher['taskboard_channel'].trigger('my_event',{:greeting => current_user.user_name + 'さんのレベルが"+@user_grade.grade_id.to_s + "にアップしました'})
+    @grade_map=UserGrade.set_grade user_id
+    p @grade_map
+    if @grade_map[:status] =='up'  
+      Pusher['taskboard_channel'].trigger('my_event',{:greeting => current_user.user_name + 'さんのレベルがアップしました'})
+    end
   end
 end
