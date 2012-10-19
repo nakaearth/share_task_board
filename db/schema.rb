@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121017160955) do
+ActiveRecord::Schema.define(:version => 20121019041719) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(:version => 20121017160955) do
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end
+
+  add_index "grade_masters", ["job_count"], :name => "index_grade_masters_on_job_count"
 
   create_table "group_maps", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -67,10 +69,10 @@ ActiveRecord::Schema.define(:version => 20121017160955) do
   add_index "jobs", ["status", "public_flag"], :name => "index_tasks_on_status_and_public_flag"
 
   create_table "user_grades", :force => true do |t|
-    t.integer  "user_id",                   :null => false
-    t.integer  "user_grade", :default => 1, :null => false
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.integer  "user_id",                        :null => false
+    t.integer  "grade_master_id", :default => 1, :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   add_index "user_grades", ["user_id"], :name => "index_user_grades_on_user_id"

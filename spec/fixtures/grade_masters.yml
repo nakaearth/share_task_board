@@ -1,0 +1,17 @@
+one:
+  id: 1
+  job_count: 1
+  name: '見習い'
+two:
+  id: 2
+  job_count: 10
+  name: '作業者'
+three:
+  id: 3
+  job_count: 30
+  name: '作業マスター'
+four:
+  id: 4
+  job_count: 70
+  name: '熟達者'
+
