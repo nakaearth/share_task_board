@@ -3,7 +3,7 @@ class UserGrade < ActiveRecord::Base
   belongs_to :grade_master
 
   def self.set_grade(user_id)
-    count=Job.where('user_id=?',user_id).where('status > ?',3).count(:id)
+    count=Job.where('user_id=?',user_id).where('status >= ?',3).count(:id)
     @grade=GradeMaster.check_grade(count)
     p @grade
     UserGrade.where('user_id=?',user_id).first_or_create do |u_grade|
