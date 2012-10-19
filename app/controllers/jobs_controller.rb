@@ -138,6 +138,5 @@ class JobsController < ApplicationController
   def job_complete(user_id)
     @user_grade=UserGrade.set_grade user_id
     Pusher['taskboard_channel'].trigger('my_event',{:greeting => current_user.user_name + 'さんのレベルが"+@user_grade.grade_id.to_s + "にアップしました'})
-    redirect_to :action=>'index', :controller=>'jobs'
   end
 end
