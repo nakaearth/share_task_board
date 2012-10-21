@@ -139,7 +139,7 @@ class JobsController < ApplicationController
     @grade_map=UserGrade.set_grade user_id
     p @grade_map
     if @grade_map[:status] =='up'  
-      Pusher['taskboard_channel'].trigger('my_event',{:greeting => current_user.user_name + 'さんのレベルがアップしました'})
+      Pusher['taskboard_channel'].trigger('my_event',{:message => current_user.user_name + 'さんのレベルがアップしました'})
     end
   end
 end

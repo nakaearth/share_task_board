@@ -11,6 +11,7 @@
       console.log("page changed");
     });
   </script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script src="http://js.pusher.com/1.12/pusher.min.js" type="text/javascript">
   </script>
   <script type="text/javascript">
@@ -24,8 +25,16 @@
     var pusher = new Pusher('<%= Pusher.key %>'); // uses your API KEY
     var channel = pusher.subscribe('taskboard_channel');
     channel.bind('my_event', function(data) {
-      alert(data);
+      msg = data.message
+      dom_notify(msg);
     });
+    function dom_notify(msg){
+      $('#notify').text(msg);
+      $('#notify').fadeIn();
+      setTimeout(function() {
+        $('#notify').fadeOut();
+      }, 30000); 
+    }
   </script>
 </head>
 <body class="page-index">
@@ -36,9 +45,8 @@
 <% end %>
 <%= render 'common/menu' %>
 <hr/>
+<div id="notify" > </div>
 <% end %>
-<p id="notice"><%=notice %></p>
-<p id="alert"><%=alert %></p>
 <%= yield %>
 </div>
 </body>
