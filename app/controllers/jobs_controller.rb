@@ -36,6 +36,7 @@ class JobsController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    job_complete current_user.id
     @job = Job.find(params[:id])
 
     respond_to do |format|
@@ -85,7 +86,6 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if @job.update_attributes(job_params)
-        job_complete current_user.id
         format.html { redirect_to @job, notice: 'Job was successfully updated.' }
         format.json { head :no_content }
       else
@@ -137,7 +137,6 @@ class JobsController < ApplicationController
   
   def job_complete(user_id)
     @grade_map=UserGrade.set_grade user_id
-    p @grade_map
     if @grade_map[:status] =='up'  
       Pusher['taskboard_channel'].trigger('my_event',{:message => current_user.user_name + 'さんのレベルがアップしました'})
     end
