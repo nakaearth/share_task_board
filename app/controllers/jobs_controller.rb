@@ -82,7 +82,7 @@ class JobsController < ApplicationController
   # PUT /tasks/1.json
   def update
     @job = Job.find(params[:id])
-    job_complete current_user.id
+    job_complete current_user.id if params[:job][:status]=='3'
     respond_to do |format|
       if @job.update_attributes(job_params)
         format.html { redirect_to @job, notice: 'Job was successfully updated.' }
