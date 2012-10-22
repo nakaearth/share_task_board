@@ -19,7 +19,6 @@ class AddColumnGradeMastersLevel < ActiveRecord::Migration
     master= GradeMaster.where('job_count =?',400).first
     master.level=6
     master.save
-    
   end
 
 end

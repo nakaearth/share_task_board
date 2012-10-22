@@ -25,7 +25,7 @@
     var pusher = new Pusher('<%= Pusher.key %>'); // uses your API KEY
     var channel = pusher.subscribe('taskboard_channel');
     channel.bind('my_event', function(data) {
-      msg = data.message
+      msg = data.message+data.next_level
       dom_notify(msg);
     });
     function dom_notify(msg){
