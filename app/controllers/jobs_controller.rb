@@ -140,7 +140,7 @@ class JobsController < ApplicationController
     if @grade_map[:status] =='up'  
       Pusher['taskboard_channel'].trigger('my_event',{:message => current_user.user_name + 'さんのレベルがアップしました',:next_level=>'次のレベルまでに' + @grade_map[:next_count] + "個必要です"})
     else
-      Pusher['taskboard_channel'].trigger('my_event',{:message => '次のレベルまでに' + @grade_map[:next_count] + "個必要です"})
+      Pusher['taskboard_channel'].trigger('my_event',{:message => '次のレベルまでに' + @grade_map[:next_count].to_s + "個必要です"})
     end
   end
 end
