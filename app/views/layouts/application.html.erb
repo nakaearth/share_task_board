@@ -19,13 +19,12 @@
     Pusher.log = function(message) {
       if (window.console && window.console.log) window.console.log(message);
     };
-    // Flash fallback logging - don't include this in production
     WEB_SOCKET_DEBUG = true;
     
     var pusher = new Pusher('<%= Pusher.key %>'); // uses your API KEY
     var channel = pusher.subscribe('taskboard_channel');
     channel.bind('my_event', function(data) {
-      msg = data.message+data.next_level
+      msg = data.message
       dom_notify(msg);
     });
     function dom_notify(msg){
@@ -42,7 +41,6 @@
 <% end %>
 <%= render 'common/menu' %>
 <hr/>
-<div id="notify" > </div>
 <% end %>
 <%= yield %>
 </div>

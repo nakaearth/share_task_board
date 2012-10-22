@@ -11,6 +11,7 @@ class JobsController < ApplicationController
 
   # GET /tasks.json
   def index
+    job_complete current_user.id
     results=Job.task_lists current_user,8 
     @todo_tasks=results[0]
     @doing_tasks=results[1]
@@ -36,7 +37,6 @@ class JobsController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
-    job_complete current_user.id
     @job = Job.find(params[:id])
 
     respond_to do |format|
@@ -138,7 +138,7 @@ class JobsController < ApplicationController
   def job_complete(user_id)
     @grade_map=UserGrade.set_grade user_id
     if @grade_map[:status] =='up'  
-      Pusher['taskboard_channel'].trigger('my_event',{:message => current_user.user_name + 'さんのレベルがアップしました',:next_level=>'次のレベルまでに' + @grade_map[:next_count] + "個必要です"})
+      Pusher['taskboard_channel'].trigger('my_event',{:message => current_user.user_name + 'さんのレベルがアップしました。次のレベルまでに' + @grade_map[:next_count].to_s + "個必要です"})
     else
       Pusher['taskboard_channel'].trigger('my_event',{:message => '次のレベルまでに' + @grade_map[:next_count].to_s + "個必要です"})
     end
