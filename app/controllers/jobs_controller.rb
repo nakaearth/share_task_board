@@ -11,7 +11,6 @@ class JobsController < ApplicationController
 
   # GET /tasks.json
   def index
-    job_complete current_user.id
     results=Job.task_lists current_user,8 
     @todo_tasks=results[0]
     @doing_tasks=results[1]
@@ -83,7 +82,7 @@ class JobsController < ApplicationController
   # PUT /tasks/1.json
   def update
     @job = Job.find(params[:id])
-
+    job_complete current_user.id
     respond_to do |format|
       if @job.update_attributes(job_params)
         format.html { redirect_to @job, notice: 'Job was successfully updated.' }

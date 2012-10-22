@@ -25,12 +25,8 @@
     var channel = pusher.subscribe('taskboard_channel');
     channel.bind('my_event', function(data) {
       msg = data.message
-      dom_notify(msg);
+      confirm(msg);
     });
-    function dom_notify(msg){
-      $('#notify').text(msg);
-      $('#notify').fadeIn();
-    }
   </script>
 </head>
 <body class="page-index">

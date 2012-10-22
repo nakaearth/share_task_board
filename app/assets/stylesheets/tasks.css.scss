@@ -75,7 +75,7 @@
   } @else {
     width: 33%; 
   }
-  height: 700px;
+  height: 600px;
   overflow: visible;  
   padding: 10px;
   margin: 15px;
@@ -115,3 +115,10 @@
 .task_css1 { @include task_css(1); } 
 .task_css2 { @include task_css(2); } 
 
+.job_complete_box {
+  margin:3px;
+  width:80px;
+  display:none;
+  height:80px;
+  float:left;
+}
