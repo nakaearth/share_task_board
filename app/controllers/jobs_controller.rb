@@ -15,6 +15,7 @@ class JobsController < ApplicationController
     @todo_tasks=results[0]
     @doing_tasks=results[1]
     @done_tasks=results[2]
+    @user_grade=current_grade current_user.id
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks }
@@ -27,6 +28,7 @@ class JobsController < ApplicationController
     @todo_tasks=results[0]
     @doing_tasks=results[1]
     @done_tasks=results[2]
+    @user_grade=current_grade current_user.id
     respond_to do |format|
       format.html # index.html.erb
     end
@@ -37,7 +39,7 @@ class JobsController < ApplicationController
   # GET /tasks/1.json
   def show
     @job = Job.find(params[:id])
-
+    @user_grade=current_grade current_user.id
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @job }
@@ -50,7 +52,7 @@ class JobsController < ApplicationController
     @job = Job.new
     @job.user_id = current_user.id
     @job.r_user_id=current_user.id
-   
+    @user_grade=current_grade current_user.id
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @job }
@@ -60,6 +62,7 @@ class JobsController < ApplicationController
   # GET /tasks/1/edit
   def edit
     @job = Job.find(params[:id])
+    @user_grade=current_grade current_user.id
   end
 
   # POST /tasks
@@ -67,6 +70,7 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     @job.user_id = current_user.id
+    @user_grade=current_grade current_user.id
     respond_to do |format|
       if @job.save
         format.html { redirect_to @job, notice: 'Job was successfully created.' }
@@ -83,6 +87,7 @@ class JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
     job_complete current_user.id if params[:job][:status]=='3'
+    @user_grade=current_grade current_user.id
     respond_to do |format|
       if @job.update_attributes(job_params)
         format.html { redirect_to @job, notice: 'Job was successfully updated.' }
@@ -109,23 +114,28 @@ class JobsController < ApplicationController
   def update_status
     @task = Job.find(params[:id])
     @task.update_attribute(:status, params[:status])
+    @user_grade=current_grade current_user.id
   end
   
   def receive_task
     Job.receive_task(params)
+    @user_grade=current_grade current_user.id
     Pusher['taskboard_channel'].trigger('my_event',{:greeting => current_user.user_name + 'さんがタスクを引き受けてくれました'})
     redirect_to :action=>'index', :controller=>'top'
   end
   
   def finish_list
+    @user_grade=current_grade current_user.id
     @tasks=Job.finish.latest.paginate(page: params[:page], per_page: 20) 
   end
   
   def pending_list
+    @user_grade=current_grade current_user.id
     @tasks=Job.pending.latest.paginate(page: params[:page], per_page: 20) 
   end
 
   def list_for_group
+    @user_grade=current_grade current_user.id
     @tasks=Job.group_task_list params[:group_id]
   end
 
