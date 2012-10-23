@@ -1,6 +1,4 @@
 class TopController < ApplicationController
-  layout "users"
-
 #  caches_page :index
 
   def index

@@ -3,9 +3,10 @@
 <%= link_to 'タスク一覧へ', {:action=>'index',:controller=>'jobs'} %>&nbsp;&nbsp;|&nbsp;&nbsp;
 <%= link_to 'グループ一覧へ', {:action=>'index',:controller=>'groups'} %>&nbsp;&nbsp;|&nbsp;&nbsp;
 <%= link_to 'ユーザ設定', {:action=>'setting',:controller=>'profile',:id=>current_user.id} %>&nbsp;&nbsp;|&nbsp;&nbsp;
-
+<% unless controller.controller_name=="top" %>
 <div class="menu_text">
   <%=render "common/#{controller.controller_name}_menu" %>
 </div>
+<% end %>
 </menu>
 

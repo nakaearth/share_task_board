@@ -6,9 +6,5 @@
   <%=link_to 'Myタスク一覧', :action =>'index' ,:controller=>'jobs' %>&nbsp;&nbsp;|&nbsp;&nbsp; 
 </menu>
 <%= render 'content' %>
-<% else %>
-<menu class="menu_text">
-  <%= link_to 'Twitterログイン', "/auth/#{if Rails.env.production? then 'twitter' else  'developer' end}" %>&nbsp;&nbsp;|&nbsp;&nbsp;
-</menu>
 <% end %>
 </div>
