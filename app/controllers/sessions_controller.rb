@@ -1,9 +1,9 @@
 class SessionsController < ApplicationController
-  def callback
+  def create
     auth=request.env["omniauth.auth"]
-    @user=User.where(provider: auth["provider"],uid: auth["uid"]).first || User.create_with_omniauth(auth)
+    @user=User.where("provider=?", auth["provider"]).where("uid=?", auth["uid"]).first || User.create_with_omniauth(auth)
     session[:user_id]=@user.id
-    redirect_to action: 'index', controller: 'top', notice: "login success."
+    redirect_to root_url, :notice => "Signd in!"
   end
 
   def destroy
