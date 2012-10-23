@@ -1,4 +1,7 @@
+#coding: utf-8
+
 class Job < ActiveRecord::Base
+  #elastic search
   include Tire::Model::Search
   include Tire::Model::Callbacks
 
@@ -19,6 +22,7 @@ class Job < ActiveRecord::Base
   validates :status ,:presence=>true ,:numericality=>{:only_integer=>true,:less_than_or_equal_to=>4}
   validates :public_flag ,:presence=>true ,:numericality=>{:only_integer=>true,:less_than_or_equal_to=>1}
 
+  #Elastic search
   tire do
     mapping do
       indexes :title, :analyzer => 'snowball', :boost => 100 

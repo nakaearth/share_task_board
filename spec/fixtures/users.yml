@@ -1,8 +1,10 @@
 one:
   id: 1
-  user_name: 'test name'
-  email: 'test@hogohge.com'
+  provider: 'twitter'
+  uid: 'test1233'
+  name: 'test name'
 two:
   id: 2
-  user_name: 'test name2'
-  email: 'test2@hogohge.com'
+  provider: 'twitter'
+  uid: 'test12444'
+  name: 'test name2'

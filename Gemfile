@@ -46,7 +46,9 @@ end
 # gem 'debugger'
 
 #Devise
-gem "devise"
+#gem "devise"
+#omniauth
+gem 'omniauth-twitter'
 
 #Test
 group :development,:test do

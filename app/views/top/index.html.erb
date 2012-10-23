@@ -8,9 +8,7 @@
 <%= render 'content' %>
 <% else %>
 <menu class="menu_text">
-  <%=link_to 'ログイン', new_user_session_path %>&nbsp;&nbsp;|&nbsp;&nbsp;
-  <%=link_to 'ユーザ登録', new_user_registration_path %>&nbsp;&nbsp;|&nbsp;&nbsp;
-  <%=link_to 'パスワード再発行', new_user_password_path %>&nbsp;&nbsp;|&nbsp;&nbsp; 
+  <%= link_to 'Twitterログイン', "/auth/#{if Rails.env.production? then 'twitter' else  'developer' end}" %>&nbsp;&nbsp;|&nbsp;&nbsp;
 </menu>
 <% end %>
 </div>

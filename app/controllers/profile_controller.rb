@@ -1,5 +1,4 @@
 class ProfileController < ApplicationController
-  before_filter :authenticate_user!
   protect_from_forgery :except => :update_profile
 
   def update_profile
