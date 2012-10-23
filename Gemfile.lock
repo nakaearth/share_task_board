@@ -222,6 +222,7 @@ DEPENDENCIES
   jquery-rails
   mysql2
   newrelic_rpm
+  omniauth
   omniauth-twitter
   pusher
   rails (= 3.2.8)

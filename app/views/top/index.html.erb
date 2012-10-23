@@ -9,7 +9,6 @@
 <% else %>
 <menu class="menu_text">
   <%= link_to 'Twitterログイン', "/auth/#{if Rails.env.production? then 'twitter' else  'developer' end}" %>&nbsp;&nbsp;|&nbsp;&nbsp;
-  <%= link_to 'Twitterログイン', "/auth/twitter" %>&nbsp;&nbsp;|&nbsp;&nbsp;
 </menu>
 <% end %>
 </div>
