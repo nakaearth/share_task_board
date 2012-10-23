@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
   end
   
   def current_user
-    @current_user ||=User.where(id: session[:user_id]).first
+    begin
+      @current_user ||=User.find(session[:user_id]) if session[:user_id]
+    rescue ActiveRecord::RecordNotFound=>e
+      @current_user,session[:user_id]=null 
+    end
   end
 end

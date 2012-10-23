@@ -25,8 +25,8 @@ TaksBoard::Application.routes.draw do
 
 #  devise_for :users
 
-  match "/auth/:provider/callback" => "sessions#create"
-  match "/auth/failuer/" => "sessions#failure"
+  match '/auth/:provider/callback' => "sessions#create"
+  match "/auth/failuer" => "sessions#failure"
   match "/logout" => "sessions#destroy"
   
   get 'jobs' ,:to=>'jobs#index', :as => :user_root
