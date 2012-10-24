@@ -46,7 +46,7 @@ end
 # gem 'debugger'
 
 #omniauth
-#gem 'omniauth'
+gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 
