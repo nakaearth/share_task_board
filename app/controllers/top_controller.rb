@@ -1,4 +1,5 @@
 class TopController < ApplicationController
+   layout "sessions"
 #  caches_page :index
 
   def index
