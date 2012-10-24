@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-   iredirect_to '/auth/twitter'
+    redirect_to '/auth/'+ (Rails.env.production? ? 'twitter': 'developer')
   end
 
   def create
