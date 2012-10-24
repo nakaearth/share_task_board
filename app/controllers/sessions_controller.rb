@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+   iredirect_to '/auth/twitter'
   end
 
   def create
