@@ -7,8 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<div class="div_user_content">
+<% if current_user %>
+<% unless controller.controller_name=="top" %>
+<%= render 'common/login_info' %>
+<% end %>
+<%= render 'common/menu' %>
+<hr/>
+<% else %>
+<menu class="menu_text">
+  <%= link_to 'Twitterログイン', "/login" %>&nbsp;&nbsp;|&nbsp;&nbsp;
+</menu>
+<% end %>
 <%= yield %>
+</div>
 
 </body>
 </html>
