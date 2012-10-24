@@ -10,7 +10,7 @@
  *
  *= require_self
  *= require common
- *= require tasks
+ *= require jobs
  *= require top
  */
 .myfriend_tasks_board {
