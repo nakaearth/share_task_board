@@ -1,16 +1,8 @@
 require 'carrierwave/orm/activerecord'
 
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
- # devise :database_authenticatable, :registerable,
- #        :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me,:user_name
-
-  # attr_accessible :title, :body
+  # attr_accessible :provider, :uid
   has_many :jobs
   has_many :group_maps
   has_many :groups ,:through => :group_maps

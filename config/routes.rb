@@ -1,5 +1,8 @@
 TaksBoard::Application.routes.draw do
   get "top/index"
+  match "/auth/:provider/callback" => "sessions#create"
+  match "/auth/failure" => "sessions#failure"
+  match "/logout" => "sessions#destroy"
 
   resources :jobs ,:only=>[:index, :show, :new, :create, :update, :edit] do
     member do
@@ -22,14 +25,8 @@ TaksBoard::Application.routes.draw do
       post 'update_profile'
     end 
   end
-
-#  devise_for :users
-
-  match '/auth/:provider/callback' => "sessions#create"
-  match "/auth/failuer" => "sessions#failure"
-  match "/logout" => "sessions#destroy"
   
-  get 'jobs' ,:to=>'jobs#index', :as => :user_root
+#  get 'jobs' ,:to=>'jobs#index', :as => :user_root
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   helper_method :current_user
-  before_filter :reset_session_expires
+#  before_filter :reset_session_expires
 
   def current_grade(user_id)
     @user_grade = session['grade_'+user_id.to_s] 
@@ -15,10 +15,9 @@ class ApplicationController < ActionController::Base
   end
   
   private
-  
-  def reset_session_expires
-    request.session_options[:expire_after] = 2.weeks
-  end
+#  def reset_session_expires
+#    request.session_options[:expire_after] = 2.weeks
+#  end
   
   def current_user
     begin
