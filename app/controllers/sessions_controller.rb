@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     @user=User.where("provider=?", auth["provider"]).where("uid=?", auth["uid"]).first || User.create_with_omniauth(auth)
     session[:user_id]=@user.id
     p @user
-    redirect_to back_to || '/'
+    redirect_to :root ,notice: "login success."
   end
 
   def destroy
