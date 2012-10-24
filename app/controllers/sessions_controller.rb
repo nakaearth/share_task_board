@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  layout "sessions"
+
   def new
     redirect_to '/auth/'+ (Rails.env.production? ? 'twitter': 'developer')
   end
