@@ -1,5 +1,6 @@
 TaksBoard::Application.routes.draw do
   get "top/index"
+  match "/auth/:provider" => "sessions#new"
   match "/auth/:provider/callback" => "sessions#create"
   match "/auth/failure" => "sessions#failure"
   match "/logout" => "sessions#destroy"
