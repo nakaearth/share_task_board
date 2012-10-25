@@ -29,7 +29,7 @@ class LevelResearchWorker
       Pusher['taskboard_channel'].trigger('my_event',{:message => current_user.user_name + 'さんのレベルがアップしました。次
 のレベルまでに' + next_count.to_s + "個必要です"})
     else
-      Pusher['taskboard_channel'].trigger('my_event',{:message => '次のレベルまでに' + next_count.to_s + "個必>要です"})
+      Pusher['taskboard_channel'].trigger('my_event',{:message => '次のレベルまでに' + next_count.to_s + "個必要です"})
     end
   end
 end
