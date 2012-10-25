@@ -4,7 +4,7 @@ require 'pusher'
 
 class LevelResearchWorker
   include Sidekiq::Worker
-  sidekiq_options queue: "high"
+  #sidekiq_options queue: "high"
  
   def perform(user_id)
     count=Job.where('user_id=?',user_id).where('status >= ?',3).count(:id)
