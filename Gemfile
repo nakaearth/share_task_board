@@ -77,9 +77,16 @@ gem 'turbolinks'
 gem 'tire', '~>0.4.1'
 
 #DELAY JOB
-gem 'delayed_job'
-gem 'delayed_job_active_record'
-gem "daemons"
+#gem 'delayed_job'
+#gem 'delayed_job_active_record'
+#gem "daemons"
+#sidekiq
+gem 'sidekiq'
+
 
 #strong parameter
 gem 'strong_parameters'
+
+#pry-rails
+gem 'pry-rails'
+
