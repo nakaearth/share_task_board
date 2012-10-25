@@ -126,12 +126,12 @@ class JobsController < ApplicationController
   
   def finish_list
     @user_grade=current_grade current_user.id
-    @tasks=Job.finish.latest.paginate(page: params[:page], per_page: 20) 
+    @tasks=Job.where('user_id=?',current_user.id).finish.latest.paginate(page: params[:page], per_page: 20) 
   end
   
   def pending_list
     @user_grade=current_grade current_user.id
-    @tasks=Job.pending.latest.paginate(page: params[:page], per_page: 20) 
+    @tasks=Job.where('user_id=?',current_user.id).pending.latest.paginate(page: params[:page], per_page: 20) 
   end
 
   def list_for_group
