@@ -1,11 +1,12 @@
 #coding: utf-8
 
 class Job < ActiveRecord::Base
+  include ActiveModel::ForbiddenAttributesProtection
   #elastic search
   include Tire::Model::Search
   include Tire::Model::Callbacks
 
-  attr_accessible :description, :status, :title,:priority,:public_flag
+  #attr_accessible :description, :status, :title,:priority,:public_flag
   
   scope :latest,-> {order('updated_at desc') }
   scope :todo, ->{where('status=?',1) }
