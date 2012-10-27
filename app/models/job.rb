@@ -45,10 +45,12 @@ class Job < ActiveRecord::Base
   end
    
   def self.receive_task(params)
-    @job=Job.find(params[:id])
-    @job.r_user_id = params[:user_id]
-    @job.public_flag = 0
-    @job.save!
+    transaction do
+      @job=Job.find(params[:id])
+      @job.r_user_id = params[:user_id]
+      @job.public_flag = 0
+      @job.save!
+    end
   end
   
   def self.finished

@@ -6,7 +6,7 @@ class LevelResearchWorker
   include Sidekiq::Worker
   sidekiq_options queue: "high"
 
-  REDIS_POOL = ConnectionPool.new(:size => 10, :timeout => 3) { Redis.new } 
+  REDIS_POOL = ConnectionPool.new(:size => 8, :timeout => 3) { Redis.new } 
   def perform(user_id)
    REDIS_POOL.with_connection do |redis|
      count=Job.where('user_id=?',user_id).where('status >= ?',3).count(:id)

@@ -44,6 +44,8 @@ class JobsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @job }
     end
+  rescue
+    render :template => 'error/job_not_found', :status => :not_found
   end
 
   # GET /tasks/new
