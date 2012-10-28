@@ -1,0 +1,17 @@
+<h2>仕事一覧</h2>
+<%= will_paginate @jobs, previous_label: '«前', next_label: '次»' %>
+<table id="admin_jobs" >
+  <tr>
+    <th class="list_menu">タイトル</th>
+    <th class="list_menu">投稿者</th>
+    <th ></th>
+    <th ></th>
+  </tr>
+  <% @jobs.each do |job| %>
+  <tr>
+    <td><%=job.title %></td>
+    <td><%=job.user.name %></td>
+    <td></td>
+    <td></td>
+  <% end %>
+<br/>

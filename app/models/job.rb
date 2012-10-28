@@ -5,8 +5,6 @@ class Job < ActiveRecord::Base
   #elastic search
   include Tire::Model::Search
   include Tire::Model::Callbacks
-
-  #attr_accessible :description, :status, :title,:priority,:public_flag
   
   scope :latest,-> {order('updated_at desc') }
   scope :todo, ->{where('status=?',1) }

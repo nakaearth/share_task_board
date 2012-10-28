@@ -1,4 +1,6 @@
 TaksBoard::Application.routes.draw do
+
+  #user page
   get "top/index"
   get "/login" => "sessions#new",:as => :login
   match "/auth/:provider/callback" => "sessions#create"
@@ -25,6 +27,13 @@ TaksBoard::Application.routes.draw do
       get 'setting'
       post 'update_profile'
     end 
+  end
+
+  #admin
+  namespace :admin do
+    resources :jobs ,:only=>[:index,:edit,:update] do
+    end
+    resources :users, :only=>[:index] do end
   end
   
 #  get 'jobs' ,:to=>'jobs#index', :as => :user_root
