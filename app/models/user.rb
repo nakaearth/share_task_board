@@ -26,4 +26,10 @@ class User < ActiveRecord::Base
     @user.avatar=params[:avatar]
     @user.save
   end
+
+  def search_user(params)
+    @users=User.where('provider =?',params[:provider])
+               .where('name like ?',"#{params[:name]}%")
+               .paginate(:page=>params[:page], :per_page=>params[:per_page])  
+  end
 end

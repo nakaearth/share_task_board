@@ -15,7 +15,4 @@ class ProfileController < ApplicationController
     @user=User.find(current_user.id)
   end
   
-  def search_user
-    #@users=User.where(
-  end
 end

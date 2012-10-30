@@ -1,5 +1,9 @@
 TaksBoard::Application.routes.draw do
 
+  get "users/search_user"
+
+  get "users/set_user"
+
   #user page
   get "top/index"
   get "/login" => "sessions#new",:as => :login
@@ -21,6 +25,12 @@ TaksBoard::Application.routes.draw do
   match	"/jobs/:id/destroy_task"=>"jobs#destroy_task"
 
   resources :groups ,:only=>[:index, :show, :new, :create, :update, :edit, :destroy] do
+    resources :users do
+      collection do
+        post 'search_user'
+        get 'set_user' 
+      end
+    end
   end
   resources :profile ,:only=>[:show] do
     member do
