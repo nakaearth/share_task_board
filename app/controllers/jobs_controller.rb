@@ -1,9 +1,6 @@
 #coding: utf-8
 
-require 'pusher'
-
 class JobsController < ApplicationController
-#  before_filter :authenticate_user!
   
   #cache setting
   caches_page :show
