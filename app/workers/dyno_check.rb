@@ -1,9 +1,9 @@
 #coding: utf-8
 
 require 'heroku'
-include 'Clockwork'
+include Clockwork
 
-clinet=Heroku::Clinet.new(*Heroku::Auth.read_credentials)
+clinet=Heroku::Client.new(*Heroku::Auth.read_credentials)
 
 handler do |job|
   case job
