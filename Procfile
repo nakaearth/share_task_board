@@ -1,2 +1,3 @@
 web: bundle exec unicorn -p $PORT -c ./config/unicorn.rb
-worker: bundle exec sidekiq -q high, 5 -q default
+clockwork: bundle exec clockwork ./app/workers/dyno_check.rb
+
