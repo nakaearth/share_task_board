@@ -6,6 +6,6 @@ echo "====HEROKU PUSH===="
 git push sharetaskboard-heroku master
 echo "====APP RESTART===="
 heroku restart --app sharetaskboard
-
+heroku ps:scale clockwork=1
 echo "====RELEASE END!!!====="
 

@@ -90,3 +90,6 @@ gem 'strong_parameters'
 #pry-rails
 gem 'pry-rails'
 
+#clockwork
+gem 'clockwork'
+gem 'heroku'
