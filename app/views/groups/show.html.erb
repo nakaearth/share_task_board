@@ -10,11 +10,12 @@
   <%= form_tag({:action=>'search_user', :controller=>'users',:group_id=> @group.id},{:method=>:post}) do %>
     <div class="field">
     名前で検索してグループへの参加メんバーを設定しよう<br/>
-    名前:<%=text_field_tag :name, '',{:size=>30} %>
+    名前:<%=text_field_tag :word, '',{:size=>30} %>
     </div>
     <div class="field">
     twitter:<%= radio_button_tag :provider,"twitter" %>|    
     </div>
+    <%=hidden_field_tag :group_id,@group.id %> 
     <%=submit_tag '検索'%>
   <% end %>
 </div>

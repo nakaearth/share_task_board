@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe User do
-  
+  pending "add some examples to (or delete) #{__FILE__}"
   context "user save test" do
     before do
-      auth={"provider"=> 'twitter',"uid"=> 'aaaabbbcc1222'}
-      @user=User.create_with_omniauth(auth)
+      params=[:provider=>'twitter',:uid=>'aaaabbbcc1222',:info=>[:name=>'test_USER',:nickname=>'hogehoge',:image=>'http://tes.com/hogeho.jp']]
+      @user=User.create_with_omniauth params
     end
     it "save user_id " do
       @user.should_not == nil
