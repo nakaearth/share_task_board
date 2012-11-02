@@ -5,7 +5,7 @@
  <% @users.each do |user| %>
   <tr>
     <td><%=user.name %>
-    <td><%=link_to 'グループに追加', action: 'set_user',controller: 'users', user_id: user.id, group_id: @group.id %></td>
+    <td><%if @count.to_i <= 30 %> <%=link_to 'グループに追加', action: 'set_user',controller: 'users', user_id: user.id, group_id: @group.id %><% end %></td>
   </tr>
   <% end %>
 </table>
