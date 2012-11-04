@@ -9,9 +9,9 @@ class JobsController < ApplicationController
   # GET /tasks.json
   def index
     results=Job.task_lists current_user,8 
-    @todo_tasks=results[0]
-    @doing_tasks=results[1]
-    @done_tasks=results[2]
+    @todo_jobs=results[0]
+    @doing_jobs=results[1]
+    @done_jobs=results[2]
     @user_grade=current_grade current_user.id
     respond_to do |format|
       format.html # index.html.erb
@@ -22,9 +22,9 @@ class JobsController < ApplicationController
   # GET /tasks.json
   def receive_task_list
     results=Job.receive_task_lists current_user,8 
-    @todo_tasks=results[0]
-    @doing_tasks=results[1]
-    @done_tasks=results[2]
+    @todo_jobs=results[0]
+    @doing_jobs=results[1]
+    @done_jobs=results[2]
     @user_grade=current_grade current_user.id
     respond_to do |format|
       format.html # index.html.erb
