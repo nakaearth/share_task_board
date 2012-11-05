@@ -86,6 +86,9 @@ class JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
     job_complete current_user.id if params[:job][:status]=='3'
+    #Mailer deliver
+    NotifyMailer.notify_mail(current_user).deliver
+
     @user_grade=current_grade current_user.id
     respond_to do |format|
       if @job.update_attributes(job_params)
