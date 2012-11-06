@@ -1,0 +1,12 @@
+<menu class="menu_text">
+<%= link_to 'Topへ', {:action=>'index',:controller=>'top'} %><br/>
+<%= link_to 'やることリスト', {:action=>'index',:controller=>'jobs'} %><br/>
+<%= link_to 'グループ一覧', {:action=>'index',:controller=>'groups'} %><br/>
+<%= link_to 'ユーザ設定を変更する', {:action=>'setting',:controller=>'profile',:id=>current_user.id} %><br/>
+<% unless controller.controller_name=="top" %>
+<div class="menu_text">
+  <%=render "common/#{controller.controller_name}_menu" %>
+</div>
+<% end %>
+</menu>
+

@@ -9,7 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require common
- *= require jobs
- *= require top
+ *= require smart_phone/common
+ *= require smart_phone/jobs
+ *= require smart_phone/top
  */

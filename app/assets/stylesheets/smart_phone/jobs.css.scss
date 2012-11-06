@@ -35,37 +35,6 @@
         width: 100%;
 }
 
-.login_user_info{
-  text-align: right;
-  font-weight: bold;
-  font-size: 10pt;
-  color: #3725A8;
-  width: 100%;
-}
-.list_menu {
-  width: 300px;
-  text-align: left;
-  font-size: 9pt;
-  background-color: #FFFFDB;
-}
-
-.task_form {
-  font-weight: bold;
-  font-size: 12pt;
-  background-color: #FFFFDB;
-  border: 1px solid #333333;
-  width: 70%;
-  margin: 15px;
-  padding: 10px;
-}
-
-.menu_text {
-  font-size: 10pt;
-  text-align: left;
-  font-weight: bold;
-  color: #3725A8;
-  margin: 5px;
-}
 .task {
   background-color: #FFFFDB;
   border: 1px solid #333333;
@@ -86,20 +55,30 @@
   padding: 5px;
   margin: 5px;
 }
-.task_list_board {
+
+@mixin task_list_board($status) {
   text-align: left;
   font-weight: bold;
   border: 2px solid #333333;
   background-color: #FFFFFF;
   vertical-align: text-top;
-  width: 33%;
-  height: 700px;
+  @if $status==4 {
+    width: 90%;
+  } @else {
+    width: 33%; 
+  }
+  height: 600px;
   overflow: visible;  
   padding: 10px;
   margin: 15px;
   -webkit-border-radius: 10px;/* Safari、Google Chrome */
   -moz-border-radius: 10px;/* Firefox */
 }
+.task_list_board1 { @include task_list_board(1); }
+.task_list_board2 { @include task_list_board(2); }
+.task_list_board3 { @include task_list_board(3); }
+.task_list_board4 { @include task_list_board(4); }
+
 .table_board {
   width: 90%;
   text-align: left;
@@ -128,3 +107,10 @@
 .task_css1 { @include task_css(1); } 
 .task_css2 { @include task_css(2); } 
 
+.job_complete_box {
+  margin:3px;
+  width:80px;
+  display:none;
+  height:80px;
+  float:left;
+}
