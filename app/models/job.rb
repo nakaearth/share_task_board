@@ -50,7 +50,23 @@ class Job < ActiveRecord::Base
       @job.save!
     end
   end
-  
+
+  def update_job(title,description,status,priority,public_flag)
+    begin
+      Job.transaction do
+        if status=='3'
+          UserGrade.set_grade self.user.id
+          #Mailer deliver
+          NotifyMailer.notify_mail(self.user).deliver
+        end
+        return self.update_attributes(:title=> title, :description=> description,
+                                      :status=> status, :priority=>priority, :public_flag=> public_flag)
+      end
+    resuce ActiveRecord::StaleObjectError
+      return false
+    end
+  end
+
   def self.finished
     transaction do
       self.update_all ['status=?',4],['status=?',3]

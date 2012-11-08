@@ -81,17 +81,29 @@ class JobsController < ApplicationController
     end
   end
 
-  # PUT /tasks/1
-  # PUT /tasks/1.json
+#  def update
+#    @job = Job.find(params[:id])
+#    job_complete current_user.id if params[:job][:status]=='3'
+#    #Mailer deliver
+#    NotifyMailer.notify_mail(current_user).deliver
+#
+#    @user_grade=current_grade current_user.id
+#    respond_to do |format|
+#      if @job.update_attributes(job_params)
+#        format.html { redirect_to @job, notice: 'Job was successfully updated.' }
+#        format.json { head :no_content }
+#      else
+#        format.html { render action: "edit" }
+#        format.json { render json: @job.errors, status: :unprocessable_entity }
+#      end
+#    end
+#  end
+
   def update
     @job = Job.find(params[:id])
-    job_complete current_user.id if params[:job][:status]=='3'
-    #Mailer deliver
-    NotifyMailer.notify_mail(current_user).deliver
-
     @user_grade=current_grade current_user.id
     respond_to do |format|
-      if @job.update_attributes(job_params)
+      if @job.update_job(job_params)
         format.html { redirect_to @job, notice: 'Job was successfully updated.' }
         format.json { head :no_content }
       else
@@ -113,11 +125,11 @@ class JobsController < ApplicationController
     end
   end
   
-  def update_status
-    @task = Job.find(params[:id])
-    @task.update_attribute(:status, params[:status])
-    @user_grade=current_grade current_user.id
-  end
+#  def update_status
+#    @task = Job.find(params[:id])
+#    @task.update_attribute(:status, params[:status])
+#    @user_grade=current_grade current_user.id
+#  end
   
   def receive_task
     Job.receive_task(params)

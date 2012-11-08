@@ -89,4 +89,17 @@ describe Job do
       @job.should_not be_valid
     end 
   end
+  
+  context "job attribute update" do
+    before do
+      params={'id'=>1,'title'=>'test job', 'description'=>'test test test', 'status'=>'2', 'priority'=>'2', 'public_flag'=>'0'}
+      @job=Job.find(1)
+      @job.update_job params['title'], params['description'], params['status'], params['priority'], params['public_flag']
+    end
+    it "update test" do
+      @job.title.should=='test job'
+      @job.status.should==2
+      @job.priority.should==2
+    end
+  end
 end
