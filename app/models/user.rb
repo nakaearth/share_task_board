@@ -34,6 +34,5 @@ class User < ActiveRecord::Base
                .where('name like ?',"#{params[:name]}%")
                .where(['id not in(?)',user_id_array])
                .paginate(:page=>params[:page], :per_page=>params[:per_page]) 
-     
   end
 end

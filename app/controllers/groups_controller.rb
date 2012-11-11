@@ -2,7 +2,8 @@ class GroupsController < ApplicationController
 
   def index
     @groups=Group.paginate(:page=>params[:page], :per_page=>20)
-    @groups=User.find(current_user.id).groups.paginate(:page=>params[:page], :per_page=>20)
+    #Groupは5件まで
+    @groups=User.find(current_user.id).groups.limit(5)
   end
 
   def show

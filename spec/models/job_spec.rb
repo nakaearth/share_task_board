@@ -102,4 +102,17 @@ describe Job do
       @job.priority.should==2
     end
   end
+
+  context "group job test" do
+    fixtures :jobs
+    fixtures :groups
+    before do
+      @group=Group.find(1)
+      @jobs=@group.jobs
+    end
+    it "jobs test" do
+      @jobs.should_not == nil
+      @jobs.size.should == 3
+    end
+  end
 end

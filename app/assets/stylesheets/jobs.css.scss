@@ -114,3 +114,29 @@
   height:80px;
   float:left;
 }
+
+@mixin group_mark($id) {
+  font-size: 9px;
+  width: 5px;
+  font-weight: bold;
+  @if $id ==1{
+    background-color: "red";
+  }@else if $id ==2 {
+    background-color: "blud";
+  }@else if $id ==3 {
+    background-color: "green";
+  }@else if $id ==4 {
+    background-color: "yellow";
+  }@else if $id ==5 {
+    background-color: "black";
+  }@else {
+    background-color: "white";
+  }
+}
+
+.group_mark1 { @include group_mark(1);}
+.group_mark2 { @include group_mark(2);}
+.group_mark3 { @include group_mark(3);}
+.group_mark4 { @include group_mark(4);}
+.group_mark5 { @include group_mark(5);}
+

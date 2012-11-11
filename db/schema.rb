@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023080516) do
+ActiveRecord::Schema.define(:version => 20121111024525) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20121023080516) do
   add_index "jobs", ["r_user_id"], :name => "index_tasks_on_r_user_id"
   add_index "jobs", ["status", "priority"], :name => "index_tasks_on_status_and_priority"
   add_index "jobs", ["status", "public_flag"], :name => "index_tasks_on_status_and_public_flag"
+  add_index "jobs", ["user_id", "group_id"], :name => "index_jobs_on_user_id_and_group_id"
 
   create_table "user_grades", :force => true do |t|
     t.integer  "user_id",                        :null => false

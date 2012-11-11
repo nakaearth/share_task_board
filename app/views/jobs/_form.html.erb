@@ -44,6 +44,10 @@
     なるべく早く:<%= f.radio_button :priority,"2" %>
   </div>
   <div class="field">
+   <%= f.label :group_id, 'グループ' %>
+   <%=f.select :group_id, options_for_select(@group_names, @group_ids) %>
+  </div>
+  <div class="field">
     <%= f.label :public_flag ,'公開して誰かに助けてもらう?'%>:
     公開する:<%= f.radio_button :public_flag,"1" %>|
     公開しない：<%= f.radio_button :public_flag,"0" %>|

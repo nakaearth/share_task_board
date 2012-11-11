@@ -2,7 +2,8 @@ class Group < ActiveRecord::Base
   attr_accessible :name
   has_many :group_maps
   has_many :users, :through=>:group_maps
-  
+  has_many :jobs
+
   def save_group_user(params)
     @group=Group.new
     @group.name=params[:name]

@@ -14,6 +14,7 @@ class Job < ActiveRecord::Base
   scope :pending,-> {where('status=?',0)}
   
   belongs_to :user
+  belongs_to :group
 
   validates :title ,:presence=>true ,:length=>{:within=>5..80}
   validates :description ,:presence=>true ,:length=>{:within=>1..270}
@@ -73,7 +74,7 @@ class Job < ActiveRecord::Base
     end
   end
   
-  def self.group_task_list(params)
-    @tasks=Job.where('group_id=?',params[:group_id])    
+  def self.group_task_list(group_id)
+    @tasks=Job.where('group_id=?',group_id)    
   end
 end
