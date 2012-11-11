@@ -35,4 +35,8 @@ class User < ActiveRecord::Base
                .where(['id not in(?)',user_id_array])
                .paginate(:page=>params[:page], :per_page=>params[:per_page]) 
   end
+
+  def my_groups
+    @groups=self.groups
+  end
 end

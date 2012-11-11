@@ -52,7 +52,13 @@ class JobsController < ApplicationController
     @job.user_id = current_user.id
     @job.r_user_id=current_user.id
     @user_grade=current_grade current_user.id
-    current_user.my_group
+    groups=current_user.my_groups
+    @group_names =[]
+    @group_ids =[]
+    groups.each do|group|
+      @group_names << group.name
+      @group_ids << group.id
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @job }
