@@ -69,6 +69,13 @@ class JobsController < ApplicationController
   def edit
     @job = Job.find(params[:id])
     @user_grade=current_grade current_user.id
+    groups=current_user.my_groups
+    @group_names =[""]
+    @group_ids =[""]
+    groups.each do|group|
+      @group_names << group.name
+      @group_ids << group.id
+    end
   end
 
   # POST /tasks
@@ -88,34 +95,10 @@ class JobsController < ApplicationController
     end
   end
 
-#  def update
-#    @job = Job.find(params[:id])
-#    job_complete current_user.id if params[:job][:status]=='3'
-#    #Mailer deliver
-#    NotifyMailer.notify_mail(current_user).deliver
-#
-#    @user_grade=current_grade current_user.id
-#    respond_to do |format|
-#      if @job.update_attributes(job_params)
-#        format.html { redirect_to @job, notice: 'Job was successfully updated.' }
-#        format.json { head :no_content }
-#      else
-#        format.html { render action: "edit" }
-#        format.json { render json: @job.errors, status: :unprocessable_entity }
-#      end
-#    end
-#  end
 
   def update
     @job = Job.find(params[:id])
     @user_grade=current_grade current_user.id
-    groups=current_user.my_groups
-    @group_names =[""]
-    @group_ids =[""]
-    groups.each do|group|
-      @group_names << group.name
-      @group_ids << group.id
-    end
     respond_to do |format|
       if @job.update_job(params[:job][:title], params[:job][:description], 
                          params[:job][:status], params[:job][:priority], params[:job][:public_flag])
