@@ -109,6 +109,9 @@ class JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
     @user_grade=current_grade current_user.id
+    groups=current_user.my_groups
+    @group_names =[]
+    @group_ids =[]
     respond_to do |format|
       if @job.update_job(params[:job][:title], params[:job][:description], 
                          params[:job][:status], params[:job][:priority], params[:job][:public_flag])
