@@ -30,7 +30,8 @@ class UserGrade < ActiveRecord::Base
     end
     #{user_grade: @user_grade, status: @status, next_count: next_count }
     if @status =='up'
-      Pusher['taskboard_channel'].trigger('my_event',{:message => current_user.user_name + 'さんのレベルがアップしました。次のレベルまでに' + next_count.to_s + "個必要です"})
+      user=User.find(user_id)
+      Pusher['taskboard_channel'].trigger('my_event',{:message => user.user_name + 'さんのレベルがアップしました。次のレベルまでに' + next_count.to_s + "個必要です"})
     else
       Pusher['taskboard_channel'].trigger('my_event',{:message => '次のレベルまでに' + next_count.to_s + "個必要です"})
     end
