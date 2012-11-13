@@ -53,8 +53,8 @@ class JobsController < ApplicationController
     @job.r_user_id=current_user.id
     @user_grade=current_grade current_user.id
     groups=current_user.my_groups
-    @group_names =[]
-    @group_ids =[]
+    @group_names =[""]
+    @group_ids =[""]
     groups.each do|group|
       @group_names << group.name
       @group_ids << group.id
@@ -110,8 +110,12 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @user_grade=current_grade current_user.id
     groups=current_user.my_groups
-    @group_names =[]
-    @group_ids =[]
+    @group_names =[""]
+    @group_ids =[""]
+    groups.each do|group|
+      @group_names << group.name
+      @group_ids << group.id
+    end
     respond_to do |format|
       if @job.update_job(params[:job][:title], params[:job][:description], 
                          params[:job][:status], params[:job][:priority], params[:job][:public_flag])
