@@ -94,7 +94,7 @@ describe Job do
     before do
       params={'id'=>1,'title'=>'test job', 'description'=>'test test test', 'status'=>'2', 'priority'=>'2', 'public_flag'=>'0'}
       @job=Job.find(1)
-      @job.update_job params['title'], params['description'], params['status'], params['priority'], params['public_flag']
+      @job.update_job params
     end
     it "update test" do
       @job.title.should=='test job'

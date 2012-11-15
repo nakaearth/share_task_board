@@ -25,12 +25,15 @@ describe JobsController do
     before do
       @user = User.find(1)
       controller.stub(:current_user) {@user}
+      get :index 
     end
     it "login user check" do
        @user.name.should == "test name"
     end
+    it "response code check" do
+      response.should be_success
+    end
     it "job_list" do
-      get :index 
       assigns(:todo_jobs).should_not == nil
       assigns(:todo_jobs).size.should==2
       assigns(:doing_jobs).should_not == nil

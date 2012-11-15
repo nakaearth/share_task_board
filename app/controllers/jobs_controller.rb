@@ -100,8 +100,9 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @user_grade=current_grade current_user.id
     respond_to do |format|
-      if @job.update_job(params[:job][:title], params[:job][:description], 
-                         params[:job][:status], params[:job][:priority], params[:job][:public_flag])
+      # if @job.update_job(params[:job][:title], params[:job][:description], 
+      #                   params[:job][:status], params[:job][:priority], params[:job][:public_flag])
+      if @job.update_job(job_params) 
         format.html { redirect_to @job, notice: 'Job was successfully updated.' }
         format.json { head :no_content }
       else

@@ -52,7 +52,8 @@ class Job < ActiveRecord::Base
     end
   end
 
-  def update_job(title,description,status,priority,public_flag)
+  #def update_job(title,description,status,priority,public_flag)
+  def update_job(params)
     begin
       Job.transaction do
         if status=='3'
@@ -60,8 +61,7 @@ class Job < ActiveRecord::Base
           #Mailer deliver
           NotifyMailer.notify_mail(self.user).deliver
         end
-        return self.update_attributes(:title=> title, :description=> description,
-                                      :status=> status, :priority=>priority, :public_flag=> public_flag)
+        return self.update_attributes(params)
       end
     resuce ActiveRecord::StaleObjectError
       return false
