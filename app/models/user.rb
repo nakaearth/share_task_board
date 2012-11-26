@@ -36,7 +36,30 @@ class User < ActiveRecord::Base
                .paginate(:page=>params[:page], :per_page=>params[:per_page]) 
   end
 
+  #グループ関連
   def my_groups
     @groups=self.groups
+  end
+
+  #JOB関連
+  def my_job_list(per_count)
+    @todo_jobs=self.jobs.todo.latest.limit(per_count)
+    @doing_jobs=self.jobs.doing.latest.limit(per_count)
+    @done_jobs=self.jobs.done.latest.limit(per_count)
+   [@todo_jobs, @doing_jobs, @done_jobs]
+  end
+
+  def my_receive_job_list(per_count)
+    @todo_jobs=Job.todo.where('r_user_id=?',self.id).latest.limit(per_count)
+    @doing_jobs=Job.doing.where('r_user_id=?',self.id).latest.limit(per_count)
+    @done_jobs=Job.done.where('r_user_id=?',self.id).latest.limit(per_count)
+    [@todo_jobs, @doing_jobs, @done_jobs]
+  end
+
+  def my_group_job_list(group_id, per_count)
+    @todo_jobs=self.jobs.todo.where('group_id=?',group_id).latest.limit(per_count)
+    @doing_jobs=self.jobs.doing.where('group_id=?',group_id).latest.limit(per_count)
+    @done_jobs=self.jobs.done.where('group_id=?',group_id).latest.limit(per_count)
+    [@todo_jobs, @doing_jobs, @done_jobs]
   end
 end

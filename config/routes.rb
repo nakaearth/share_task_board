@@ -20,6 +20,7 @@ TaksBoard::Application.routes.draw do
       get 'finish_list'
       get 'pending_list'
       get 'receive_task_list'
+      post 'group_job_list'
     end
   end
   match	"/jobs/:id/destroy_task"=>"jobs#destroy_task"

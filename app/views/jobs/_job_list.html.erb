@@ -1,3 +1,11 @@
+<div class="group_list_menu">
+<%= form_tag({:action=>'group_job_list', :controller=>'jobs'},{:method=>:post}) do %>
+  グループ:
+  <%=select_tag :group_id, options_from_collection_for_select(@group, :id, :name) %>
+  <%=submit_tag '絞り込む' %>
+<% end %>
+</div>
+
 <table id="task_board" class="board">
   <tr>
   <td id="todoCaption" class="task_list_board1">

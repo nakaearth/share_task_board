@@ -37,19 +37,6 @@ describe Job do
       job.user_id.should == 1
     end
   end
- 
- # Job List TEST
-  context " task_lists success" do
-    before do
-      params={user_id: 1}
-      @results=Job.task_lists 1,10
-    end
-    it "result success value" do
-      @results[0].size.should == 2 
-      @results[1].size.should == 1
-      @results[2].size.should == 1
-    end
-  end
 
  # Job finished TEST
   context "task finished success" do
@@ -103,16 +90,16 @@ describe Job do
     end
   end
 
-  context "group job test" do
-    fixtures :jobs
-    fixtures :groups
-    before do
-      @group=Group.find(1)
-      @jobs=@group.jobs
-    end
-    it "jobs test" do
-      @jobs.should_not == nil
-      @jobs.size.should == 3
-    end
-  end
+#  context "group job test" do
+#    fixtures :jobs
+#    fixtures :groups
+#    before do
+#      @group=Group.find(1)
+#      @jobs=@group.jobs
+#    end
+#    it "jobs test" do
+#      @jobs.should_not == nil
+#      @jobs.size.should == 3
+#    end
+#  end
 end

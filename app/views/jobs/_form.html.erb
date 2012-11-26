@@ -45,7 +45,7 @@
   </div>
   <div class="field">
    <%= f.label :group_id, 'グループ' %>
-   <%=f.select :group_id, options_for_select(@group_names, @group_ids) %>
+   <%=f.select :group_id, options_from_collection_for_select(@group, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :public_flag ,'公開して誰かに助けてもらう?'%>:

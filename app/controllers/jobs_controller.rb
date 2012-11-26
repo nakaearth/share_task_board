@@ -8,15 +8,12 @@ class JobsController < ApplicationController
 
   # GET /tasks.json
   def index
-    results=Job.task_lists current_user,8 
+    results=current_user.my_job_list 8 
     @todo_jobs=results[0]
     @doing_jobs=results[1]
     @done_jobs=results[2]
     @user_grade=current_grade current_user.id
-
-    group_map=my_group_map current_user.id
-    @group_names=group_map[:names]
-    @group_ida=group_map[:ids]
+    @group=my_group_map current_user.id
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks }
@@ -25,11 +22,12 @@ class JobsController < ApplicationController
 
   # GET /tasks.json
   def receive_task_list
-    results=Job.receive_task_lists current_user,8 
+    results=current_user.my_receive_job_list 8 
     @todo_jobs=results[0]
     @doing_jobs=results[1]
     @done_jobs=results[2]
     @user_grade=current_grade current_user.id
+    @group=my_group_map current_user.id
     respond_to do |format|
       format.html # index.html.erb
     end
@@ -55,10 +53,7 @@ class JobsController < ApplicationController
     @job = Job.new
     @job.user_id = current_user.id
     @job.r_user_id=current_user.id
-    group_map=my_group_map current_user.id
-    @group_names=group_map[:names]
-    @group_ids=group_map[:ids]
-
+    @group=my_group_map current_user.id
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @job }
@@ -69,9 +64,7 @@ class JobsController < ApplicationController
   def edit
     @job = Job.find(params[:id])
     @user_grade=current_grade current_user.id
-    group_map=my_group_map current_user.id
-    @group_names=group_map[:names]
-    @group_ids=group_map[:ids]
+    @group=my_group_map current_user.id
   end
 
   # POST /tasks
@@ -96,8 +89,6 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @user_grade=current_grade current_user.id
     respond_to do |format|
-      # if @job.update_job(params[:job][:title], params[:job][:description], 
-      #                   params[:job][:status], params[:job][:priority], params[:job][:public_flag])
       if @job.update_job(job_params) 
         format.html { redirect_to @job, notice: 'Job was successfully updated.' }
         format.json { head :no_content }
@@ -137,26 +128,24 @@ class JobsController < ApplicationController
     @tasks=Job.where('user_id=?',current_user.id).pending.latest.paginate(page: params[:page], per_page: 20) 
   end
 
-  def list_for_group
+  def group_job_list
+    results=current_user.my_group_job_list(params[:group_id], 8)
+    @todo_jobs=results[0]
+    @doing_jobs=results[1]
+    @done_jobs=results[2]
     @user_grade=current_grade current_user.id
-    @tasks=Job.group_task_list params[:group_id]
+    @group=my_group_map current_user.id
   end
 
   private
   def job_params
-    params.require(:job).permit(:title,:description,:priority,:status,:public_flag)
+    params.require(:job).permit(:title,:description,:priority,:group_id,:status,:public_flag)
   end
 
   def my_group_map(user_id)
     @user_grade=current_grade user_id
-    groups=current_user.my_groups
-    @group_names =["なし"]
-    @group_ids =[""]
-    groups.each do|group|
-      @group_names << group.name
-      @group_ids << group.id
-    end
-    return {:names => @group_names, :ids=>@group_ids}
+    @groups=current_user.my_groups
+    @groups
   end
 
   def job_complete(user_id)
