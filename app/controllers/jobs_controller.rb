@@ -13,6 +13,10 @@ class JobsController < ApplicationController
     @doing_jobs=results[1]
     @done_jobs=results[2]
     @user_grade=current_grade current_user.id
+
+    group_map=my_group_map current_user.id
+    @group_names=group_map[:names]
+    @group_ida=group_map[:ids]
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks }
@@ -51,14 +55,10 @@ class JobsController < ApplicationController
     @job = Job.new
     @job.user_id = current_user.id
     @job.r_user_id=current_user.id
-    @user_grade=current_grade current_user.id
-    groups=current_user.my_groups
-    @group_names =[""]
-    @group_ids =[""]
-    groups.each do|group|
-      @group_names << group.name
-      @group_ids << group.id
-    end
+    group_map=my_group_map current_user.id
+    @group_names=group_map[:names]
+    @group_ids=group_map[:ids]
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @job }
@@ -69,13 +69,9 @@ class JobsController < ApplicationController
   def edit
     @job = Job.find(params[:id])
     @user_grade=current_grade current_user.id
-    groups=current_user.my_groups
-    @group_names =[""]
-    @group_ids =[""]
-    groups.each do|group|
-      @group_names << group.name
-      @group_ids << group.id
-    end
+    group_map=my_group_map current_user.id
+    @group_names=group_map[:names]
+    @group_ids=group_map[:ids]
   end
 
   # POST /tasks
@@ -124,12 +120,6 @@ class JobsController < ApplicationController
     end
   end
   
-#  def update_status
-#    @task = Job.find(params[:id])
-#    @task.update_attribute(:status, params[:status])
-#    @user_grade=current_grade current_user.id
-#  end
-  
   def receive_task
     Job.receive_task(params)
     @user_grade=current_grade current_user.id
@@ -156,7 +146,19 @@ class JobsController < ApplicationController
   def job_params
     params.require(:job).permit(:title,:description,:priority,:status,:public_flag)
   end
-  
+
+  def my_group_map(user_id)
+    @user_grade=current_grade user_id
+    groups=current_user.my_groups
+    @group_names =["なし"]
+    @group_ids =[""]
+    groups.each do|group|
+      @group_names << group.name
+      @group_ids << group.id
+    end
+    return {:names => @group_names, :ids=>@group_ids}
+  end
+
   def job_complete(user_id)
     UserGrade.set_grade user_id
 #    @grade_map=UserGrade.set_grade user_id
