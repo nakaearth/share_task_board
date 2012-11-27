@@ -74,10 +74,11 @@ class Job < ActiveRecord::Base
     end
   end
   
-  def self.group_job_list(user_id,group_id, per_count)
-    @todo_tasks=Job.todo.where('user_id=?',user_id).where('group_id=?',group_id).latest.limit(per_count)
-    @doing_tasks=Job.doing.where('user_id=?',user_id).where('group_id=?',group_id).latest.limit(per_count)
-    @done_tasks=Job.done.where('user_id=?',user_id).where('group_id=?',group_id).latest.limit(per_count)
+  #所属しているグループの全タスク
+  def self.group_job_list(group_id, per_count)
+    @todo_tasks=Job.todo.where('group_id=?',group_id).latest.limit(per_count)
+    @doing_tasks=Job.doing.where('group_id=?',group_id).latest.limit(per_count)
+    @done_tasks=Job.done.where('group_id=?',group_id).latest.limit(per_count)
     [@todo_tasks, @doing_tasks, @done_tasks]
   end
 end

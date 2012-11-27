@@ -33,6 +33,9 @@ describe JobsController do
     it "response code check" do
       response.should be_success
     end
+    it "response render test" do
+      response.should render_template("index")
+    end
     it "job_list" do
       assigns(:todo_jobs).should_not == nil
       assigns(:todo_jobs).size.should==2
@@ -40,6 +43,34 @@ describe JobsController do
       assigns(:doing_jobs).size.should==1
       assigns(:done_jobs).should_not == nil
       assigns(:done_jobs).size.should==1
+    end
+  end
+  describe "GET group job list" do
+    fixtures :users
+    fixtures :jobs
+    fixtures :groups
+
+    before do
+      @user = User.find(1)
+      controller.stub(:current_user) {@user}
+      get :group_job_list,group_id: 1 
+    end
+    it "login user check" do
+       @user.name.should == "test name"
+    end
+    it "response code check" do
+      response.should be_success
+    end
+    it "response render test" do
+      response.should render_template("group_job_list")
+    end
+    it "job_list" do
+      assigns(:todo_jobs).should_not == nil
+      assigns(:todo_jobs).size.should==2
+      assigns(:doing_jobs).should_not == nil
+      assigns(:doing_jobs).size.should==1
+      assigns(:done_jobs).should_not == nil
+      assigns(:done_jobs).size.should==0
     end
   end
 

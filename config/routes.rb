@@ -12,13 +12,13 @@ TaksBoard::Application.routes.draw do
   match "/logout" => "sessions#destroy"
 
   resources :jobs ,:only=>[:index, :show, :new, :create, :update, :edit] do
-    member do
-      get 'update_status'
-      get 'receive_task'
-    end
-    collection do
-      get 'finish_list'
-      get 'pending_list'
+     member do
+       get 'update_status'
+       get 'receive_task'
+     end
+     collection do
+       get 'finish_list'
+       get 'pending_list'
       get 'receive_task_list'
       post 'group_job_list'
     end
@@ -38,6 +38,10 @@ TaksBoard::Application.routes.draw do
       get 'setting'
       post 'update_profile'
     end 
+  end
+
+  namespace :my_group_jobs do
+
   end
 
   #admin
