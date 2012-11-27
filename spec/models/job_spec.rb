@@ -5,7 +5,37 @@ require 'spec_helper'
 describe Job do
   fixtures :jobs
   fixtures :users
-  
+
+  #receive_job_list
+  context "receive_job_list test" do
+    before do
+      @jobs=Job.receive_job_list(2, 10)
+    end
+    it "check job" do
+      @jobs.should_not==nil
+    end
+    it "check return value size " do
+      @jobs.size.should==3
+      @jobs[0].size.should==0
+      @jobs[1].size.should==1
+      @jobs[2].size.should==1
+    end
+  end
+  context "receive_job_list error test" do
+    before do
+      @jobs=Job.receive_job_list(4, 10)
+    end
+    it "check job" do
+      @jobs.should_not==nil
+    end
+    it "check return value size " do
+      @jobs.size.should==3
+      @jobs[0].size.should==0
+      @jobs[1].size.should==0
+    end
+  end
+
+
   # receive test
   context "Job receive test" do
     before do

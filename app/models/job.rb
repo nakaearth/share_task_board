@@ -29,14 +29,14 @@ class Job < ActiveRecord::Base
     end 
   end
  
-  def self.task_lists(user_id, per_count)
-    @todo_tasks=Job.todo.where('user_id=?',user_id).latest.limit(per_count)
-    @doing_tasks=Job.doing.where('user_id=?',user_id).latest.limit(per_count)
-    @done_tasks=Job.done.where('user_id=?',user_id).latest.limit(per_count)
-    [@todo_tasks, @doing_tasks, @done_tasks]
+  def self.job_list(per_count)
+    @todo_jobs=Job.todo.latest.limit(per_count)
+    @doing_jobs=Job.doing.latest.limit(per_count)
+    @done_jobs=Job.done.latest.limit(per_count)
+    [@todo_jobs, @doing_jobs, @done_jobs]
   end
    
-  def self.receive_task_lists(user_id, per_count)
+  def self.receive_job_list(user_id, per_count)
     @todo_tasks=Job.todo.where('r_user_id=?',user_id).latest.limit(per_count)
     @doing_tasks=Job.doing.where('r_user_id=?',user_id).latest.limit(per_count)
     @done_tasks=Job.done.where('r_user_id=?',user_id).latest.limit(per_count)
@@ -44,11 +44,15 @@ class Job < ActiveRecord::Base
   end
    
   def self.receive_task(params)
-    transaction do
-      @job=Job.find(params[:id])
-      @job.r_user_id = params[:user_id]
-      @job.public_flag = 0
-      @job.save!
+    begin
+      transaction do
+        @job=Job.find(params[:id])
+        @job.r_user_id = params[:user_id]
+        @job.public_flag = 0
+        @job.save!
+      end
+    rescue ActiveRecord::RecordNotFound
+      raise "ジョブ情報がありません"
     end
   end
 
