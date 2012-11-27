@@ -35,7 +35,6 @@ describe Job do
     end
   end
 
-
   # receive test
   context "Job receive test" do
     before do
@@ -65,6 +64,14 @@ describe Job do
       job.r_user_id.should ==3 
       job.public_flag.should == 0
       job.user_id.should == 1
+    end
+  end
+  context "job receive_task exception test" do
+    before do
+    end
+    it "error check" do
+      params={id: 100,user_id: 3}
+      lambda{Job.receive_task(params)}.should raise_error(RuntimeError)
     end
   end
 
