@@ -24,16 +24,21 @@ class UserGrade < ActiveRecord::Base
       else
         @status='not_up'
       end
-      if @status =='up'
-        user=User.find(user_id)
-        Pusher['taskboard_channel'].trigger('my_event',{:message => user.name + 'さんのレベルがアップしました。次のレベルまでに' + next_count.to_s + "個必要です"}) unless Rails.env.test?
-      else
-        Pusher['taskboard_channel'].trigger('my_event',{:message => '次のレベルまでに' + next_count.to_s + "個必要です"}) unless Rails.env.test?
-      end
+      send_push(user_id, @status, next_count)
       @status
     rescue =>e
       puts "SET GRADE ERROR.#{e.message}"
       @status='not_up'
     end
+  end
+
+  private
+  def send_push(user_id, status,next_count)
+    if status =='up'
+      user=User.find(user_id)
+      Pusher['taskboard_channel'].trigger('my_event',{:message => user.name + 'さんのレベルがアップしました。次のレベルまでに' + next_count.to_s + "個必要です"}) unless Rails.env.test?
+    else
+      Pusher['taskboard_channel'].trigger('my_event',{:message => '次のレベルまでに' + next_count.to_s + "個必要です"}) unless Rails.env.test?
+    end 
   end
 end
