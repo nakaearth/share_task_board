@@ -13,7 +13,7 @@ class JobsController < ApplicationController
     @doing_jobs=results[1]
     @done_jobs=results[2]
     @user_grade=current_grade current_user.id
-    @group=my_group_map current_user.id
+    @group=my_group_map
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks }
@@ -27,7 +27,7 @@ class JobsController < ApplicationController
     @doing_jobs=results[1]
     @done_jobs=results[2]
     @user_grade=current_grade current_user.id
-    @group=my_group_map current_user.id
+    @group=my_group_map 
     respond_to do |format|
       format.html # index.html.erb
     end
@@ -53,7 +53,7 @@ class JobsController < ApplicationController
     @job = Job.new
     @job.user_id = current_user.id
     @job.r_user_id=current_user.id
-    @group=my_group_map current_user.id
+    @group=my_group_map
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @job }
@@ -64,7 +64,7 @@ class JobsController < ApplicationController
   def edit
     @job = Job.find(params[:id])
     @user_grade=current_grade current_user.id
-    @group=my_group_map current_user.id
+    @group=my_group_map 
   end
 
   # POST /tasks
@@ -90,6 +90,7 @@ class JobsController < ApplicationController
     @user_grade=current_grade current_user.id
     respond_to do |format|
       if @job.update_job(job_params) 
+        job_complete current_user.id
         format.html { redirect_to @job, notice: 'Job was successfully updated.' }
         format.json { head :no_content }
       else
@@ -134,7 +135,7 @@ class JobsController < ApplicationController
     @doing_jobs=results[1]
     @done_jobs=results[2]
     @user_grade=current_grade current_user.id
-    @group=my_group_map current_user.id
+    @group=my_group_map
   end
 
   private
@@ -142,19 +143,12 @@ class JobsController < ApplicationController
     params.require(:job).permit(:title,:description,:priority,:group_id,:status,:public_flag)
   end
 
-  def my_group_map(user_id)
-    @user_grade=current_grade user_id
+  def my_group_map
     @groups=current_user.my_groups
     @groups
   end
 
   def job_complete(user_id)
     UserGrade.set_grade user_id
-#    @grade_map=UserGrade.set_grade user_id
-#    if @grade_map[:status] =='up'  
-#      Pusher['taskboard_channel'].trigger('my_event',{:message => current_user.user_name + 'さんのレベルがアップしました。次のレベルまでに' + @grade_map[:next_count].to_s + "個必要です"})
-#    else
-#      Pusher['taskboard_channel'].trigger('my_event',{:message => '次のレベルまでに' + @grade_map[:next_count].to_s + "個必要です"})
-#    end
   end
 end

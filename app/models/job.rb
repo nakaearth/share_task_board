@@ -56,7 +56,6 @@ class Job < ActiveRecord::Base
     end
   end
 
-  #def update_job(title,description,status,priority,public_flag)
   def update_job(params)
     begin
       Job.transaction do
