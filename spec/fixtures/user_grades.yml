@@ -1,0 +1,8 @@
+one:
+  id: 1
+  user_id: 1
+  grade_master_id: 1
+two:
+  id: 2
+  user_id: 2
+  grade_master_id: 1

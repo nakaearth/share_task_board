@@ -2,16 +2,34 @@ one:
   id: 1
   job_count: 1
   name: '見習い'
+  level: 1
 two:
   id: 2
-  job_count: 10
+  job_count: 2
   name: '作業者'
+  level: 2
 three:
   id: 3
   job_count: 30
   name: '作業マスター'
+  level: 3
 four:
   id: 4
   job_count: 70
   name: '熟達者'
-
+  level: 4
+five:
+  id: 5
+  job_count: 150
+  name: '熟達者2'
+  level: 5
+six:
+  id: 6
+  job_count: 200
+  name: '熟達者3'
+  level: 6
+seven:
+  id: 7
+  job_count: 500
+  name: '熟達者4'
+  level: 7

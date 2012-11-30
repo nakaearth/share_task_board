@@ -8,8 +8,10 @@ describe GradeMaster do
       @grade2=GradeMaster.check_grade(2)
     end
     it "test grade master" do
-      @grade.id.should==1
-      @grade2.id.should==1
+      grade_master=@grade[:grade_master]
+      grade_master2=@grade2[:grade_master]
+      grade_master.id.should==1
+      grade_master2.id.should==2
     end 
   end
   
@@ -19,7 +21,7 @@ describe GradeMaster do
       @grade=GradeMaster.check_grade(10)
     end
     it "test grade master" do
-      @grade.id.should==2
+      (@grade[:grade_master]).id.should==2
     end 
   end
 end

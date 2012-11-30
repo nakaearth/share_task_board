@@ -83,7 +83,7 @@ describe Job do
     end
     it "result success value" do
       @results=Job.where('status=?',4)
-      @results.size.should == 2
+      @results.size.should == 5
     end
   end
   
