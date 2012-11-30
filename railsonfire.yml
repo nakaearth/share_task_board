@@ -1,0 +1,16 @@
+id: 4f52fee0-1cf4-0130-fc92-22000a9199e8
+setup:
+  commands:
+  - bundle install --without production
+  - bundle exec rake db:migrate --trace
+test:
+  commands:
+  - bundle exec rake
+deploy:
+  heroku:
+    staging:
+      name: sharetaskboard
+    production:
+      name: ''
+ruby_versions:
+- 1.9.3
