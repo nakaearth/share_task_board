@@ -1,15 +1,18 @@
 <p id="notice"><%= notice %></p>
 <div class="profile_form">
   <p>
-    <b>ユーザ画像:</b>
-    <% if @user.avatar %>
-    <%=cl_image_tag(@user.avatar_url,:alt=>"profile image",:width=>90,:height=>90,:crop=>:thumb) %>
-    <% end %>
+    <b>ユーザ情報:</b>
+    ユーザ名:<%=@user.try(:name) || "未設定" %><br/>
+    ユーザ認証局：<%=@user.try(:provider) || "未設定" %><br/>
   </p>
   <hr/>
   <p>
-    <b>名前:</b>
-    <%=@user.name %>
+    <b>プロフィール:</b>
+   <% if @user.avatar %>
+    <%=cl_image_tag(@user.avatar_url,:alt=>"profile image",:width=>90,:height=>90,:crop=>:thumb) %>
+  <% end %>
+  <%=link_to '画像を設定する', :action=>'setting', :controller=>'profile',:id=>@user.id %>
   </p>
+  <hr/>
 </div>
 
