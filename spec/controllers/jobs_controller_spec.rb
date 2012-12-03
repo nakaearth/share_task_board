@@ -1,13 +1,16 @@
 require 'spec_helper'
 
 describe JobsController do
-  
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # TasksController. Be sure to keep this updated too.
   def valid_session
-    {}
+    {
+      :title=>'test job',
+      :description=>'test test test',
+      :status=>'1',
+      :priority=>'1',
+      :group_id=>'1',
+      :public_flag=>'0',
+      :r_user_id=>'0'   
+    }
   end
   
   def valid_attribute
@@ -15,13 +18,18 @@ describe JobsController do
       :title=>'test job',
       :description=>'test test test',
       :status=>'1',
-      :priority=>'1'
+      :priority=>'1',
+      :group_id=>'1',
+      :public_flag=>'0',
+      :r_user_id=>'0'
     }
   end
 
   describe "GET index" do
     fixtures :users
     fixtures :jobs
+    fixtures :groups
+
     before do
       @user = User.find(1)
       controller.stub(:current_user) {@user}
@@ -74,20 +82,26 @@ describe JobsController do
     end
   end
 
-#  describe "POST create" do
-#    describe "with valid params" do
-#      before do
-#      end
-#      it "assigns a newly created task as @job" do
-#        post :create,{:job=>@valid_attribute},valid_session
-#        assigns(:job).should be_a(Job)
-#        assigns(:job).should be_persisted
-#      end
-#      it "redirects to the created job" do
-#        post :create, {:job => valid_attributes}, valid_session
-#        response.should redirect_to(Job.last)
-#      end
-#    end
+  describe "POST create" do
+    fixtures :users
+    fixtures :jobs
+    fixtures :groups
+
+    describe "with valid params" do
+      before do
+        @user = User.find(1)
+        controller.stub(:current_user) {@user}
+      end
+      it "assigns a newly created task as @job" do
+        post :create,{:job=> valid_attribute},valid_session
+        assigns(:job).should be_a(Job)
+        assigns(:job).should be_persisted
+      end
+      it "redirects to the created job" do
+        post :create, {:job => valid_attribute}, valid_session
+        response.should redirect_to(Job.last)
+      end
+    end
 
 #    describe "with invalid params" do
 #      it "assigns a newly created but unsaved job as @job" do
@@ -106,6 +120,7 @@ describe JobsController do
 #    end
 #  end
 
+##########################################
 #  describe "PUT update" do
 #    describe "with valid params" do
 #      it "updates the requested task" do
