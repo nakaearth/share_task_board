@@ -102,7 +102,7 @@ describe JobsController do
         response.should redirect_to(Job.last)
       end
     end
-
+  end
 #    describe "with invalid params" do
 #      it "assigns a newly created but unsaved job as @job" do
 #        # Trigger the behavior that occurs when invalid params are submitted

@@ -58,7 +58,7 @@ class Job < ActiveRecord::Base
 
   def update_job(params)
     begin
-      Job.transaction do
+      transaction do
         if status=='3'
           UserGrade.set_grade self.user.id
           #Mailer deliver
