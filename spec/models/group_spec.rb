@@ -17,4 +17,14 @@ describe Group do
       map.user_id.should==2
     end 
   end 
+  context "validation check" do
+    before do
+      params= {user_id: 2}
+      @group=Group.new
+      @group.save_group_user params
+    end
+    it "check validate" do
+      @group.should have(2).error_on(:name)
+    end
+  end
 end
