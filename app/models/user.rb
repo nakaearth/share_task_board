@@ -1,13 +1,15 @@
 #coding: utf-8
 require 'carrierwave/orm/activerecord'
+require 'file_size_validator'
 
 class User < ActiveRecord::Base
 
-  # attr_accessible :provider, :uid
   has_many :jobs
   has_many :group_maps
   has_many :groups ,:through => :group_maps
   mount_uploader :avatar, AvatarUploader
+
+  validate :avatar, :file_size =>{:maximum=>0.5.megabytes.to_i }
 
   def self.create_with_omniauth(auth)
     @user=User.new
@@ -27,8 +29,9 @@ class User < ActiveRecord::Base
       @user=User.find(params[:id])
       @user.avatar=params[:avatar]
       @user.save
-    rescue
-      raise "profile update fail."
+    rescue =>e
+      logger.error "profile update error"
+      raise "profile update fail:"+e.message
     end
   end
 
@@ -96,4 +99,5 @@ class User < ActiveRecord::Base
       []
     end
   end
+
 end
