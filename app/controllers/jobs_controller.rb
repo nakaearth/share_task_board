@@ -39,6 +39,7 @@ class JobsController < ApplicationController
   def show
     @job = Job.find(params[:id])
     @user_grade=current_grade current_user.id
+    @group=my_group_map
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @job }
@@ -122,11 +123,13 @@ class JobsController < ApplicationController
   def finish_list
     @user_grade=current_grade current_user.id
     @tasks=Job.where('user_id=?',current_user.id).finish.latest.paginate(page: params[:page], per_page: 20) 
+    @group=my_group_map
   end
   
   def pending_list
     @user_grade=current_grade current_user.id
     @tasks=Job.where('user_id=?',current_user.id).pending.latest.paginate(page: params[:page], per_page: 20) 
+    @group=my_group_map
   end
 
   def my_group_job_list
