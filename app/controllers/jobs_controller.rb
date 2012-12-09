@@ -79,6 +79,7 @@ class JobsController < ApplicationController
         format.html { redirect_to @job, notice: 'Job was successfully created.' }
         format.json { render json: @job, status: :created, location: @job }
       else
+        @group=my_group_map 
         format.html { render action: "new" }
         format.json { render json: @job.errors, status: :unprocessable_entity }
       end
@@ -95,6 +96,7 @@ class JobsController < ApplicationController
         format.html { redirect_to @job, notice: 'Job was successfully updated.' }
         format.json { head :no_content }
       else
+        @group=my_group_map 
         format.html { render action: "edit" }
         format.json { render json: @job.errors, status: :unprocessable_entity }
       end
