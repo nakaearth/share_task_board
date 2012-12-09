@@ -83,7 +83,7 @@ describe Job do
     end
     it "result success value" do
       @results=Job.where('status=?',4)
-      @results.size.should == 5
+      @results.size.should == 6
     end
   end
   
@@ -127,16 +127,18 @@ describe Job do
     end
   end
 
-#  context "group job test" do
-#    fixtures :jobs
-#    fixtures :groups
-#    before do
-#      @group=Group.find(1)
-#      @jobs=@group.jobs
-#    end
-#    it "jobs test" do
-#      @jobs.should_not == nil
-#      @jobs.size.should == 3
-#    end
-#  end
+  context "group job test" do
+    fixtures :groups
+    before do
+      @group=Group.find(1)
+      @jobs=Job.group_all_jobs 1,8
+    end
+    it "jobs test" do
+      @jobs.should_not == nil
+      @jobs.size.should == 3
+      @jobs[0].size.should==3
+      @jobs[1].size.should==2
+      @jobs[2].size.should==1
+    end
+  end
 end

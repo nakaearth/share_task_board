@@ -1,4 +1,15 @@
-&nbsp;&nbsp;<%= link_to 'やることを登録する', {:action=>'new',:controller=>'jobs'} %>&nbsp;&nbsp;|&nbsp;&nbsp;
-&nbsp;&nbsp;<%= link_to 'お手伝いした仕事の一覧', {:action=>'receive_task_list',:controller=>'jobs'} %>&nbsp;&nbsp;|&nbsp;&nbsp;
-&nbsp;&nbsp;<%= link_to '完了した仕事の一覧', {:action=>'finish_list',:controller=>'jobs'} %>&nbsp;&nbsp;|&nbsp;&nbsp;
-&nbsp;&nbsp;<%= link_to 'ペンディング事項一覧', {:action=>'pending_list',:controller=>'jobs'} %>&nbsp;&nbsp;|&nbsp;&nbsp;
+&nbsp;&nbsp;<%= link_to_unless_current 'やることを登録する', {:action=>'new',:controller=>'jobs'} %>&nbsp;&nbsp;|&nbsp;&nbsp;
+&nbsp;&nbsp;<%= link_to_unless_current 'お手伝いした仕事の一覧', {:action=>'receive_task_list',:controller=>'jobs'} %>&nbsp;&nbsp;|&nbsp;&nbsp;
+&nbsp;&nbsp;<%= link_to_unless_current '完了した仕事の一覧', {:action=>'finish_list',:controller=>'jobs'} %>&nbsp;&nbsp;|&nbsp;&nbsp;
+&nbsp;&nbsp;<%= link_to_unless_current 'ペンディング事項一覧', {:action=>'pending_list',:controller=>'jobs'} %>&nbsp;&nbsp;|&nbsp;&nbsp;
+
+<%= form_tag({:action=>'my_group_job_list', :controller=>'jobs'},{:method=>:post}) do %>
+  グループ内で自分が担当しているジョブ:
+  <%=select_tag :group_id, options_from_collection_for_select(@group, :id, :name) %>
+  <%=submit_tag '絞り込む' %>
+<% end %>
+<%= form_tag({:action=>'group_all_jobs', :controller=>'jobs'},{:method=>:post}) do %>
+  グループ全体のジョブ:
+  <%=select_tag :group_id, options_from_collection_for_select(@group, :id, :name) %>
+  <%=submit_tag '絞り込む' %>
+<% end %>

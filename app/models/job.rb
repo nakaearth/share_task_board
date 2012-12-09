@@ -78,7 +78,7 @@ class Job < ActiveRecord::Base
   end
   
   #所属しているグループの全タスク
-  def self.group_job_list(group_id, per_count)
+  def self.group_all_jobs(group_id, per_count)
     @todo_tasks=Job.todo.where('group_id=?',group_id).latest.limit(per_count)
     @doing_tasks=Job.doing.where('group_id=?',group_id).latest.limit(per_count)
     @done_tasks=Job.done.where('group_id=?',group_id).latest.limit(per_count)

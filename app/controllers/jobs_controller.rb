@@ -129,7 +129,7 @@ class JobsController < ApplicationController
     @tasks=Job.where('user_id=?',current_user.id).pending.latest.paginate(page: params[:page], per_page: 20) 
   end
 
-  def group_job_list
+  def my_group_job_list
     results=current_user.my_group_job_list(params[:group_id], 8)
     @todo_jobs=results[0]
     @doing_jobs=results[1]
@@ -137,6 +137,16 @@ class JobsController < ApplicationController
     @user_grade=current_grade current_user.id
     @group=my_group_map
   end
+
+  def group_all_jobs
+    results=Job.group_all_jobs(params[:group_id], 8)
+    @todo_jobs=results[0]
+    @doing_jobs=results[1]
+    @done_jobs=results[2]
+    @user_grade=current_grade current_user.id
+    @group=my_group_map
+  end
+
 
   private
   def job_params

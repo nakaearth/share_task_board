@@ -73,7 +73,7 @@ describe JobsController do
     before do
       @user = User.find(1)
       controller.stub(:current_user) {@user}
-      get :group_job_list,group_id: 1 
+      get :my_group_job_list,group_id: 1 
     end
     it "login user check" do
        @user.name.should == "test name"
@@ -82,7 +82,7 @@ describe JobsController do
       response.should be_success
     end
     it "response render test" do
-      response.should render_template("group_job_list")
+      response.should render_template("my_group_job_list")
     end
     it "job_list" do
       assigns(:todo_jobs).should_not == nil
