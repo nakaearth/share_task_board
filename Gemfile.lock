@@ -31,6 +31,10 @@ GEM
     addressable (2.3.2)
     arel (3.0.2)
     aws_cf_signer (0.1.1)
+    better_errors (0.2.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.7.0)
+    binding_of_caller (0.6.8)
     builder (3.0.4)
     capistrano (2.13.5)
       highline
@@ -263,6 +267,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors
+  binding_of_caller
   capistrano
   capistrano-ext
   capistrano_colors
