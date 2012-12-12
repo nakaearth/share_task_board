@@ -93,7 +93,7 @@ gem 'pry-rails'
 
 #clockwork
 gem 'clockwork'
-gem 'heroku'
+#gem 'heroku'
 
 #Error Page
 group :development do
