@@ -30,17 +30,25 @@ class Job < ActiveRecord::Base
   end
  
   def self.job_list(per_count)
-    @todo_jobs=Job.todo.latest.limit(per_count)
-    @doing_jobs=Job.doing.latest.limit(per_count)
-    @done_jobs=Job.done.latest.limit(per_count)
-    [@todo_jobs, @doing_jobs, @done_jobs]
+    begin
+      @todo_jobs=Job.todo.latest.limit(per_count)
+      @doing_jobs=Job.doing.latest.limit(per_count)
+      @done_jobs=Job.done.latest.limit(per_count)
+      [@todo_jobs, @doing_jobs, @done_jobs]
+    rescue 
+      raise JobError ,"job一覧を取得しようとして失敗しました。"
+    end
   end
    
   def self.receive_job_list(user_id, per_count)
-    @todo_tasks=Job.todo.where('r_user_id=?',user_id).latest.limit(per_count)
-    @doing_tasks=Job.doing.where('r_user_id=?',user_id).latest.limit(per_count)
-    @done_tasks=Job.done.where('r_user_id=?',user_id).latest.limit(per_count)
-    [@todo_tasks, @doing_tasks, @done_tasks]
+    begin
+      @todo_tasks=Job.todo.where('r_user_id=?',user_id).latest.limit(per_count)
+      @doing_tasks=Job.doing.where('r_user_id=?',user_id).latest.limit(per_count)
+      @done_tasks=Job.done.where('r_user_id=?',user_id).latest.limit(per_count)
+      [@todo_tasks, @doing_tasks, @done_tasks]
+    rescue
+      raise JobError ,"受託したJob一覧を取得しようとして失敗しました。"
+    end
   end
    
   def self.receive_task(params)
@@ -52,7 +60,7 @@ class Job < ActiveRecord::Base
         @job.save!
       end
     rescue ActiveRecord::RecordNotFound
-      raise "ジョブ情報がありません"
+      raise JobError, "ジョブ情報がありません"
     end
   end
 
@@ -79,9 +87,13 @@ class Job < ActiveRecord::Base
   
   #所属しているグループの全タスク
   def self.group_all_jobs(group_id, per_count)
-    @todo_tasks=Job.todo.where('group_id=?',group_id).latest.limit(per_count)
-    @doing_tasks=Job.doing.where('group_id=?',group_id).latest.limit(per_count)
-    @done_tasks=Job.done.where('group_id=?',group_id).latest.limit(per_count)
-    [@todo_tasks, @doing_tasks, @done_tasks]
+    begin
+      @todo_tasks=Job.todo.where('group_id=?',group_id).latest.limit(per_count)
+      @doing_tasks=Job.doing.where('group_id=?',group_id).latest.limit(per_count)
+      @done_tasks=Job.done.where('group_id=?',group_id).latest.limit(per_count)
+      [@todo_tasks, @doing_tasks, @done_tasks]
+    rescue
+      raise JobError ,"Group Job一覧を取得しようとして失敗しました。"
+    end
   end
 end

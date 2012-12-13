@@ -147,9 +147,22 @@ describe JobsController do
         assigns(:job).should have(2).error_on(:title)
         assigns(:job).should have(2).error_on(:description)
       end
-     
     end
   end
 
+  describe "job list test" do
+    fixtures :users
+    fixtures :jobs
+    fixtures :groups
+
+    before do
+      @user = User.find(1)
+      controller.stub(:current_user) {@user}
+      @user.stub(:my_job_list).and_raise(RuntimeError)
+    end
+    it "login user check" do
+      lambda{get :index  }.should raise_error(RuntimeError)
+    end
+  end
 
 end

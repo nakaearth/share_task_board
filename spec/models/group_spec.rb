@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Group do
   fixtures :users
   
-  context "group add" do
+  describe "group add" do
     before do
       params={name: 'testgroup', user_id: 2} 
       @group=Group.new
@@ -11,13 +11,13 @@ describe Group do
     end
     it "save group" do
       group=Group.find_by_name('testgroup')
-      group.should_not==nil
+      group.should_not be_nil
       p group
       map=GroupMap.find_by_group_id(group.id)
-      map.user_id.should==2
+      map.user_id.should eql(2)
     end 
   end 
-  context "validation check" do
+  describe "validation check" do
     before do
       params= {user_id: 2}
       @group=Group.new
