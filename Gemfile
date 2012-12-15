@@ -51,11 +51,18 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 
 #Test
-group :development,:test do
+group :test do
   gem "rspec"
   gem "rspec-rails"
+  gem "cucumber-rails", "~> 1.0", require: false
+  gem 'database_cleaner'
   gem "capybara"
   gem "spork"
+  gem 'guard'
+  gem 'guard-spork'
+  gem 'guard-rspec'
+  gem 'guard-cucumber' 
+  gem 'factory_girl_rails'
 end
 
 #paginate
