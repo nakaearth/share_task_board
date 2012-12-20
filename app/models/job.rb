@@ -51,7 +51,7 @@ class Job < ActiveRecord::Base
     end
   end
    
-  def self.receive_task(params)
+  def self.receive_job(params)
     begin
       transaction do
         @job=Job.find(params[:id])

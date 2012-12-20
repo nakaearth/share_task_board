@@ -150,19 +150,36 @@ describe JobsController do
     end
   end
 
-  describe "job list test" do
+#  describe "job list test" do
+#    fixtures :users
+#    fixtures :jobs
+#    fixtures :groups
+#
+#    before do
+#      @user = User.find(1)
+#      controller.stub(:current_user) {@user}
+#      @user.stub(:my_job_list).and_raise(RuntimeError)
+#    end
+#    it "login user check" do
+#      #lambda{get :index  }.should raise_error(RuntimeError)
+#    end
+#  end
+
+  describe "job receive_job" do
     fixtures :users
     fixtures :jobs
     fixtures :groups
-
+    
     before do
-      @user = User.find(1)
+      @user=User.find(1)
       controller.stub(:current_user) {@user}
-      @user.stub(:my_job_list).and_raise(RuntimeError)
+      #@user.stub(:my_job_list).and_raise(RuntimeError)
+    end 
+    it "receive_job success case" do
+      get :receive_task, {:id => 1,:user_id =>2}
+      response.should be_success
     end
-    it "login user check" do
-      lambda{get :index  }.should raise_error(RuntimeError)
-    end
+
   end
 
 end

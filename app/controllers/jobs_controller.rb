@@ -115,11 +115,15 @@ class JobsController < ApplicationController
     end
   end
   
-  def receive_task
-    Job.receive_task(params)
-    @user_grade=current_grade current_user.id
-    Pusher['taskboard_channel'].trigger('my_event',{:greeting => current_user.user_name + 'さんがタスクを引き受けてくれました'})
-    redirect_to :action=>'index', :controller=>'top'
+  def receive_task 
+    begin
+      Job.receive_job(params)
+      @user_grade=current_grade current_user.id
+      Pusher['taskboard_channel'].trigger('my_event',{:greeting => current_user.user_name + 'さんがタスクを引き受けてくれました'})
+      redirect_to :action=>'index', :controller=>'top'
+    rescue JobError => je
+
+    end
   end
   
   def finish_list

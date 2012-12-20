@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Job do
   fixtures :jobs
   fixtures :users
-
+  
   #receive_job_list
   describe "receive_job_list test" do
     before do
@@ -39,7 +39,7 @@ describe Job do
   describe "Job receive test" do
     before do
       params={id: 1,user_id: 2}
-      @result = Job.receive_task params
+      @result = Job.receive_job params
     end
     it "success case" do
       @result.should be_true
@@ -54,7 +54,7 @@ describe Job do
   describe "Job receive test2" do
     before do
       params={id: 1,user_id: 3}
-      @result = Job.receive_task(params)
+      @result = Job.receive_job(params)
     end
     it "success case" do
       @result.should be_true
@@ -71,7 +71,11 @@ describe Job do
     end
     it "error check" do
       params={id: 100,user_id: 3}
-      lambda{Job.receive_task(params)}.should raise_error(JobError)
+      lambda{Job.receive_job(params)}.should raise_error(JobError)
+    end
+    it "error check 2" do
+      params={id: 1011,user_id: 'hogehoge'}
+      lambda{Job.receive_job(params)}.should raise_error(JobError)
     end
   end
 
