@@ -57,10 +57,8 @@ class ApplicationController < ActionController::Base
   if Rails.env.test?
     prepend_before_filter :stub_current_user
     def stub_current_user
-      #@test_user = FactoryGirl.create(:current_user)
-      #session[:user_id] = @test_user.id
-      @test_job = FactoryGirl.create(:job)
-      session[:user_id] = @test_job.user_id
+      @test_user = FactoryGirl.create(:current_user)
+      session[:user_id] = @test_user.id
     end
   end
 end
