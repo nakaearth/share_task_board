@@ -14,7 +14,16 @@ env:
 script: 
   - bundle exec rake db:schema:load
   - bundle exec rake db:test:prepare
-  - bundle exec rake spec
+  - bundle exec rspec spec/models/job_spec.rb
+  - bundle exec rspec spec/models/grade_master_spec.rb
+  - bundle exec rspec spec/models/group_spec.rb
+  - bundle exec rspec spec/models/user_grade_spec.rb
+  - bundle exec rspec spec/models/user_spec.rb
+  - bundle exec rspec spec/controllers/jobs_controller_spec.rb
+  - bundle exec rspec spec/controllers/groups_controller_spec.rb
+  - bundle exec rspec spec/controllers/profile_controller_spec.rb
+  - bundle exec rspec spec/controllers/users_controller_spec.rb
+  - bundle exec rspec spec/controllers/sessions_controller_spec.rb
 after_failure:
   - "echo $RAILS_ENV"
   - "bundle exec rake --version"
