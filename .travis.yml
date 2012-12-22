@@ -4,12 +4,17 @@ rvm:
   - 1.9.3
 gemfile:
   - Gemfile
+env:
+  - RAILS_ENV=test
 branches:
   only:
     - master
 env:
   - DB=sqlite
-script:
-  - "bundle exec rake db:drop RAILS_ENV=test"
-  - "bundle exec rake db:create RAILS_ENV=test"
-  - "bundle exec rake db:migrate RAILS_ENV=test"
+script: 
+  - bundle exec rake db:schema:load
+  - bundle exec rake db:test:prepare
+  - bundle exec rake spec
+after_failure:
+  - "echo $RAILS_ENV"
+  - "bundle exec rake --version"
