@@ -119,10 +119,10 @@ class JobsController < ApplicationController
     begin
       Job.receive_job(params)
       @user_grade=current_grade current_user.id
-      Pusher['taskboard_channel'].trigger('my_event',{:greeting => current_user.user_name + 'さんがタスクを引き受けてくれました'})
+      Pusher['taskboard_channel'].trigger('my_event',{:greeting => current_user.user_name + 'さんがタスクを引き受けてくれました'}) unless Rails.env.test?
       redirect_to :action=>'index', :controller=>'top'
     rescue JobError => je
-
+      raise JobError
     end
   end
   

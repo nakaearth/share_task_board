@@ -169,15 +169,17 @@ describe JobsController do
     fixtures :users
     fixtures :jobs
     fixtures :groups
+    fixtures :user_grades
+    fixtures :grade_masters
     
     before do
       @user=User.find(1)
+      @job=Job.where('user_id=?',2).first
       controller.stub(:current_user) {@user}
-      #@user.stub(:my_job_list).and_raise(RuntimeError)
+      get :receive_task, {:id => @job.id,:user_id =>@user.id}
     end 
     it "receive_job success case" do
-      get :receive_task, {:id => 1,:user_id =>2}
-      response.should be_success
+      response.code.should eql("302")
     end
 
   end
