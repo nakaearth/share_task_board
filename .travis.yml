@@ -8,10 +8,8 @@ branches:
   only:
     - master
 env:
-  - DB=mysql
+  - DB=sqlite
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rake db:test:prepare
   - bundle exec rspec spec/
-before_script:
-  - mysql -e 'create database share_task_board_test'
