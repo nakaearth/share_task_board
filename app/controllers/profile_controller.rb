@@ -5,7 +5,7 @@ class ProfileController < ApplicationController
 
   def update_profile
     begin
-      User.profile_update params
+      current_user.profile_update params[:avatar]
       redirect_to action: 'show', id: current_user.id, notice: 'users was successfully updated.'
     rescue => e
       logger.error "profile update error:"+e.message
@@ -16,7 +16,7 @@ class ProfileController < ApplicationController
 
   def setting
     begin
-      @user=User.find(current_user.id)
+      @user=current_user
     rescue ActiveRecord::RecordNotFound => are
       logger.error "プロフィールデータがありません:"+are.message
       render "error/404", layout: "error", status: 404
@@ -25,7 +25,7 @@ class ProfileController < ApplicationController
 
   def show
     begin
-      @user=User.find(current_user.id)
+      @user=current_user
     rescue ActiveRecord::RecordNotFound => are
       logger.error "プロフィールデータがありません:"+are.message
       render "error/404", layout: "error", status: 404

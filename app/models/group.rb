@@ -8,15 +8,15 @@ class Group < ActiveRecord::Base
   has_many :jobs
 
 
-  def save_group_user(params)
+  def save_group_user(input_attr)
     begin
       transaction do
         @group=Group.new
-        @group.name=params[:name]
+        @group.name=input_attr[:name]
         @group.save
         if @group  
           @map=GroupMap.new
-          @map.user_id=params[:user_id]
+          @map.user_id=input_attr[:user_id]
           @map.group_id=@group.id
           @map.save
         end

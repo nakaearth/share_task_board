@@ -24,10 +24,9 @@ class User < ActiveRecord::Base
     @user 
   end
 
-  def self.profile_update(params)
+  def profile_update(avatar)
     begin
-      @user=User.find(params[:id])
-      @user.avatar=params[:avatar]
+      @user.avatar=avatar
       @user.save
     rescue =>e
       logger.error "profile update error"
