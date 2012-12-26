@@ -92,7 +92,7 @@ class JobsController < ApplicationController
     @user_grade=current_grade current_user.id
     respond_to do |format|
       if @job.update_job(job_params) 
-        job_complete current_user.id if job.status == 3
+        job_complete current_user.id if @job.status == 3
         format.html { redirect_to @job, notice: 'Job was successfully updated.' }
         format.json { head :no_content }
       else
