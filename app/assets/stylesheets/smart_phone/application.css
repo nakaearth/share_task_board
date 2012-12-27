@@ -10,6 +10,6 @@
  *
  *= require_self
  *= require common
- *= require smart_phone/tasks
+ *= require smart_phone/jobs
  *= require smart_phone/top
  */
