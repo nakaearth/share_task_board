@@ -1,15 +1,5 @@
-<div class="content">
-<table >
-  <th class="list_menu">概要</th>
-  <th></th>
-  <th></th>
-  <th></th>
-  <% @jobs.each do |job| %>
-  <tr class="task_css<%=job.priority %>">
-    <td><%=task.title %>
-    <td ><%=status_str(job.status) %></td>
-    <td><%= link_to '編集する', edit_task_path(job) %></td>
-  </tr> 
-  <% end %>
-</table>
-</div>
+<menu class="menu_text">
+  <%= link_to 'やることリスト', {:action=>'index',:controller=>'jobs'} %><br/>
+  <%= link_to 'グループ一覧', {:action=>'index',:controller=>'groups'} %><br/>
+  <%= link_to 'ユーザ設定を変更する', {:action=>'setting',:controller=>'profile',:id=>current_user.id} %><br/>
+</menu>

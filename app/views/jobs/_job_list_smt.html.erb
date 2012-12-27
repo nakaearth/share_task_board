@@ -1,0 +1,30 @@
+
+<table id="task_board" class="board_smt">
+  <tr>
+  <td id="todoCaption" class="task_list_board1_smt">
+    まだ未着手
+    <div id="todo_board" class="board_smt">
+    <%=render @todo_jobs %>
+    </div>
+	</td>
+  </tr>
+  <tr>
+  <td id="doingCaption" class="task_list_board2_smt">
+    取り組み中
+    <div id="doing_board" class="board_smt">
+    <%=render @doing_jobs %>
+    </div>
+  </td>
+  </tr>
+	<tr>
+  <td id="doneCaption" class="task_list_board3_smt">
+    完了
+    <div id="done_board" class="board_smt">
+    <%=render @done_jobs %>
+    </div>
+  </td>
+  </tr>
+</table>
+
+<br />
+

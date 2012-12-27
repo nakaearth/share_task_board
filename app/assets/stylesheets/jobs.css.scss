@@ -55,7 +55,13 @@
   padding: 5px;
   margin: 5px;
 }
-
+.board_smt {
+  position: relative;
+  width: 30%;
+  z-index: 1;
+  padding: 5px;
+  margin: 5px;
+}
 @mixin task_list_board($status) {
   text-align: left;
   font-weight: bold;
@@ -78,6 +84,29 @@
 .task_list_board2 { @include task_list_board(2); }
 .task_list_board3 { @include task_list_board(3); }
 .task_list_board4 { @include task_list_board(4); }
+
+@mixin task_list_board_smt($status) {
+  text-align: left;
+  font-weight: bold;
+  border: 2px solid #333333;
+  background-color: #FFFFFF;
+  vertical-align: text-top;
+  @if $status==4 {
+    height: 600px;
+  } @else {
+    height: 200px;
+  }
+  width: 90%;
+  overflow: visible;  
+  padding: 10px;
+  margin: 15px;
+  -webkit-border-radius: 10px;/* Safari、Google Chrome */
+  -moz-border-radius: 10px;/* Firefox */
+}
+.task_list_board1_smt { @include task_list_board_smt(1); }
+.task_list_board2_smt { @include task_list_board_smt(2); }
+.task_list_board3_smt { @include task_list_board_smt(3); }
+.task_list_board4_smt { @include task_list_board_smt(4); }
 
 .table_board {
   width: 90%;

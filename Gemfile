@@ -107,3 +107,9 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
 end
+
+#cdn assets sync
+group :production do
+  gem "asset_sync"
+end
+
