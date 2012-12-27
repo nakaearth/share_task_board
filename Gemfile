@@ -24,7 +24,6 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
-  gem "asset_sync"
 end
 
 gem 'jquery-rails'
@@ -108,4 +107,6 @@ group :development do
   gem "binding_of_caller"
 end
 
-
+group :production do
+  gem "asset_sync"
+end
