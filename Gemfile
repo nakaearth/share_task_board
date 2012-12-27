@@ -107,6 +107,6 @@ group :development do
   gem "binding_of_caller"
 end
 
-group :production do
+group :test,:production do
   gem "asset_sync"
 end
