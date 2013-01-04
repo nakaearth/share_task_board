@@ -99,4 +99,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def job_report
+    begin
+      self.jobs
+    rescue ActiveRecord::RecordNotFound => are 
+      logger.error "recort not fount:"  + are.message
+    rescue RuntimeError => e
+      logger.error "Application error:" + e.message
+    end
+  end
+
 end

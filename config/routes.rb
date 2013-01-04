@@ -1,5 +1,17 @@
 TaksBoard::Application.routes.draw do
 
+  get "reports/index"
+
+  get "reports/show"
+
+  get "reports/print_out"
+
+  get "report/index"
+
+  get "report/show"
+
+  get "report/print"
+
   get "users/search_user"
 
   get "users/set_user"

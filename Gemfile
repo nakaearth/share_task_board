@@ -107,6 +107,13 @@ group :development do
   gem "binding_of_caller"
 end
 
-group :test,:production do
-  gem "asset_sync"
-end
+#group :test,:production do
+gem "asset_sync"
+#end
+
+#PDF
+gem "prawn" ,">= 0.8.4"
+
+#setting
+gem 'settingslogic'
+

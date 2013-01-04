@@ -33,13 +33,24 @@ describe User do
 
   context "group job list" do
     before do
-      @user=User.find(1)
+      @user= User.find(1)
       @result=@user.my_group_job_list 1, 10
     end
     it "result check" do
-      @result.should_not == nil
-      @result[0].size.should==2
-      @result[1].size.should==1
+      @result.should_not be_nil
+      @result[0].size.should == 2
+      @result[1].size.should == 1
     end
-  end
+  end 
+  
+  context "report jobs " do
+    before do
+      @user =  User.find(1)
+    end 
+    it "report user job" do
+      jobs = @user.job_report
+      jobs.should_not be_nil
+    end
+  end 
+
 end
