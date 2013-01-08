@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -117,3 +117,25 @@ gem "prawn" ,">= 0.8.4"
 #setting
 gem 'settingslogic'
 
+
+#test test
+#for stamp rewrite
+gem 'rack-rewrite', '1.0.2'
+ 
+#for test coverage
+group:test do
+  gem "simplecov", :require=>false
+end
+ 
+gem 'httpclient'
+ 
+#strong parameter
+gem 'strong_parameters'
+ 
+ #ip limit
+gem 'rack-contrib','1.1.0', :require => 'rack/contrib'
+ 
+ #ip check
+gem 'geoip',"~>1.2.0"
+ 
+#
