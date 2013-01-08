@@ -118,7 +118,7 @@ gem "prawn" ,">= 0.8.4"
 gem 'settingslogic'
 
 
-#test test
+######## test test
 #for stamp rewrite
 gem 'rack-rewrite', '1.0.2'
  
@@ -137,5 +137,14 @@ gem 'rack-contrib','1.1.0', :require => 'rack/contrib'
  
  #ip check
 gem 'geoip',"~>1.2.0"
+
+gem "paperclip", "~> 3.0"
+gem "aws-sdk"
+#gem "acts-as-taggable-on", "~>2.2.0"
  
-#
+gem 'delayed_job',"3.0.3"
+gem 'delayed_job_active_record', "0.3.2"
+gem "daemons"
+
+################
+
