@@ -1,6 +1,6 @@
 <h1>集計する日を選んで下さい</h1>
 
-<%= form_tag({:action=>'show',:controller=>'reports'},{:method=>:post}) do %>
+<%= form_tag({:action=>'calculate_job_count',:controller=>'reports'},{:method=>:post}) do %>
   <%=select_date @report_date , :use_month_numbers=>true,:include_blank=>false %><br/>
   <div class="actions">
     <%=submit_tag '集計' %>

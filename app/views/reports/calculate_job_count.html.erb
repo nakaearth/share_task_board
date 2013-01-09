@@ -1,2 +1,26 @@
-<h1>Reports#show</h1>
-<p>Find me in app/views/reports/show.html.erb</p>
+<h1>タスク状況の詳細レポート</h1>
+対応予定の未着手のタスク件数:<%=@report_map[:todo].size %> <br/>
+対応中のタスク件数:<%=@report_map[:doing].size %> <br/>
+その日に終わったタスク件数:<%=@report_map[:done].size %> <br/>
+対応終了のタスク件数:<%=@report_map[:finish].size %> <br/>
+対応保留のタスク件数:<%=@report_map[:pending].size %> <br/>
+<br/>
+以下詳細<br/>
+---------------------------------------------------------<br/>
+対応予定の未着手タスク<br/>
+<% @report_map[:todo].each do |j| %>
+	<%=j.title %> | <%=j.created_at.strftime("%Y-%m-%d") %> <br/>
+<% end %>
+<br/>
+---------------------------------------------------------<br/>
+対応中のタスク<br/>
+<% @report_map[:doing].each do |j| %>
+	<%=j.title %> | <%=j.created_at.strftime("%Y-%m-%d") %> <br/>
+<% end %>
+
+---------------------------------------------------------<br/>
+その日に終わったタスク<br/>
+<% @report_map[:done].each do |j| %>
+	<%=j.title %> | <%=j.created_at.strftime("%Y-%m-%d") %> <br/>
+<% end %>
+
