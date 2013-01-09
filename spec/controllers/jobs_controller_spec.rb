@@ -57,12 +57,12 @@ describe JobsController do
       response.should render_template("index")
     end
     it "job_list" do
-      assigns(:todo_jobs).should_not == nil
-      assigns(:todo_jobs).size.should==2
-      assigns(:doing_jobs).should_not == nil
-      assigns(:doing_jobs).size.should==1
-      assigns(:done_jobs).should_not == nil
-      assigns(:done_jobs).size.should==1
+      assigns(:todo_jobs).should_not be_nil
+      assigns(:todo_jobs).size.should eql(2)
+      assigns(:doing_jobs).should_not be_nil
+      assigns(:doing_jobs).size.should eql(1)
+      assigns(:done_jobs).should_not be_nil
+      assigns(:done_jobs).size.should eql(1)
     end
   end
   describe "GET group job list" do
@@ -76,7 +76,7 @@ describe JobsController do
       get :my_group_job_list,group_id: 1 
     end
     it "login user check" do
-       @user.name.should == "test name"
+       @user.name.should eql("test name")
     end
     it "response code check" do
       response.should be_success
@@ -85,12 +85,12 @@ describe JobsController do
       response.should render_template("my_group_job_list")
     end
     it "job_list" do
-      assigns(:todo_jobs).should_not == nil
-      assigns(:todo_jobs).size.should==2
-      assigns(:doing_jobs).should_not == nil
-      assigns(:doing_jobs).size.should==1
-      assigns(:done_jobs).should_not == nil
-      assigns(:done_jobs).size.should==0
+      assigns(:todo_jobs).should_not be_nil
+      assigns(:todo_jobs).size.should eql(2)
+      assigns(:doing_jobs).should_not be_nil
+      assigns(:doing_jobs).size.should eql(1)
+      assigns(:done_jobs).should_not be_nil
+      assigns(:done_jobs).size.should eql(0)
     end
   end
 
@@ -132,16 +132,16 @@ describe JobsController do
       end
       it "redirects to the created job" do
         @params=valid_attribute
-        @params[:title]="testt"
-        @params[:description]=""
+        @params[:title]="test job"
+        @params[:description] =""
 
         post :create, {:job => @params}
         assigns(:job).should have(2).error_on(:description)
       end
       it "redirects to the created job" do
         @params=valid_attribute
-        @params[:title]=""
-        @params[:description]=""
+        @params[:title] = ""
+        @params[:description] = ""
 
         post :create, {:job => @params}
         assigns(:job).should have(2).error_on(:title)

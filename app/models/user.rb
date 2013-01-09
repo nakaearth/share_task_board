@@ -101,7 +101,12 @@ class User < ActiveRecord::Base
 
   def job_report
     begin
-      self.jobs
+      @todo_jobs = self.jobs.todo
+      @doing_jobs = self.jobs.doing
+      @done_jobs = self.jobs.done
+      @pending_jobs = self.jobs.pending
+      @finish_jobs = self.jobs.finish
+      {todo: @todo_jobs, doing: @doing_jobs, done: @done_jobs, pending: @pending_jobs, finish: @finish_jobs}
     rescue ActiveRecord::RecordNotFound => are 
       logger.error "recort not fount:"  + are.message
     rescue RuntimeError => e
