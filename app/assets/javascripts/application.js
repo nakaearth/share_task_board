@@ -11,4 +11,5 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require turbolinks
+//= require analytics
 //= require_tree .
