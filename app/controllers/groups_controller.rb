@@ -26,7 +26,7 @@ class GroupsController < ApplicationController
         @user.save
         format.html {redirect_to @group, :notice =>'save success.'}
       else
-        format.html {render new}
+        format.html { render action: "new" }
       end
     end
   end

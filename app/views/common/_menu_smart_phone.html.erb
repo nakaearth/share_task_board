@@ -1,6 +1,6 @@
-<menu class="menu_text">
+<menu class="menu_text_smt">
 <% unless controller.controller_name=="top" %>
-<div class="menu_text">
+<div class="menu_text_smt">
   <%= link_to 'Topへ', {:action=>'index',:controller=>'top'} %><br/>
   <%=render "common/#{controller.controller_name}_menu_smart_phone" %>
 </div>
