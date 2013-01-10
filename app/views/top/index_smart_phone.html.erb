@@ -1,5 +1,7 @@
 <menu class="menu_text">
   <%= link_to 'やることリスト', {:action=>'index',:controller=>'jobs'} %><br/>
   <%= link_to 'グループ一覧', {:action=>'index',:controller=>'groups'} %><br/>
-  <%= link_to 'ユーザ設定を変更する', {:action=>'setting',:controller=>'profile',:id=>current_user.id} %><br/>
+  <% if current_user %>
+		<%= link_to 'ユーザ設定を変更する', {:action=>'setting',:controller=>'profile',:id=>current_user.id} %><br/>
+	<% end %>
 </menu>
