@@ -6,10 +6,12 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development,:test do
-  gem 'sqlite3'
+  gem 'bullet' 
+	gem 'sqlite3'
+	# Chrome Rails Panel
+	gem 'meta_request', '0.2.1'
 end
 group :production do
-#  gem 'pg'
   gem "mysql2"
   gem 'unicorn'
   gem 'newrelic_rpm'
