@@ -1,0 +1,59 @@
+<div id="task_form_id" class="task_form">
+<%= form_for(@job) do |f| %>
+  <% if @job.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@job.errors.count, "error") %>個の誤りがあります </h2>
+
+      <ul>
+      <% @job.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <% if @job.user_id==current_user.id %>
+      <%= f.text_field :title %>
+    <% else %>
+      <%=@job.title %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <% if @job.user_id==current_user.id %>
+      <%= f.text_area :description %>
+    <% else %>
+      <%=@job.description %>
+    <% end %>
+  </div>
+  <% if controller.action_name == "edit" %>
+  <div class="field">
+    <%= f.label :status ,'進捗度'%>:
+    TODO:<%= f.radio_button :status,"1" %>|&nbsp;&nbsp;
+    DOING:<%= f.radio_button :status,"2" %>|&nbsp;&nbsp;
+    DONE:<%= f.radio_button :status,"3" %>|&nbsp;&nbsp;
+    PENDING:<%= f.radio_button :status,"0" %>
+  </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :priority ,'優先順位'%>:
+    いつでも:<%= f.radio_button :priority,"0" %>|
+    やれれば:<%= f.radio_button :priority,"1" %>|
+    なるべく早く:<%= f.radio_button :priority,"2" %>
+  </div>
+  <div class="field">
+   <%= f.label :group_id, 'グループ' %>
+   <%=f.select :group_id, options_from_collection_for_select(@group, :id, :name,@job.group_id) %>
+  </div>
+  <div class="field">
+    <%= f.label :public_flag ,'公開して誰かに助けてもらう?'%>:
+    公開する:<%= f.radio_button :public_flag,"1" %>|
+    公開しない：<%= f.radio_button :public_flag,"0" %>|
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>

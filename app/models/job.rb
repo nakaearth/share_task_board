@@ -5,7 +5,10 @@ class Job < ActiveRecord::Base
   #elastic search
   include Tire::Model::Search
   include Tire::Model::Callbacks
-  
+
+  ## finder methods
+  include Job::Finder 
+
   scope :latest,-> {order('updated_at desc') }
   scope :todo, ->{where('status=?',1) }
   scope :doing,-> {where('status=?',2) }
@@ -28,28 +31,7 @@ class Job < ActiveRecord::Base
       indexes :title, :analyzer => 'snowball', :boost => 100 
     end 
   end
- 
-  def self.job_list(per_count)
-    begin
-      @todo_jobs=Job.todo.latest.limit(per_count)
-      @doing_jobs=Job.doing.latest.limit(per_count)
-      @done_jobs=Job.done.latest.limit(per_count)
-      [@todo_jobs, @doing_jobs, @done_jobs]
-    rescue 
-      raise JobError ,"job一覧を取得しようとして失敗しました。"
-    end
-  end
    
-  def self.receive_job_list(user_id, per_count)
-    begin
-      @todo_tasks=Job.todo.where('r_user_id=?',user_id).latest.limit(per_count)
-      @doing_tasks=Job.doing.where('r_user_id=?',user_id).latest.limit(per_count)
-      @done_tasks=Job.done.where('r_user_id=?',user_id).latest.limit(per_count)
-      [@todo_tasks, @doing_tasks, @done_tasks]
-    rescue
-      raise JobError ,"受託したJob一覧を取得しようとして失敗しました。"
-    end
-  end
    
   def self.receive_job(params)
     begin
@@ -85,15 +67,4 @@ class Job < ActiveRecord::Base
     end
   end
   
-  #所属しているグループの全タスク
-  def self.group_all_jobs(group_id, per_count)
-    begin
-      @todo_tasks=Job.todo.where('group_id=?',group_id).latest.limit(per_count)
-      @doing_tasks=Job.doing.where('group_id=?',group_id).latest.limit(per_count)
-      @done_tasks=Job.done.where('group_id=?',group_id).latest.limit(per_count)
-      [@todo_tasks, @doing_tasks, @done_tasks]
-    rescue
-      raise JobError ,"Group Job一覧を取得しようとして失敗しました。"
-    end
-  end
 end

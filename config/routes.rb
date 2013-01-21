@@ -57,7 +57,19 @@ TaksBoard::Application.routes.draw do
     end
     resources :users, :only=>[:index] do end
   end
-  
+
+  #api
+  namespace :api do
+    resources :jobs, :only=>[:save, :update, :show] do
+      member do
+        get 'delete'
+      end
+      collection do 
+        get 'my_list'
+      end
+    end
+  end
+
 #  get 'jobs' ,:to=>'jobs#index', :as => :user_root
   
   # The priority is based upon order of creation:

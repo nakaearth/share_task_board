@@ -144,5 +144,22 @@ describe Job do
       @jobs[1].size.should eql(2)
       @jobs[2].size.should eql(1)
     end
+  end 
+
+  describe "" do
+    before do
+      @jobs = Job.job_list(20)
+    end 
+    it "job list finder test" do
+      @jobs.should_not be_nil
+      @jobs.size.should eql(3)
+    end
+    it "job list finder value check" do
+      @jobs[0].size.should eql(3)
+      @jobs[1].size.should eql(2)
+      @jobs[2].size.should eql(5)
+
+    end
   end
+
 end
