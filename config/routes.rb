@@ -1,7 +1,6 @@
 TaksBoard::Application.routes.draw do
 
-  get "users/search_user"
-  get "users/set_user"
+  match "blog/*page" => "blog#respond"
 
   #user page
   get "top/index"
@@ -9,14 +8,17 @@ TaksBoard::Application.routes.draw do
   match "/auth/:provider/callback" => "sessions#create"
   match "/auth/failure" => "sessions#failure"
   match "/logout" => "sessions#destroy"
+  get "users/search_user"
+  get "users/set_user"
 
+  #report page
   resources :reports, :only=>[:index] do
     collection do
       post 'calculate_job_count'
       post 'print_out'
     end
   end
-
+  #Job page
   resources :jobs ,:only=>[:index, :show, :new, :create, :update, :edit] do
      member do
        get 'update_status'
@@ -32,6 +34,7 @@ TaksBoard::Application.routes.draw do
   end
   match	"/jobs/:id/destroy_task"=>"jobs#destroy_task"
 
+  #group page
   resources :groups ,:only=>[:index, :show, :new, :create, :update, :edit, :destroy] do
     resources :users do
       collection do
@@ -45,10 +48,6 @@ TaksBoard::Application.routes.draw do
       get 'setting'
       post 'update_profile'
     end 
-  end
-
-  namespace :my_group_jobs do
-
   end
 
   #admin
