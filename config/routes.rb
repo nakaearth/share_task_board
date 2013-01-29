@@ -55,6 +55,7 @@ TaksBoard::Application.routes.draw do
     resources :jobs ,:only=>[:index,:edit,:update] do
     end
     resources :users, :only=>[:index] do end
+    resources :blog_template
   end
 
   #api

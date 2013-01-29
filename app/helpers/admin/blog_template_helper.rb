@@ -1,0 +1,2 @@
+module Admin::BlogTemplateHelper
+end

@@ -3,7 +3,7 @@
 <head>
   <meta charset='utf-8'>
   <title>ShareJobBoard</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "admin/application", :media => "all" %>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script src="http://js.pusher.com/1.12/pusher.min.js" type="text/javascript"></script>
   <%= javascript_include_tag "application" %>
@@ -12,7 +12,7 @@
 <body class="page-index">
 <div class="div_user_content">
 <menu class="menu_text">
-
+  <%= render 'admin/common/menu' %>
 </menu>
 <%= yield %>
 </div>
