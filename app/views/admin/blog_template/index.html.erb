@@ -1,2 +1,19 @@
-<h1>Admin::BlogTemplate#index</h1>
-<p>Find me in app/views/admin/blog_template/index.html.erb</p>
+<h2>テンプレート一覧</h2>
+<div class="menu_text">
+  <%= link_to_unless_current '登録', {:action=>'new',:controller=>'admin/blog_template'} %>&nbsp;&nbsp;|&nbsp;&nbsp;
+</div>
+
+<table >
+  <tr>
+    <th class = "list_menu">パス</th>
+    <th class = "list_menu"></th>
+  </tr>
+  <% @blog_templates.each do|template| %>
+    <tr>
+      <td><%= template.path %></td>
+      <td><%= link_to '詳細',action: 'show', controller: 'admin/blog_template', id: template.id %></td>
+      <td></td>
+    </tr>
+  <% end %>
+ </table>
+

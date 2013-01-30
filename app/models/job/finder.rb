@@ -46,7 +46,6 @@ module Job::Finder
         raise JobError ,"Group Job一覧を取得しようとして失敗しました。"
       end
     end
-
   end 
 
   #Instance method

@@ -1,5 +1,5 @@
 <div  class="admin_template_form">
-<%= form_for(@blog_template) do |f| %>
+  <%= form_for(@blog_template,:url=>{:action=>@action, :controller => 'admin/blog_template'}) do |f| %>
   <% if @blog_template.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@blog_template.errors.count, "error") %> prohibited this task from being saved:</h2>
@@ -11,10 +11,12 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_field :body %>
+   パス: <%= f.text_field :path,:length =>"30" %>
+  </div>
+  Template 入力:
+  <div class="field">
+    <%= f.text_area :body,:size =>"150x40" %>
   </div>
   <div class="actions">
     <%= f.submit %>

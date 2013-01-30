@@ -55,7 +55,11 @@ TaksBoard::Application.routes.draw do
     resources :jobs ,:only=>[:index,:edit,:update] do
     end
     resources :users, :only=>[:index] do end
-    resources :blog_template
+    resources :blog_template ,:only=>[:index,:show,:new,:create,:edit, :update] do
+      member do
+        get 'destroy_tempalte'
+      end
+    end
   end
 
   #api
