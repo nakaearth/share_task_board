@@ -1,5 +1,6 @@
 TaksBoard::Application.routes.draw do
 
+  #Blog
   match "blog/*page" => "blog#respond"
 
   #user page
@@ -49,7 +50,10 @@ TaksBoard::Application.routes.draw do
       post 'update_profile'
     end 
   end
-
+  
+  #my_blog
+  resources :my_blog ,:only=>[:index, :show,:new, :create, :edit, :update, :destroy] do end
+  
   #admin
   namespace :admin do
     resources :jobs ,:only=>[:index,:edit,:update] do

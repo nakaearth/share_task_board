@@ -36,7 +36,17 @@ module User::Finder
         []
       end
     end
-    
+
+    #my_blog情報の取得
+    def my_blog
+      begin
+        @my_blog = self.blog
+
+      rescue RuntimeError => e
+        logger.error("appplication error!:"+ e.message)
+      end
+    end
+
     #Jobレポート用のメソッド
     def job_report
       begin

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130126134901) do
+ActiveRecord::Schema.define(:version => 20130201154206) do
+
+  create_table "articles", :force => true do |t|
+    t.string   "title"
+    t.text     "descriptoin"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "blog_templates", :force => true do |t|
     t.text     "body"
@@ -20,9 +27,18 @@ ActiveRecord::Schema.define(:version => 20130126134901) do
     t.string   "locale"
     t.string   "handler"
     t.boolean  "partial"
-    t.integer  "user_id"
+    t.integer  "blog_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "blogs", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "user_id"
+    t.integer  "blog_template_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "delayed_jobs", :force => true do |t|

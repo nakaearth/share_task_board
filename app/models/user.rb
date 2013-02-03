@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :jobs
   has_many :group_maps
   has_many :groups ,:through => :group_maps
-  has_one  :blog_template
+  has_one  :blog
   mount_uploader :avatar, AvatarUploader
 
   validate :avatar, :file_size =>{:maximum=>0.5.megabytes.to_i }

@@ -1,0 +1,7 @@
+<% if @my_blog %>
+  &nbsp;&nbsp;<%= link_to 'ブログ設定', {:action=>'show',:controller=>'my_blog' ,:id=>@my_blog.id} %>&nbsp;&nbsp;|&nbsp;&nbsp;
+<% else %>
+  &nbsp;&nbsp;<%= link_to 'ブログ設定', {:action=>'new',:controller=>'my_blog' } %>&nbsp;&nbsp;|&nbsp;&nbsp;
+<% end %>
+
+
