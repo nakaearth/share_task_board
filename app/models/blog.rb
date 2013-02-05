@@ -4,7 +4,7 @@ class Blog < ActiveRecord::Base
   has_many :articles
 
   validates :name, :presence =>true ,:length=>{:within=>5..80}
-  validates :description ,:presence=>true ,:length=>{:within=>1..270}
+  validates :description ,:presence=>true ,:length=>{:within=>5..270}
   
   #attr_accessible :blog_template_id, :description, :name, :user_id
 end

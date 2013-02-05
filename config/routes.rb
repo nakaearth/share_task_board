@@ -1,5 +1,13 @@
 TaksBoard::Application.routes.draw do
 
+  match "Maintenance/503-error", :to => "maintenance#maintenance_error"
+
+  match "Maintenance/503", :to => "maintenance#maintenance"
+
+  match "Maintenance/500", :to => "maintenance#error"
+
+  match "Maintenance/404", :to => "maintenance#not_found"
+
   #Blog
   match "blog/*page" => "blog#respond"
 
@@ -52,9 +60,11 @@ TaksBoard::Application.routes.draw do
   end
   
   #my_blog
-  resources :my_blog ,:only=>[:index, :show,:new, :create, :edit, :update, :destroy] do end
+  resources :my_blog ,:only=>[:index, :show,:new, :create, :edit, :update, :destroy] do
+    resources :articles ,:only => [:show, :new, :create, :edit, :update, :destroy] do end 
+  end
   
-  #admin
+  ###### admin ###########
   namespace :admin do
     resources :jobs ,:only=>[:index,:edit,:update] do
     end

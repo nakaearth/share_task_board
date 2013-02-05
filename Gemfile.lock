@@ -40,6 +40,7 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.7.0)
     binding_of_caller (0.6.8)
+    blockenspiel (0.4.5)
     builder (3.0.4)
     bullet (4.3.0)
       uniform_notifier
@@ -316,6 +317,12 @@ GEM
       multi_json (~> 1.0)
       rake
       rest-client (~> 1.6)
+    trackman (0.6.18)
+      json
+      nokogiri
+      rack
+      rest-client
+      versionomy
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
@@ -331,6 +338,8 @@ GEM
       rack
       raindrops (~> 0.7)
     uniform_notifier (1.1.1)
+    versionomy (0.4.4)
+      blockenspiel (>= 0.4.5)
     websocket (1.0.6)
     will_paginate (3.0.3)
     xpath (1.0.0)
@@ -381,6 +390,7 @@ DEPENDENCIES
   sqlite3
   strong_parameters
   tire (~> 0.4.1)
+  trackman
   turbolinks
   uglifier (>= 1.0.3)
   unicorn

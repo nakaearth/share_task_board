@@ -117,3 +117,5 @@ gem "prawn" ,">= 0.8.4"
 #setting
 gem 'settingslogic'
 
+#trackman
+gem 'trackman'

@@ -41,7 +41,7 @@ module User::Finder
     def my_blog
       begin
         @my_blog = self.blog
-
+        
       rescue RuntimeError => e
         logger.error("appplication error!:"+ e.message)
       end
