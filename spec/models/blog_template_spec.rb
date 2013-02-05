@@ -6,7 +6,8 @@ describe BlogTemplate do
   describe "blog_template get" do
     before do
       @user = FactoryGirl.build(:test_blogger)
-      @blog_template = @user.blog_template
+      @blog = @user.blog
+      @blog_template = @blog.blog_template
     end 
     it "nil check" do
       @user.name.should_not be_nil
