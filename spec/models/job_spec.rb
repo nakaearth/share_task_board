@@ -2,12 +2,12 @@
 
 require 'spec_helper'
 
-describe Job do
+describe "Job model class" do
   fixtures :jobs
   fixtures :users
   
   #receive_job_list
-  describe "receive_job_list test" do
+  context "receive_job_list test" do
     before do
       @jobs=Job.receive_job_list(2, 10)
     end
@@ -21,7 +21,7 @@ describe Job do
       @jobs[2].size.should eql(1)
     end
   end
-  describe "receive_job_list error test" do
+  context "receive_job_list error test" do
     before do
       @jobs=Job.receive_job_list(4, 10)
     end
@@ -36,7 +36,7 @@ describe Job do
   end
 
   # receive test
-  describe "Job receive test" do
+  context "Job receive test" do
     before do
       params={id: 1,user_id: 2}
       @result = Job.receive_job params
@@ -51,7 +51,7 @@ describe Job do
       job.user_id.should eql(1)
     end
   end
-  describe "Job receive test2" do
+  context "Job receive test2" do
     before do
       params={id: 1,user_id: 3}
       @result = Job.receive_job(params)
@@ -66,7 +66,7 @@ describe Job do
       job.user_id.should  eql(1)
     end
   end
-  describe "job receive_task exception test" do
+  context "job receive_task exception test" do
     before do
     end
     it "error check" do
@@ -80,7 +80,7 @@ describe Job do
   end
 
  # Job finished TEST
-  describe "task finished success" do
+  context "task finished success" do
     before do
       params={user_id: 1}
       Job.finished
@@ -92,7 +92,7 @@ describe Job do
   end
   
   #job validate test
-  describe "job validate test" do
+  context "job validate test" do
     before do
       @job=jobs(:valid)
     end
@@ -118,7 +118,7 @@ describe Job do
     end 
   end
   
-  describe "job attribute update" do
+  context "job attribute update" do
     before do
       params={'id'=>1,'title'=>'test job', 'description'=>'test test test', 'status'=>'2', 'priority'=>'2', 'public_flag'=>'0'}
       @job=Job.find(1)
@@ -131,7 +131,7 @@ describe Job do
     end
   end
 
-  describe "group job test" do
+  context "group job test" do
     fixtures :groups
     before do
       @group=Group.find(1)
@@ -146,7 +146,7 @@ describe Job do
     end
   end 
 
-  describe "" do
+  context "" do
     before do
       @jobs = Job.job_list(20)
     end 
