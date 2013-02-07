@@ -71,4 +71,17 @@ class User < ActiveRecord::Base
     end
   end
 
+  #ブログ作成
+  def create_my_blog(blog_name, description)
+    begin
+      blog = Blog.new
+      blog.name = blog_name
+      blog.description = description
+      blog.save
+      self.blog = blog 
+      self.save
+    rescue  => e
+      logger.error("blog create error:" + e.message)
+    end
+  end
 end

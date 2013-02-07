@@ -12,6 +12,13 @@ FactoryGirl.define do
     }
   end
 
+  factory :new_blogger ,:class => User do|u|
+    u.provider "twitter"
+    u.uid "newtest123"
+    u.name "new_testname"
+    u.screen_name "new test taorou"
+  end
+ 
   factory :test_blog ,:class => Blog do|b|
     b.name "test blog"
     b.description "this is test blog."
@@ -19,7 +26,6 @@ FactoryGirl.define do
       FactoryGirl.build(:test_blog_template)
     }   
   end
-
 
   factory :test_blog_template ,:class => BlogTemplate do |b|
     b.body "<html><head><title>test blog</title></head><body>hello world</body></html>"

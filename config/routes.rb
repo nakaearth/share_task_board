@@ -61,6 +61,10 @@ TaksBoard::Application.routes.draw do
   
   #my_blog
   resources :my_blog ,:only=>[:index, :show,:new, :create, :edit, :update, :destroy] do
+    member do
+      get 'template_list'
+      post 'set_template'
+    end
     resources :articles ,:only => [:show, :new, :create, :edit, :update, :destroy] do end 
   end
   

@@ -7,4 +7,6 @@ class Blog < ActiveRecord::Base
   validates :description ,:presence=>true ,:length=>{:within=>5..270}
   
   #attr_accessible :blog_template_id, :description, :name, :user_id
+
+  
 end
