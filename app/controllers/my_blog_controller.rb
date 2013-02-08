@@ -25,7 +25,8 @@ class MyBlogController < ApplicationController
   end
 
   def new
-    @my_blog = Blog.new
+    @blog = Blog.new
+    @action = 'create'
   end
 
   def create
@@ -39,11 +40,11 @@ class MyBlogController < ApplicationController
 
   def edit
     @my_blog = current_user.my_blog
-
+    @action = 'update'
   end
 
   def update
- 
+    @action = 'update'
   end
 
   def destroy

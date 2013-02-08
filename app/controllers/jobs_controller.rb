@@ -9,12 +9,14 @@ class JobsController < ApplicationController
   # GET /tasks.json
   def index
     results=current_user.my_job_list 8 
-    @todo_jobs=results[0]
-    @doing_jobs=results[1]
-    @done_jobs=results[2]
-    @user_grade=current_grade current_user.id
-    @group=my_group_map
+    @todo_jobs  = results[0]
+    @doing_jobs = results[1]
+    @done_jobs  = results[2]
+    @user_grade = current_grade current_user.id
+    @group      = my_group_map
     respond_to do |format|
+      #TreasureDataへの書き込み処理
+      puts "@[jobs_log.action_log] #{{'current_user'=>current_user.id, 'action'=>'index'}.to_json}"
       format.html # index.html.erb
       format.json { render json: @tasks }
     end
@@ -23,12 +25,13 @@ class JobsController < ApplicationController
   # GET /tasks.json
   def receive_task_list
     results=current_user.my_receive_job_list 8 
-    @todo_jobs=results[0]
-    @doing_jobs=results[1]
-    @done_jobs=results[2]
-    @user_grade=current_grade current_user.id
-    @group=my_group_map 
+    @todo_jobs  = results[0]
+    @doing_jobs = results[1]
+    @done_jobs  = results[2]
+    @user_grade = current_grade current_user.id
+    @group      = my_group_map 
     respond_to do |format|
+      puts "@[jobs_log.action_log] #{{'current_user'=>current_user.id, 'action'=>'receive_task_list'}.to_json}"
       format.html # index.html.erb
     end
   end
@@ -37,10 +40,11 @@ class JobsController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
-    @job = Job.find(params[:id])
-    @user_grade=current_grade current_user.id
-    @group=my_group_map
+    @job        = Job.find(params[:id])
+    @user_grade = current_grade current_user.id
+    @group      = my_group_map
     respond_to do |format|
+      puts "@[jobs_log.action_log] #{{'current_user'=>current_user.id, 'action'=>'show'}.to_json}"
       format.html # show.html.erb
       format.json { render json: @job }
     end
@@ -51,10 +55,10 @@ class JobsController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.json
   def new
-    @job = Job.new
-    @job.user_id = current_user.id
-    @job.r_user_id=current_user.id
-    @group=my_group_map
+    @job           = Job.new
+    @job.user_id   = current_user.id
+    @job.r_user_id = current_user.id
+    @group         = my_group_map
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @job }
@@ -63,23 +67,23 @@ class JobsController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
-    @job = Job.find(params[:id])
-    @user_grade=current_grade current_user.id
-    @group=my_group_map 
+    @job        = Job.find(params[:id])
+    @user_grade = current_grade current_user.id
+    @group      = my_group_map 
   end
 
   # POST /tasks
   # POST /tasks.json
   def create
-    @job = Job.new(job_params)
+    @job         = Job.new(job_params)
     @job.user_id = current_user.id
-    @user_grade=current_grade current_user.id
+    @user_grade  = current_grade current_user.id
     respond_to do |format|
       if @job.save
         format.html { redirect_to @job, notice: 'Job was successfully created.' }
         format.json { render json: @job, status: :created, location: @job }
       else
-        @group=my_group_map 
+        @group = my_group_map 
         format.html { render action: "new" }
         format.json { render json: @job.errors, status: :unprocessable_entity }
       end
@@ -88,15 +92,15 @@ class JobsController < ApplicationController
 
 
   def update
-    @job = Job.find(params[:id])
-    @user_grade=current_grade current_user.id
+    @job        = Job.find(params[:id])
+    @user_grade = current_grade current_user.id
     respond_to do |format|
       if @job.update_job(job_params) 
         job_complete current_user.id if @job.status == 3
         format.html { redirect_to @job, notice: 'Job was successfully updated.' }
         format.json { head :no_content }
       else
-        @group=my_group_map 
+        @group = my_group_map 
         format.html { render action: "edit" }
         format.json { render json: @job.errors, status: :unprocessable_entity }
       end
@@ -108,7 +112,6 @@ class JobsController < ApplicationController
   def destroy_task
     @job = Job.find(params[:id])
     @job.destroy
-
     respond_to do |format|
       format.html { redirect_to jobs_url }
       format.json { head :no_content }
@@ -127,33 +130,33 @@ class JobsController < ApplicationController
   end
   
   def finish_list
-    @user_grade=current_grade current_user.id
-    @tasks=Job.where('user_id=?',current_user.id).finish.latest.paginate(page: params[:page], per_page: 20) 
-    @group=my_group_map
+    @user_grade = current_grade current_user.id
+    @tasks      = Job.where('user_id=?',current_user.id).finish.latest.paginate(page: params[:page], per_page: 20) 
+    @group      = my_group_map
   end
   
   def pending_list
-    @user_grade=current_grade current_user.id
-    @tasks=Job.where('user_id=?',current_user.id).pending.latest.paginate(page: params[:page], per_page: 20) 
-    @group=my_group_map
+    @user_grade  = current_grade current_user.id
+    @tasks       = Job.where('user_id=?',current_user.id).pending.latest.paginate(page: params[:page], per_page: 20) 
+    @group       = my_group_map
   end
 
   def my_group_job_list
-    results=current_user.my_group_job_list(params[:group_id], 8)
-    @todo_jobs=results[0]
-    @doing_jobs=results[1]
-    @done_jobs=results[2]
-    @user_grade=current_grade current_user.id
-    @group=my_group_map
+    results     = current_user.my_group_job_list(params[:group_id], 8)
+    @todo_jobs  = results[0]
+    @doing_jobs = results[1]
+    @done_jobs  = results[2]
+    @user_grade = current_grade current_user.id
+    @group      = my_group_map
   end
 
   def group_all_jobs
-    results=Job.group_all_jobs(params[:group_id], 8)
-    @todo_jobs=results[0]
-    @doing_jobs=results[1]
-    @done_jobs=results[2]
-    @user_grade=current_grade current_user.id
-    @group=my_group_map
+    results     = Job.group_all_jobs(params[:group_id], 8)
+    @todo_jobs  = results[0]
+    @doing_jobs = results[1]
+    @done_jobs  = results[2]
+    @user_grade = current_grade current_user.id
+    @group      = my_group_map
   end
 
 
@@ -163,7 +166,7 @@ class JobsController < ApplicationController
   end
 
   def my_group_map
-    @groups=current_user.my_groups
+    @groups = current_user.my_groups
     @groups
   end
 
