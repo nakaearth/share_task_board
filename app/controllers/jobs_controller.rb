@@ -60,6 +60,7 @@ class JobsController < ApplicationController
     @job.r_user_id = current_user.id
     @group         = my_group_map
     respond_to do |format|
+      puts "@[jobs_log.action_log] #{{'current_user'=>current_user.id, 'action'=>'new'}.to_json}"
       format.html # new.html.erb
       format.json { render json: @job }
     end
@@ -70,6 +71,7 @@ class JobsController < ApplicationController
     @job        = Job.find(params[:id])
     @user_grade = current_grade current_user.id
     @group      = my_group_map 
+    puts "@[jobs_log.action_log] #{{'current_user'=>current_user.id, 'action'=>'edit'}.to_json}"
   end
 
   # POST /tasks
@@ -80,6 +82,7 @@ class JobsController < ApplicationController
     @user_grade  = current_grade current_user.id
     respond_to do |format|
       if @job.save
+        puts "@[jobs_log.action_log] #{{'current_user'=>current_user.id, 'action'=>'create'}.to_json}"
         format.html { redirect_to @job, notice: 'Job was successfully created.' }
         format.json { render json: @job, status: :created, location: @job }
       else
@@ -96,6 +99,7 @@ class JobsController < ApplicationController
     @user_grade = current_grade current_user.id
     respond_to do |format|
       if @job.update_job(job_params) 
+        puts "@[jobs_log.action_log] #{{'current_user'=>current_user.id, 'action'=>'update'}.to_json}"
         job_complete current_user.id if @job.status == 3
         format.html { redirect_to @job, notice: 'Job was successfully updated.' }
         format.json { head :no_content }
@@ -113,6 +117,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @job.destroy
     respond_to do |format|
+      puts "@[jobs_log.action_log] #{{'current_user'=>current_user.id, 'action'=>'destroy'}.to_json}"
       format.html { redirect_to jobs_url }
       format.json { head :no_content }
     end
@@ -123,6 +128,7 @@ class JobsController < ApplicationController
       Job.receive_job(params)
       @user_grade=current_grade current_user.id
       Pusher['taskboard_channel'].trigger('my_event',{:greeting => current_user.user_name + 'さんがタスクを引き受けてくれました'}) unless Rails.env.test?
+      puts "@[jobs_log.action_log] #{{'current_user'=>current_user.id, 'action'=>'receive_job'}.to_json}"
       redirect_to :action=>'index', :controller=>'top'
     rescue JobError => je
       raise JobError
@@ -133,12 +139,14 @@ class JobsController < ApplicationController
     @user_grade = current_grade current_user.id
     @tasks      = Job.where('user_id=?',current_user.id).finish.latest.paginate(page: params[:page], per_page: 20) 
     @group      = my_group_map
+    puts "@[jobs_log.action_log] #{{'current_user'=>current_user.id, 'action'=>'finish_list'}.to_json}"
   end
   
   def pending_list
     @user_grade  = current_grade current_user.id
     @tasks       = Job.where('user_id=?',current_user.id).pending.latest.paginate(page: params[:page], per_page: 20) 
     @group       = my_group_map
+    puts "@[jobs_log.action_log] #{{'current_user'=>current_user.id, 'action'=>'pending_list'}.to_json}"
   end
 
   def my_group_job_list
@@ -148,6 +156,7 @@ class JobsController < ApplicationController
     @done_jobs  = results[2]
     @user_grade = current_grade current_user.id
     @group      = my_group_map
+    puts "@[jobs_log.action_log] #{{'current_user'=>current_user.id, 'action'=>'my_group_job_list'}.to_json}"
   end
 
   def group_all_jobs
@@ -157,6 +166,7 @@ class JobsController < ApplicationController
     @done_jobs  = results[2]
     @user_grade = current_grade current_user.id
     @group      = my_group_map
+    puts "@[jobs_log.action_log] #{{'current_user'=>current_user.id, 'action'=>'group_all_jobs'}.to_json}"
   end
 
 
