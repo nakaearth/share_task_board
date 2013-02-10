@@ -2,7 +2,9 @@ class MyBlogController < ApplicationController
 
   def index 
     @my_blog = current_user.my_blog
-
+    unless @my_blog
+      redirect_to action: 'new'
+    end
   end
 
   def show

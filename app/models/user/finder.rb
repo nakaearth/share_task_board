@@ -41,9 +41,12 @@ module User::Finder
     def my_blog
       begin
         @my_blog = self.blog
-        
+      rescue ActiveRecord::RecordNotFound => fe
+        logger.error("my blog not found!:"+ fe.message)
+        []
       rescue RuntimeError => e
         logger.error("appplication error!:"+ e.message)
+        []
       end
     end
 
