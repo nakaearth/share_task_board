@@ -199,6 +199,7 @@ ja:
         name: グループ名
       blog:
         name: ブログ名
+        blog_id: ブログユニークID
         description: 詳細
   devise:
     sessions:

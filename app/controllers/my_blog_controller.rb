@@ -2,9 +2,9 @@ class MyBlogController < ApplicationController
 
   def index 
     @my_blog = current_user.my_blog
-    #unless @my_blog
-    #  redirect_to action: 'new'
-    #end
+    unless @my_blog
+      redirect_to action: 'new'
+    end
   end
 
   def show
@@ -34,6 +34,8 @@ class MyBlogController < ApplicationController
   def create
     @blog = Blog.new(params[:blog])
     if @blog.save
+      current_user.blog = @blog
+      current_user.save
       redirect_to action: 'template_list'
     else
       render :new

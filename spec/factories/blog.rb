@@ -21,6 +21,7 @@ FactoryGirl.define do
  
   factory :test_blog ,:class => Blog do|b|
     b.name "test blog"
+    b.blog_uid "bloghoge123"
     b.description "this is test blog."
     b.blog_template {
       FactoryGirl.build(:test_blog_template)
@@ -29,7 +30,7 @@ FactoryGirl.define do
 
   factory :test_blog_template ,:class => BlogTemplate do |b|
     b.body "<html><head><title>test blog</title></head><body>hello world</body></html>"
-    b.path "blog/testuser/index"
+    b.path "blog/bloghoge123/index"
     b.format "html"
     b.locale "ja"
     b.handler "erb"

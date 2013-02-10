@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130201154206) do
+ActiveRecord::Schema.define(:version => 20130210134332) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -37,9 +37,12 @@ ActiveRecord::Schema.define(:version => 20130201154206) do
     t.text     "description"
     t.integer  "user_id"
     t.integer  "blog_template_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.string   "blog_uid",         :default => "", :null => false
   end
+
+  add_index "blogs", ["blog_uid"], :name => "index_blogs_on_blog_uid"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0

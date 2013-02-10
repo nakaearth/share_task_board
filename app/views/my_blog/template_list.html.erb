@@ -1,3 +1,13 @@
-<% @template_list %>
+<div class="blog_form">
+  ブログ名:<%=@my_blog.name %><br/>
+  ブログUID:<%=@my_blog.blog_uid %>
+</div>
+
+
+テンプレートを選択してください。
+
+<%= @template_list.each do|template| %>
+  <%=template.path %>
+<% end %>
 
 
