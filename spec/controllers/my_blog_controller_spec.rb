@@ -12,6 +12,9 @@ describe MyBlogController do
     it "returns http success" do
       response.should be_success
     end
+    it "return template " do
+      response.should render_template("index")
+    end
   end
 
   context "GET 'index' new blogger " do
@@ -20,8 +23,24 @@ describe MyBlogController do
       controller.stub(:current_user) {@user}
       get 'index'
     end
-    it "returns http redirect" do
-      response.code.should eql("302")
+    it "returns http success" do
+      response.should be_success
+      response.should render_template("index")
+#      response.code.should eql("302")
     end
   end
+
+  context "Get new action" do
+    before do
+      @user = FactoryGirl.build(:new_blogger)
+      controller.stub(:current_user) {@user}
+      get 'new'
+    end
+    it "returns http success" do
+      response.should be_success
+      response.should render_template("new")
+    end
+
+  end
+
 end

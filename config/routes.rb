@@ -52,7 +52,7 @@ TaksBoard::Application.routes.draw do
       end
     end
   end
-  resources :profile ,:only=>[:show] do
+  resources :profile ,:only => [:show] do
     member do
       get 'setting'
       post 'update_profile'
@@ -60,7 +60,7 @@ TaksBoard::Application.routes.draw do
   end
   
   #my_blog
-  resources :my_blog ,:only=>[:index, :show,:new, :create, :edit, :update, :destroy] do
+  resources :my_blog ,:only => [:index, :show, :new, :create, :edit, :update, :destroy] do
     member do
       get 'template_list'
       post 'set_template'

@@ -1,5 +1,5 @@
 <div id="blog_form_id" class="blog_form">
-  <%= form_for(@blog,:url=>{:action=>@action, :controller => 'myblog'}) do |f| %>
+  <%= form_for(@blog,:url=>{:action=>@action, :controller => 'my_blog'}) do |f| %>
   <% if @blog.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@blog.errors.count, "error") %>個の誤りがあります </h2>

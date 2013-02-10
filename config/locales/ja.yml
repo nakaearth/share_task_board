@@ -197,6 +197,9 @@ ja:
         status: 状態 
       group:
         name: グループ名
+      blog:
+        name: ブログ名
+        description: 詳細
   devise:
     sessions:
       user:

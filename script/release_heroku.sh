@@ -5,6 +5,7 @@ git push b-github master
 echo "====HEROKU PUSH===="
 git push sharetaskboard-heroku master
 echo "====APP RESTART===="
+heroku run rake db:migrate --app sharetaskboard
 heroku restart --app sharetaskboard
 ####heroku ps:scale clockwork=1
 echo "====RELEASE END!!!====="

@@ -94,6 +94,7 @@
 .group_form { @include common_form(2); }
 .profile_form { @include common_form(3); }
 .blog_template_form { @include common_form(1); }
+.blog_form { @include common_form(1); }
 
 .list_menu {
   width: 300px;
