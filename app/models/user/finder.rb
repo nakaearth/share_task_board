@@ -4,6 +4,7 @@ module User::Finder
          extend ActiveSupport::Concern
   included do
     has_many :jobs
+    has_one :blog
 
     #JOB関連
     def my_job_list(per_count)
