@@ -37,117 +37,120 @@ describe JobsController do
     }
   end
 
-  describe "GET index" do
+  describe "index method" do
     fixtures :users
     fixtures :jobs
     fixtures :groups
-
-    before do
-      @user = User.find(1)
-      controller.stub(:current_user) {@user}
-      get :index 
-    end
-    it "login user check" do
-       @user.name.should == "test name"
-    end
-    it "response code check" do
-      response.should be_success
-    end
-    it "response render test" do
-      response.should render_template("index")
-    end
-    it "job_list" do
-      assigns(:todo_jobs).should_not be_nil
-      assigns(:todo_jobs).size.should eql(2)
-      assigns(:doing_jobs).should_not be_nil
-      assigns(:doing_jobs).size.should eql(1)
-      assigns(:done_jobs).should_not be_nil
-      assigns(:done_jobs).size.should eql(1)
-    end
-  end
-  describe "GET group job list" do
-    fixtures :users
-    fixtures :jobs
-    fixtures :groups
-
-    before do
-      @user = User.find(1)
-      controller.stub(:current_user) {@user}
-      get :my_group_job_list,group_id: 1 
-    end
-    it "login user check" do
-       @user.name.should eql("test name")
-    end
-    it "response code check" do
-      response.should be_success
-    end
-    it "response render test" do
-      response.should render_template("my_group_job_list")
-    end
-    it "job_list" do
-      assigns(:todo_jobs).should_not be_nil
-      assigns(:todo_jobs).size.should eql(2)
-      assigns(:doing_jobs).should_not be_nil
-      assigns(:doing_jobs).size.should eql(1)
-      assigns(:done_jobs).should_not be_nil
-      assigns(:done_jobs).size.should eql(0)
-    end
-  end
-
-  describe "new job save" do
-    fixtures :users
-    fixtures :jobs
-    fixtures :groups
-
-    describe "with valid params" do
+    context "exec index method success" do
       before do
         @user = User.find(1)
         controller.stub(:current_user) {@user}
+        get :index 
       end
-      it "assigns a newly created task as @job" do
-        post :create,{:job=> valid_attribute}
-        assigns(:job).should be_a(Job)
-        assigns(:job).should be_persisted
+      it "login user check" do
+         @user.name.should == "test name"
       end
-      it "redirects to the created job" do
-        post :create, {:job => valid_attribute}, valid_session
-        response.should redirect_to(Job.last)
+      it "response code check" do
+        response.should be_success
+      end
+      it "response render test" do
+        response.should render_template("index")
+      end
+      it "job_list" do
+        assigns(:todo_jobs).should_not be_nil
+        assigns(:todo_jobs).size.should eql(2)
+        assigns(:doing_jobs).should_not be_nil
+        assigns(:doing_jobs).size.should eql(1)
+        assigns(:done_jobs).should_not be_nil
+        assigns(:done_jobs).size.should eql(1)
       end
     end
   end
-  describe "new job create error" do
+  describe "GET my_group_job_list" do
     fixtures :users
     fixtures :jobs
     fixtures :groups
-
-    describe "with valid params" do
+    context "login user's my_group_job_list " do
       before do
         @user = User.find(1)
         controller.stub(:current_user) {@user}
+          get :my_group_job_list,group_id: 1 
       end
-      it "assigns a newly created task as @job" do
-        post :create,{:job=> error_attribute}
-        assigns(:job).should be_a(Job)
-        assigns(:job).should have(1).error_on(:title)
+      it "login user check" do
+         @user.name.should eql("test name")
       end
-      it "redirects to the created job" do
-        @params=valid_attribute
-        @params[:title]="test job"
-        @params[:description] =""
+      it "response code check" do
+        response.should be_success
+      end
+      it "response render test" do
+        response.should render_template("my_group_job_list")
+      end
+      it "job_list" do
+        assigns(:todo_jobs).should_not be_nil
+        assigns(:todo_jobs).size.should eql(2)
+        assigns(:doing_jobs).should_not be_nil
+        assigns(:doing_jobs).size.should eql(1)
+        assigns(:done_jobs).should_not be_nil
+        assigns(:done_jobs).size.should eql(0)
+      end 
+    end
+  end
+  describe "create method" do
+    context "new job save" do
+      fixtures :users
+      fixtures :jobs
+      fixtures :groups
 
-        post :create, {:job => @params}
-        assigns(:job).should have(2).error_on(:description)
-      end
-      it "redirects to the created job" do
-        @params=valid_attribute
-        @params[:title] = ""
-        @params[:description] = ""
-
-        post :create, {:job => @params}
-        assigns(:job).should have(2).error_on(:title)
-        assigns(:job).should have(2).error_on(:description)
+      describe "with valid params" do
+        before do
+          @user = User.find(1)
+          controller.stub(:current_user) {@user}
+        end
+        it "assigns a newly created task as @job" do
+          post :create,{:job=> valid_attribute}
+          assigns(:job).should be_a(Job)
+          assigns(:job).should be_persisted
+        end
+        it "redirects to the created job" do
+          post :create, {:job => valid_attribute}, valid_session
+          response.should redirect_to(Job.last)
+        end
       end
     end
+    context "new job create error" do
+      fixtures :users
+      fixtures :jobs
+      fixtures :groups
+
+      describe "with valid params" do
+        before do
+          @user = User.find(1)
+          controller.stub(:current_user) {@user}
+        end
+        it "assigns a newly created task as @job" do
+          post :create,{:job=> error_attribute}
+          assigns(:job).should be_a(Job)
+          assigns(:job).should have(1).error_on(:title)
+        end
+        it "redirects to the created job" do
+          @params=valid_attribute
+          @params[:title]="test job"
+          @params[:description] =""
+
+          post :create, {:job => @params}
+          assigns(:job).should have(2).error_on(:description)
+        end
+        it "redirects to the created job" do
+          @params=valid_attribute
+          @params[:title] = ""
+          @params[:description] = ""
+
+          post :create, {:job => @params}
+          assigns(:job).should have(2).error_on(:title)
+          assigns(:job).should have(2).error_on(:description)
+        end
+      end
+    end 
   end
 
 #  describe "job list test" do

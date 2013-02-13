@@ -24,9 +24,11 @@ describe MyBlogController do
       get 'index'
     end
     it "returns http success" do
-      response.should be_success
-      response.should render_template("index")
-#      response.code.should eql("302")
+      #response.should be_success
+      #response.should render_template("index")
+     response.code.should eql("302")
+     response.should redirect_to action: 'new'
+     #response.should render_template("new")
     end
   end
 
