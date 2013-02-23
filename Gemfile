@@ -119,3 +119,7 @@ gem 'settingslogic'
 
 #trackman
 gem 'trackman'
+
+#jemalloc
+gem 'jemalloc'
+
