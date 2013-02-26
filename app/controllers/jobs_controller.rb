@@ -9,11 +9,11 @@ class JobsController < ApplicationController
   # GET /tasks.json
   def index
     #admin の場合
-    if current_user.role == "admin"
-      results = current_user.extend('admin/finder').my_job_list 
-    else 
+#    if current_user.role == "admin"
+#      results = current_user.extend('admin/finder').my_job_list 
+#    else 
       results = current_user.my_job_list 8 
-    end
+#    end
     @todo_jobs  = results[0]
     @doing_jobs = results[1]
     @done_jobs  = results[2]
